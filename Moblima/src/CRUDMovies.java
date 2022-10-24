@@ -99,4 +99,13 @@ public class CRUDMovies {
         return;
     }
 
+    public static void PrintAllMovieNames(){
+        ArrayList<Movie> Movies = null;
+        Movies = getAllMovieData();
+        for(Movie z: Movies){
+            System.out.println(z.getMovieName());
+        }
+        return;
+    }
+
 }
