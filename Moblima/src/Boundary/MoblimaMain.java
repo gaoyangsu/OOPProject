@@ -10,7 +10,7 @@ public class MoblimaMain extends Boundary {
 
     @Override
     protected void start() {
-        printHeader("MOvie Booking and LIsting Management Application (MOBLIMA)");
+        printHeader("Movie Booking and LIsting Management Application (MOBLIMA)");
         printMenu("Welcome to MOBLIMA, please make a selection:",
                 "1. I'm a moviegoer",
                 "2. I'm a staff",
@@ -20,9 +20,11 @@ public class MoblimaMain extends Boundary {
 
         switch(choice) {
             case 1:
+                SupportFunctions.clearScreen();
                 direct(this, new MovieGoerMain());
                 break;
             case 2:
+                SupportFunctions.clearScreen();
                 direct(this, new StaffMain());
                 break;
             case 3:

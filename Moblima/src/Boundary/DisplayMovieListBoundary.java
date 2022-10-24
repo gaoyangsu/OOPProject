@@ -17,9 +17,11 @@ public class DisplayMovieListBoundary extends Boundary {
 
         switch (choice) {
             case 1:
+                SupportFunctions.clearScreen();
                 end();
                 break;
             case 2:
+                SupportFunctions.clearScreen();
                 end();
                 break;
         }

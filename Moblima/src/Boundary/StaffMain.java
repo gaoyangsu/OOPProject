@@ -18,13 +18,16 @@ public class StaffMain extends Boundary {
         switch (choice) {
             case 1:
                 addMovie(new Movie(123, "shrek", "HI"));
+                SupportFunctions.clearScreen();
                 end();
                 break;
             case 2:
                 removeMovie(new Movie(123, "shrek", "HI"));
+                SupportFunctions.clearScreen();
                 end();
                 break;
             case 3:
+                SupportFunctions.clearScreen();
                 end();
                 break;
         }
