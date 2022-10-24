@@ -1,3 +1,4 @@
+package Controller;
 
 public class Movie implements java.io.Serializable{
 

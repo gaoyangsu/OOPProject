@@ -1,6 +1,4 @@
 package Boundary;
-import Boundary.MovieGoer.DisplayBookingHistoryBoundary;
-import Boundary.MovieGoer.DisplayMovieListBoundary;
 
 import static Controller.MiscMethods.*;
 
@@ -18,9 +16,13 @@ public class MovieGoerMain extends Boundary{
         switch (choice) {
             case 1:
                 direct(this, new DisplayMovieListBoundary());
+                //PrintAllMovieNames();
+                //direct(this, new MovieGoerMain());
                 break;
             case 2:
-                direct(this, new DisplayBookingHistoryBoundary());
+                //direct(this, new DisplayBookingHistoryBoundary());
+                //direct(this, new MovieGoerMain());
+                end();
                 break;
             case 3:
                 end();

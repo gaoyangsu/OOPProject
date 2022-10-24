@@ -1,3 +1,4 @@
+package Controller;
 public class MovieEnums {
     public enum Status{
         Coming_Soon,

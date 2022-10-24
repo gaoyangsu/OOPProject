@@ -1,3 +1,4 @@
+package Controller;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,7 +10,7 @@ import java.util.Iterator;
 
 public class CRUDMovies {
 
-    public static void addmovie(Movie movie){
+    public static void addMovie(Movie movie){
 
         ArrayList<Movie> Movies = null;
         Movies = getAllMovieData();
@@ -96,15 +97,19 @@ public class CRUDMovies {
             System.out.println(z.getMovieName());
             System.out.println(z.getMovieDesc());
         }
+
         return;
     }
 
     public static void PrintAllMovieNames(){
         ArrayList<Movie> Movies = null;
+        int count = 1;
         Movies = getAllMovieData();
         for(Movie z: Movies){
-            System.out.println(z.getMovieName());
+            System.out.println(count + ". " + z.getMovieName());
+            count++;
         }
+
         return;
     }
 
