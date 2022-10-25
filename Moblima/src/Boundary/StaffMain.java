@@ -2,30 +2,33 @@ package Boundary;
 
 import static Controller.MiscMethods.*;
 import static Controller.CRUDMovies.*;
-import Controller.Movie;
+
+import Boundary.Staff.ModifyTheatreBoundary;
+import Boundary.Staff.MovieListingEditBoundary;
+import Entity.Movie;
 
 public class StaffMain extends Boundary {
     @Override
     protected void start() {
+        //NEED TO DO LOG IN PAGE.. this one is just for testing
         printHeader("Staff");
         printMenu("Welcome, please make a selection:",
-                "1. Add new movie",
-                "2. Remove movie",
+                "1. Modify Movie Listing",
+                "2. Modify theatres",
                 "3. Back","");
 
         int choice = readChoice(1, 3);
 
         switch (choice) {
             case 1:
-                addMovie(new Movie(123, "shrek", "HI"));
-                SupportFunctions.clearScreen();
+                direct(this, new MovieListingEditBoundary());
+                //SupportFunctions.clearScreen();
                 end();
                 break;
             case 2:
-                removeMovie(new Movie(123, "shrek", "HI"));
-                SupportFunctions.clearScreen();
+                direct(this, new ModifyTheatreBoundary());
+                //SupportFunctions.clearScreen();
                 end();
-                break;
             case 3:
                 SupportFunctions.clearScreen();
                 end();

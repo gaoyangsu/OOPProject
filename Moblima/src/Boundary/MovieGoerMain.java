@@ -1,5 +1,7 @@
 package Boundary;
 
+import Boundary.MovieGoer.DisplayMovieListBoundary;
+
 import static Controller.MiscMethods.*;
 
 public class MovieGoerMain extends Boundary{
