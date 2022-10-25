@@ -1,5 +1,6 @@
 package Boundary.Staff;
 import Boundary.Boundary;
+import Boundary.SupportFunctions;
 import Entity.*;
 import static Controller.CRUDMovies.*;
 import static Controller.MiscMethods.*;
@@ -20,6 +21,8 @@ public class MovieListingEditBoundary extends Boundary {
         listOfMovie=retrieveMovieList();
 
         if(listOfMovie.isEmpty()){
+            
+            SupportFunctions.clearScreen();
             printMenu("No movie found in Database",
                     "1.List New Movie",
                     "2. Return");
@@ -57,6 +60,7 @@ public class MovieListingEditBoundary extends Boundary {
         ArrayList<String> cast;
         MovieEnums.MovieStatus movieStatus = null;
 
+        SupportFunctions.clearScreen();
         printHeader("Add movie listing");
         System.out.println("Enter the movie ID");
         ID= sc.nextInt();

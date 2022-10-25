@@ -1,6 +1,7 @@
 package Boundary.MovieGoer;
 
 import Boundary.Boundary;
+import Boundary.SupportFunctions;
 import Entity.Movie;
 import Entity.MovieEnums;
 import Entity.Review;
@@ -30,11 +31,15 @@ public class DisplayReviewBoundary extends Boundary {
     private void display(){
         printHeader("Review");
         if (movie.getMovieStatus()== MovieEnums.MovieStatus.COMING_SOON || movie.getMovieStatus()== MovieEnums.MovieStatus.PREVIEW){
+            
+            SupportFunctions.clearScreen();
             readString("Not allowed to comment on movies yet to come.",
                     "Press ENTER to go back.",
                     "\n");
             end();
         }
+        
+        SupportFunctions.clearScreen();
         printMenu("1. Write a review",
                 "2. View all reviews",
                 "3. Go back", "");
@@ -54,6 +59,8 @@ public class DisplayReviewBoundary extends Boundary {
     }
 
     private void giveAReview(){
+        
+        SupportFunctions.clearScreen();
         Scanner sc= new Scanner(System.in);
         printHeader("Please Give us a review");
         System.out.println("Please enter your name");
@@ -78,6 +85,8 @@ public class DisplayReviewBoundary extends Boundary {
     }
 
     private void showReviews(){
+        
+        SupportFunctions.clearScreen();
         Scanner sc= new Scanner(System.in);
         ArrayList<Review> listOfReview = retrieveReviewList(movie);
         if(!(listOfReview==null)){

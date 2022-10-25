@@ -1,5 +1,6 @@
 package Boundary.Staff;
 import Boundary.Boundary;
+import Boundary.SupportFunctions;
 import Entity.*;
 import static Controller.CRUDMovies.*;
 import static Controller.CRUDTheatre.*;
@@ -20,6 +21,8 @@ public class ModifyTheatreBoundary extends Boundary {
 
     public void display(){
         String selection = "";
+        
+        SupportFunctions.clearScreen();
         printHeader("Modify Theatres");
         printMenu("Select Cineplex to modify Movie Theatres",
                 "1.GV",
