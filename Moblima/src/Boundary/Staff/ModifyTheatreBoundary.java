@@ -52,12 +52,13 @@ public class ModifyTheatreBoundary extends Boundary {
                 System.out.println(theatre.getCineplex()+"      "+ theatre.getCinemaLocation()
                         +"      "+theatre.getCode()+"      "+"(" + (theatre.isIs3D() ? "3D" : "Digital") + ")" +"      "+theatre.getTheatreClass());
                 System.out.println();
-                System.out.println("1. Add theatres in "+cineplex.toString());
-                System.out.println("2. Return ");
-                int choice = readChoice(1, 2);
-                if (choice ==1) addTheatres(cineplex);
-                else if (choice == 2) display();
+
             }
+            System.out.println("1. Add theatres in "+cineplex.toString());
+            System.out.println("2. Return ");
+            int choice = readChoice(1, 2);
+            if (choice ==1) addTheatres(cineplex);
+            else if (choice == 2) display();
         }
     }
 

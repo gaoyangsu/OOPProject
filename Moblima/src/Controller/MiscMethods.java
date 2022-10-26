@@ -3,6 +3,7 @@ import Entity.Movie;
 import Entity.MovieEnums;
 import Entity.TheatreEnums;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class MiscMethods {
@@ -164,6 +165,27 @@ public class MiscMethods {
             lineLen += word.length();
         }
         return output.toString();
+    }
+
+    public static String dateInput() {
+        String year, month, day, time;
+        Scanner sc= new Scanner(System.in);
+        System.out.println("Enter Year(e.g. 2022): ");
+        year = sc.nextLine();
+        System.out.println("Enter Month(e.g. 10 for October): ");
+        month = sc.nextLine();
+        System.out.println("Enter Day(e.g. 01 for first day of month): ");
+        day= sc.nextLine();
+        System.out.println("Enter Time in HH:MM(e.g. 12:00)");
+        time= sc.nextLine();
+
+        String concat= year+"-"+month+"-"+day+"T"+time+":00";
+        return concat;
+    }
+
+    public static String dateOutput(Date date){
+        SimpleDateFormat dateForm= new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        return dateForm.format(date);
     }
 
 }

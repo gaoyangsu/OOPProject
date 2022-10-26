@@ -1,8 +1,10 @@
 package Boundary.Staff;
 import Boundary.Boundary;
+import Boundary.MovieGoer.DisplayMovieListBoundary;
 import Entity.*;
 import static Controller.CRUDMovies.*;
 import static Controller.MiscMethods.*;
+import static Boundary.SupportFunctions.*;
 
 
 import java.io.IOException;
@@ -33,16 +35,16 @@ public class MovieListingEditBoundary extends Boundary {
         }
         System.out.println(index + 1 + ". Go back");
 
-        printMenu("Please choose a movie to modify.",
-                "To list a new movie, enter 0:", "");
+        printMenu("Please choose a movie to modify/ add a screening Schedule based on the Movie.",
+                "To list a new movie, enter 0:");
 
         int choice = readChoice(0, index + 1);
 
         if (choice == index + 1) end();
-        else if (choice == 0) {
+        if (choice == 0) {
             addNewMovie();
         }
-        //else modifyIndividualMovie(listOfMovie.get(choice - 1));
+        modifyIndividualMovie(listOfMovie.get(choice - 1));
 
     }
 
@@ -100,6 +102,38 @@ public class MovieListingEditBoundary extends Boundary {
         }
         finally {
             display();
+        }
+    }
+
+    private void modifyIndividualMovie(Movie movie){
+        printHeader("Modify Movie" + movie.getMovieName());
+        printMenu("1.Modify the details of movie",
+                "2.Add ScreenTime for the movie",
+                "3.Remove ScreenTime for the movie",
+                "4.Return/Back");
+        int choice =readChoice(1,4);
+        switch (choice) {
+            case 1:
+                clearScreen();
+                //direct(this, new DisplayMovieListBoundary());
+                //PrintAllMovieNames();
+                //direct(this, new MovieGoerMain());
+                break;
+            case 2:
+                clearScreen();
+                direct(this, new AddScreeningSchedule(movie));
+                //direct(this, new MovieGoerMain());
+                end();
+                break;
+            case 3:
+                clearScreen();
+                end();
+            case 4:
+                clearScreen();
+                end();
+                break;
+
+
         }
     }
 
