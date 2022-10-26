@@ -3,12 +3,14 @@ import Boundary.Boundary;
 import Boundary.MovieGoer.DisplayMovieListBoundary;
 import Entity.*;
 import static Controller.CRUDMovies.*;
+import static Controller.CRUDShowSchedule.addMovieShowSchedule;
 import static Controller.MiscMethods.*;
 import static Boundary.SupportFunctions.*;
 
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class MovieListingEditBoundary extends Boundary {
@@ -16,9 +18,12 @@ public class MovieListingEditBoundary extends Boundary {
     protected void start() {
         display();
     }
-    int index=0;
+
     void display(){
+        Date today= new Date();
+        int index=0;
         ArrayList<Movie> listOfMovie;
+
         listOfMovie=retrieveMovieList();
 
         if(listOfMovie.isEmpty()){
@@ -30,8 +35,34 @@ public class MovieListingEditBoundary extends Boundary {
             else end();
 
         }
+
+        //UPDATE THE MOVIE STATUS BASED ON CURRENT TIME
+//        for (Movie movie:listOfMovie){
+//            if(today.after(movie.getTakeDownDate())) {movie.setMovieStatus(readMovieStatus("END OF SHOWING")); }
+//            else if (today.before(movie.getReleaseDate())) {
+//                if (movie.getMovieStatus().toString()=="PREVIEW") {
+//                    movie.setMovieStatus(readMovieStatus("PREVIEW"));
+//                }
+//                else{
+//                    movie.setMovieStatus(readMovieStatus("COMING SOON"));
+//                }
+//            }
+//            else {
+//                movie.setMovieStatus(readMovieStatus("NOW SHOWING"));
+//            }
+//        }
+
+//        try {
+//            overWriteMovieListNewList(displayMovieList);
+//        }
+//        catch (IOException ex) {
+//            System.out.println("Failed to reset Data");
+//        }
+
+
         for (Movie movie :listOfMovie) {
-            System.out.println(++index + ". " + movie.getMovieName() + generateSpaces(70 - movie.getMovieName().length())+ "(" + movie.getMovieStatus().toString() + ")");
+            System.out.println(++index + ". " + movie.getMovieName() + generateSpaces(70 - movie.getMovieName().length())+ "(" + movie.getMovieStatus().toString() + ")"
+                    +" "+"Release Date: "+movie.releaseDateToString()+" "+"Take Down Date: "+movie.takeDownDateToString());
         }
         System.out.println(index + 1 + ". Go back");
 
@@ -41,15 +72,16 @@ public class MovieListingEditBoundary extends Boundary {
         int choice = readChoice(0, index + 1);
 
         if (choice == index + 1) end();
-        if (choice == 0) {
+        else if (choice == 0) {
             addNewMovie();
         }
-        modifyIndividualMovie(listOfMovie.get(choice - 1));
+        else modifyIndividualMovie(listOfMovie.get(choice - 1));
 
     }
 
     private void addNewMovie() {
         int ID;
+
 
         Scanner sc= new Scanner(System.in);
 
@@ -77,19 +109,26 @@ public class MovieListingEditBoundary extends Boundary {
         synopsis = addLinebreaks(readString("Enter synopsis:"), 50, 14);
 
         // set casts
-        String[] casts = readString("Enter casts, separate with semicolon(;)").split(";");
+        String[] casts = readString("Enter casts, separate with comma(,), Last CAST NO NEED!").split(",");
         cast = new ArrayList<>();
         for (int i = 0; i < casts.length; i++) cast.add(casts[i]);
 
+
         // set movie movieStatus
         while(movieStatus == null) {
-            String input = readString("Enter movie movieStatus, please enter one of the following:",
-                    "Coming soon, Now showing, Preview").toUpperCase();
-            movieStatus = readMovieStatus(input);
+            movieStatus = readMovieStatus("NOW SHOWING");
+            System.out.println("if the movie has not been launched, is there a Preview for the Movie? ");
+            System.out.println("ENTER 1--- YES, 2--- NO");
+            int statusChoice= readChoice(1,2);
+            if(statusChoice==1) movieStatus = readMovieStatus("PREVIEW");
         }
 
         // create movie object
         Movie movie = new Movie(ID,name,synopsis,director,cast,movieStatus,ageAdvisory);
+        System.out.println("Enter Release Date for "+ movie.getMovieName());
+        movie.setReleaseDate();
+        System.out.println("Enter Take Down Date for "+ movie.getMovieName());
+        movie.setTakeDownDate();
 
 
         // write to file
@@ -120,7 +159,7 @@ public class MovieListingEditBoundary extends Boundary {
                 //direct(this, new MovieGoerMain());
                 break;
             case 2:
-                clearScreen();
+                //clearScreen();
                 direct(this, new AddScreeningSchedule(movie));
                 //direct(this, new MovieGoerMain());
                 end();

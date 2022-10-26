@@ -11,7 +11,7 @@ public class StaffMain extends Boundary {
     @Override
     protected void start() {
         
-        SupportFunctions.clearScreen();
+        //SupportFunctions.clearScreen();
         //NEED TO DO LOG IN PAGE.. this one is just for testing
         printHeader("Staff");
         printMenu("Welcome, please make a selection:",
@@ -31,6 +31,7 @@ public class StaffMain extends Boundary {
                 direct(this, new ModifyTheatreBoundary());
                 //SupportFunctions.clearScreen();
                 end();
+                break;
             case 3:
                 end();
                 break;

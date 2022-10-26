@@ -80,6 +80,10 @@ public class CRUDMovies {
         serialisedWrite(MOVIE_FILE,listofMovie);
     }
 
+    public static void overWriteMovieListNewList(ArrayList<Movie> newList) throws IOException{
+        serialisedWrite(MOVIE_FILE,newList);
+    }
+
     ////BELOW IS REVIEW PART/////
     public static void readReviewList() throws IOException, ClassNotFoundException{
         if (serialisedRead(REVIEW_FILE) == null) listOfMovieReviews = new HashMap<>();

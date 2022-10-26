@@ -6,6 +6,8 @@ import Entity.TheatreEnums;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import static Boundary.Staff.AddScreeningSchedule.dateFormat;
+
 public class MiscMethods {
     public static void printMenu(String... menu) {
         for (String s : menu) {
@@ -167,7 +169,31 @@ public class MiscMethods {
         return output.toString();
     }
 
-    public static String dateInput() {
+    public static Date dateInput(){
+        System.out.println();
+        System.out.println("    _/_/_/          _/_/    _/_/_/_/_/     _/_/_/_/");
+        System.out.println("   _/    _/      _/    _/      _/         _/");
+        System.out.println("  _/    _/      _/_/_/_/      _/         _/_/_/");
+        System.out.println(" _/    _/      _/    _/      _/         _/");
+        System.out.println("_/_/_/        _/    _/      _/         _/_/_/_/");
+
+                Date toReturnDate=null;
+        boolean dateInputChecked=false;
+        while (!dateInputChecked) {
+            String date = enterDateString();
+            try {
+                toReturnDate = dateFormat.parse(date);
+                dateInputChecked=true;
+
+            } catch (Exception e) {
+                System.out.println("UNABLE TO CONVERT DATE! Please enter again!");
+            }
+        }
+        return toReturnDate;
+    }
+    //convert String object into Date() object;
+
+    public static String enterDateString() {
         String year, month, day, time;
         Scanner sc= new Scanner(System.in);
         System.out.println("Enter Year(e.g. 2022): ");
@@ -183,9 +209,15 @@ public class MiscMethods {
         return concat;
     }
 
+    //subfunction under enterDateString
+
+
     public static String dateOutput(Date date){
         SimpleDateFormat dateForm= new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         return dateForm.format(date);
     }
+
+    //Convert Date() object into String for Viewing on the console
+
 
 }

@@ -91,12 +91,12 @@ public class DisplayReviewBoundary extends Boundary {
         ArrayList<Review> listOfReview = retrieveReviewList(movie);
         if(!(listOfReview==null)){
 
-            for (Review r : listOfReview) {
-                System.out.println( " Name:     " + r.getName());
-                //System.out.println("  Date:     " + formatTimeMMddkkmm(r.getDate()));
-                System.out.println("  Rating:   " + r.getRating());
-                System.out.println("  Comments: " + addLinebreaks(r.getReview(), 45, 12));
+            for (Review ratings : listOfReview) {
+                System.out.println( " Name:     " + ratings.getName());
+                System.out.println("  Rating:   " + ratings.getRating());
+                System.out.println("  Comments: " + addLinebreaks(ratings.getReview(), 45, 12));
                 System.out.println();
+
             }
         }
         else System.out.println("No review!");

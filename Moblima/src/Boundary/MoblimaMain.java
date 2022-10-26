@@ -21,10 +21,13 @@ public class MoblimaMain extends Boundary {
             System.out.println("Application terminating...");
             return;
         }
+
+
         
         SupportFunctions.clearScreen();
-        printHeader("Movie Booking and Listing Management Application (MOBLIMA)");
-        printMenu("Welcome to MOBLIMA, please make a selection:",
+        SupportFunctions.printMoblima();
+        printHeader("MOBLIMA Booking and Modifying Application");
+        printMenu("User/Admin Page",
                 "1. I'm a moviegoer",
                 "2. I'm a staff",
                 "3. End","");

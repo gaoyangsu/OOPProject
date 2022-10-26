@@ -10,6 +10,7 @@ import static Controller.MiscMethods.*;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import static Controller.MiscMethods.*;
 
@@ -52,6 +53,8 @@ public class DisplayMovieListBoundary extends Boundary {
 
 
     private void movieListingView() {
+
+        Date today = new Date();
         SupportFunctions.clearScreen();
         ArrayList<Movie> listOfMovie;
 
@@ -67,8 +70,28 @@ public class DisplayMovieListBoundary extends Boundary {
         int index = 0;
 
 
-            for (Movie movie : listOfMovie) {  // show ticket sales
 
+        //TO FILTER OUT THE END_OF_SHOWING MOVIES, AS WELL AS TO SET TO COMING SOON and NOW SHOWING
+        for (Movie movie:listOfMovie){
+            if(today.after(movie.getTakeDownDate())) {movie.setMovieStatus(readMovieStatus("END OF SHOWING")); }
+            else if (today.before(movie.getReleaseDate())) {
+                if (movie.getMovieStatus().toString()=="PREVIEW") {
+                    movie.setMovieStatus(readMovieStatus("PREVIEW"));
+                }
+                else{
+                    movie.setMovieStatus(readMovieStatus("COMING SOON"));
+                }
+            }
+            else {
+                movie.setMovieStatus(readMovieStatus("NOW SHOWING"));
+            }
+        }
+
+        //DISPLAY THE ENTIRE LIST OF THE MOVIE
+            for (Movie movie : listOfMovie) {
+                if (movie.getMovieStatus().equals(MovieEnums.MovieStatus.END_OF_SHOWING)) {
+                    ++index;
+                    continue;}
                 printMenu(++index + ". " + movie.getMovieName() + generateSpaces(47 - movie.getMovieName().length())
                         + "(" + movie.getMovieStatus().toString() + ") " +
                         "[" + (getAvgMovieRating(movie) == 0.0 ? "No rating" : getAvgMovieRating(movie)) + "]");
@@ -83,9 +106,7 @@ public class DisplayMovieListBoundary extends Boundary {
         if (choice == index + 1) start();
         else {
             Movie movie = listOfMovie.get(choice - 1);
-            if (movie.getMovieStatus().equals(MovieEnums.MovieStatus.END_OF_SHOWING)) {
-                movie = listOfMovie.get(choice);
-            }
+
             movieDetailView(movie);
         }
 
@@ -102,7 +123,7 @@ public class DisplayMovieListBoundary extends Boundary {
         int choice = readChoice(1, 3);
         switch (choice) {
             case 1:
-                //direct(this, new ShowtimeView(movie));
+                direct(this, new DisplayShowTimeBoundary(movie));
                 break;
             case 2:
                 //intent(this, new ReviewView(movie));

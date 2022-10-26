@@ -1,10 +1,10 @@
 package Entity;
 public class MovieEnums {
     public enum MovieStatus{
-        COMING_SOON("Coming Soon"),
-        PREVIEW ("Preview"),
-        NOW_SHOWING ("Now Showing"),
-        END_OF_SHOWING("End of Showing");
+        COMING_SOON("COMING SOON"),
+        PREVIEW ("PREVIEW"),
+        NOW_SHOWING ("NOW SHOWING"),
+        END_OF_SHOWING("END OF SHOWING");
 
         private String movieStatus;
         MovieStatus(String movieStatus ) {this.movieStatus=movieStatus;};

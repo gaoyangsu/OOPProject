@@ -2,9 +2,11 @@ package Entity;
 import Entity.MovieEnums.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Objects;
 
-import static Controller.MiscMethods.addLinebreaks;
+import static Boundary.Staff.AddScreeningSchedule.dateFormat;
+import static Controller.MiscMethods.*;
 
 
 public class Movie implements java.io.Serializable {
@@ -18,10 +20,12 @@ public class Movie implements java.io.Serializable {
     private MovieStatus movieStatus;
     private AgeAdvisory ageAdvisory;
 
+    private Date releaseDate;
+    private Date takeDownDate; //takeDownDate is to be used to automatically change to END_OF_SHOWING AFTER THE DATE IS OVER;
+
     private int salesNum;
 
     public Movie(int movieId, String movieName, String movieDesc, String movieDirector, ArrayList<String> movieCast, MovieStatus movieStatus, AgeAdvisory ageAdvisory) {
-
         this.movieId = movieId;
         this.movieName = movieName;
         this.movieDesc = movieDesc;
@@ -30,6 +34,29 @@ public class Movie implements java.io.Serializable {
         this.movieStatus = movieStatus;
         this.ageAdvisory = ageAdvisory;
         this.salesNum = 0;
+    }
+    public void setReleaseDate(){
+        this.releaseDate=dateInput();
+    }
+
+    public Date getReleaseDate(){
+        return this.releaseDate;
+    }
+
+    public String releaseDateToString(){
+        return dateOutput(this.releaseDate);
+    }
+
+    public void setTakeDownDate() {
+        this.takeDownDate=dateInput();
+    }
+
+    public Date getTakeDownDate(){
+       return this.takeDownDate;
+    }
+
+    public String takeDownDateToString(){
+        return dateOutput(this.takeDownDate);
     }
 
     public int getMovieId() {
@@ -101,10 +128,6 @@ public class Movie implements java.io.Serializable {
         return getMovieName().equals(movie.getMovieName()) && getMovieDesc().equals(movie.getMovieDesc()) && getMovieDirector().equals(movie.getMovieDirector());
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getMovieName(), getMovieDesc(), getMovieDirector());
-    }
 
     @Override
     public String toString() {

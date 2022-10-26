@@ -4,7 +4,7 @@ import java.io.*;
 
 public class RWController {
 
-    protected static Object serialisedRead(String filePath) throws IOException, ClassNotFoundException {
+    public static Object serialisedRead(String filePath) throws IOException, ClassNotFoundException {
         Object data;
         FileInputStream fileInputStream;
         ObjectInputStream objectInputStream;

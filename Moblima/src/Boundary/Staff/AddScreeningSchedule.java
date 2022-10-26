@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 public class AddScreeningSchedule extends Boundary {
 
-    private Movie movie;
+    Movie movie;
     public static final SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
     public AddScreeningSchedule(Movie movie){
@@ -31,6 +31,7 @@ public class AddScreeningSchedule extends Boundary {
     private void display(){
         ArrayList<ShowSchedule> scheduleForMovie =retrieveMovieShowSchedule(movie);
         printHeader("Show Scheduling for "+movie.getMovieName());
+
         if (scheduleForMovie == null) {
             System.out.println("No schedule for "+this.movie.getMovieName()+" Found");
             System.out.println("1. Add scheduling for "+this.movie.getMovieName());
@@ -41,7 +42,7 @@ public class AddScreeningSchedule extends Boundary {
         }
 
         else {
-            for (ShowSchedule showSchedule: retrieveMovieShowSchedule(movie)){
+            for (ShowSchedule showSchedule: scheduleForMovie){
                 System.out.println(showSchedule.getMovie().getMovieName()+"      "+ showSchedule.getTheatre().getCineplex()
                         +"      "+showSchedule.getTheatre().getCode()+"      "+"ShowTime: "+dateOutput(showSchedule.getTime()));
                 System.out.println();
@@ -60,7 +61,7 @@ public class AddScreeningSchedule extends Boundary {
         Date toAppendDate=null;
         Scanner sc= new Scanner (System.in);
 
-        ShowSchedule toAppend= new ShowSchedule();
+
         Theatre theatreToUse;
 
         printHeader("Show Scheduler");
@@ -70,15 +71,13 @@ public class AddScreeningSchedule extends Boundary {
         theatreToUse= getTheatreThroughCode(code);
 
         System.out.println("Input show time and theatre location for :" + movie.getMovieName());
-        String date=dateInput();
-        try {
-            toAppendDate = dateFormat.parse(date);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+
+        toAppendDate=dateInput();
+
         System.out.println(dateOutput(toAppendDate));
         System.out.println();
 
+        ShowSchedule toAppend= new ShowSchedule();
         toAppend.setTime(toAppendDate);
         toAppend.setMovie(movie);
         toAppend.setTheatre(theatreToUse);
