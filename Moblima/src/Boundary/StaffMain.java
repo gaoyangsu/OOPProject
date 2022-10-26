@@ -10,6 +10,8 @@ import Entity.Movie;
 public class StaffMain extends Boundary {
     @Override
     protected void start() {
+        
+        SupportFunctions.clearScreen();
         //NEED TO DO LOG IN PAGE.. this one is just for testing
         printHeader("Staff");
         printMenu("Welcome, please make a selection:",
@@ -30,7 +32,6 @@ public class StaffMain extends Boundary {
                 //SupportFunctions.clearScreen();
                 end();
             case 3:
-                SupportFunctions.clearScreen();
                 end();
                 break;
         }

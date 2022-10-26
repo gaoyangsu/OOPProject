@@ -1,6 +1,7 @@
 package Boundary.MovieGoer;
 
 import Boundary.Boundary;
+import Boundary.SupportFunctions;
 import Entity.Movie;
 import Entity.MovieEnums;
 
@@ -20,6 +21,8 @@ public class DisplayMovieListBoundary extends Boundary {
     }
 
     private void display() {
+        
+        SupportFunctions.clearScreen();
         printHeader("Search or list movies");
         printMenu("1. Search movies",
                 "2. List all movies",
@@ -37,8 +40,10 @@ public class DisplayMovieListBoundary extends Boundary {
             case 3:
                 //topFive = true;
                 //displayMovieListing();
+                end();
                 break;
             case 4:
+                end();
                 break;
         }
 
@@ -47,15 +52,16 @@ public class DisplayMovieListBoundary extends Boundary {
 
 
     private void movieListingView() {
+        SupportFunctions.clearScreen();
         ArrayList<Movie> listOfMovie;
 
         if (isTopFive) listOfMovie = retrieveTopFiveMovie();
         else listOfMovie = retrieveMovieList();
-
         printHeader("Movies");
         if (listOfMovie.isEmpty()) {
             printMenu("Movie listing is not available");
             movieListingView();
+            return;
         }
 
         int index = 0;
@@ -86,6 +92,7 @@ public class DisplayMovieListBoundary extends Boundary {
     }
 
     private void movieDetailView(Movie movie){
+        SupportFunctions.clearScreen();
         printHeader("Movie details");
         printMenu(movie.toString(),
                 "1. Display showtime",
