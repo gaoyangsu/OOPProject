@@ -40,7 +40,7 @@ public class MiscMethods {
 
         try {
             choice = sc.nextInt();
-        } catch (InputMismatchException ex) {
+        } catch (InputMismatchException | IndexOutOfBoundsException ex) {
             System.out.println("Invalid input, try again.");
             sc.nextLine();  // flush scanner
             return readChoice(i, j);

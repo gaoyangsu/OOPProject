@@ -69,7 +69,7 @@ public class DisplayMovieListBoundary extends Boundary {
         }
 
         int index = 0;
-
+        printMenu("View movie:");
 
         //TO FILTER OUT THE END_OF_SHOWING MOVIES, AS WELL AS TO SET TO COMING SOON and NOW SHOWING
         for (Movie movie:listOfMovie){

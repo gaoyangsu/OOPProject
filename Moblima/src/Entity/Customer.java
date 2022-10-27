@@ -2,6 +2,7 @@ package Entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class Customer extends Person {
@@ -21,4 +22,16 @@ public class Customer extends Person {
 	public void setMovieGoerId(String movieGoerId) {
 		this.movieGoerId = movieGoerId;
 	}
+	
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Customer customer1)) return false;
+        return Objects.equals(getMovieGoerId(), customer1.getMovieGoerId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getMovieGoerId());
+    }
 }

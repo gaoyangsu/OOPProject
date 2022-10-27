@@ -4,29 +4,34 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class Booking implements Serializable{
 	private String transactionId;
 	private String cinemaCode;
-	private float totalPayment;
+	private float price;
 	private String movieName;
 	private Date transactionDate;
 	private Date showTime;
 
-	public Booking(Date showTime, String cinemaCode, String movieName,float totalPayment) {
+	public Booking(Date showTime, String cinemaCode, String movieName,float price) {
 		setTransactionId(showTime, cinemaCode);
 		this.showTime = showTime;
 		this.movieName = movieName;
-                this.totalPayment = totalPayment;
+                this.price = price;
 		transactionDate = new Date();
 	} 
+	
+	public String getCinemaCode() {
+		return cinemaCode;
+	}
 	
 	public String getTransactionId() {
 		return transactionId;
 	}
 
-	public float getTotalPayment() {
-		return totalPayment;
+	public float getPrice() {
+		return price;
 	}
 
 	public String getMovieName() {
@@ -47,7 +52,7 @@ public class Booking implements Serializable{
 	}
 
 	public void setTotalPayment(float totalPayment) {
-		this.totalPayment = totalPayment;
+		this.price = price;
 	}
 
 	public void setMovieName(String movieName) {

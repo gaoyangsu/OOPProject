@@ -68,7 +68,5 @@ public class DisplayShowTimeBoundary extends Boundary {
 
         ShowSchedule toBookParticularSchedule = movieShowTime.get(choice - 1);
         //displayShowtimeDetailMenu(showtime);
-
-
     }
 }
