@@ -11,6 +11,7 @@ import static Controller.MiscMethods.*;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
 import static Controller.MiscMethods.*;
 
@@ -32,7 +33,7 @@ public class DisplayMovieListBoundary extends Boundary {
         int choice = readChoice(1, 4);
         switch (choice) {
             case 1:
-                //searchMovie();
+                direct(this, new DisplaySearchMovieBoundary());
                 break;
             case 2:
                 isTopFive=false;

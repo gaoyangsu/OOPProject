@@ -29,11 +29,11 @@ public class ModifyTheatreBoundary extends Boundary {
                 "2.Cathay",
                 "3.FilmGarde",
                 "4.Return");
-        int choice = readChoice(1, 3);
+        int choice = readChoice(1, 4);
         if (choice == 1) selection="GV";
         else if (choice ==2) selection="Cathay";
         else if (choice ==3) selection="FilmGarde";
-        else end();
+        else if (choice ==4) end();
         displayCinemaList(readCineplex(selection));
 
     }
