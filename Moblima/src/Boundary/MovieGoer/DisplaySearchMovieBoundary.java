@@ -25,7 +25,7 @@ public class DisplaySearchMovieBoundary extends Boundary{
         
         SupportFunctions.clearScreen();
         printHeader("Search Movie");
-        printMenu("Please enter movie title:");
+        printMenu("Please enter movie title (press enter to return):");
         searchResults();
 
     }
@@ -42,6 +42,7 @@ public class DisplaySearchMovieBoundary extends Boundary{
             String title = movie.getMovieName();
             search = search.toLowerCase();
             title = title.toLowerCase();
+            if(search.isEmpty()){end();}
             if(title.indexOf(search) !=-1? true: false){
                 listOfSearchResults.add(movie);
             }
@@ -64,31 +65,8 @@ public class DisplaySearchMovieBoundary extends Boundary{
         if (choice == count + 1) end();
         else {
             Movie movie = listOfMovie.get(choice - 1);
-            movieDetailView(movie);
+            direct(this, new DisplayMovieDetailsBoundary(movie));
         }
-    }
-
-    
-    private void movieDetailView(Movie movie){
-        SupportFunctions.clearScreen();
-        printHeader("Movie details");
-        printMenu(movie.toString(),
-                "1. Display showtime",
-                "2. Display/write reviews",
-                "3. Go back", "");
-
-        int choice = readChoice(1, 3);
-        switch (choice) {
-            case 1:
-                direct(this, new DisplayShowTimeBoundary(movie));
-                break;
-            case 2:
-                //intent(this, new ReviewView(movie));
-                break;
-            case 3:
-                break;
-        }
-       // displayMovieListing();
     }
 
 }

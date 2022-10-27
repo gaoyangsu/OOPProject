@@ -22,9 +22,7 @@ public class DisplayShowTimeBoundary extends Boundary {
     private Movie movie;
     public DisplayShowTimeBoundary(Movie movie ){
         this.movie = movie;
-        start();
     }
-
 
     @Override
     protected void start() {

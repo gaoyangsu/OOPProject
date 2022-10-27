@@ -2,6 +2,8 @@ package Boundary;
 
 import java.io.Console;
 
+import Entity.Movie;
+
 public class SupportFunctions {
     public static void clearScreen() {   
         System.out.print("\033[H\033[2J");   
@@ -16,6 +18,7 @@ public class SupportFunctions {
         System.out.println("|  |   |  | '  '-'  ' |  '--' / |  '--. |  | |  |   |   | |  | |   | ");
         System.out.println("`--'   `--'  `-----'  `------'  `-----' `--' `--'   `---' `--' `---' ");
     }
+
 
 }
 

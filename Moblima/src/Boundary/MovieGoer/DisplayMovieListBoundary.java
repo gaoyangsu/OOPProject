@@ -103,35 +103,14 @@ public class DisplayMovieListBoundary extends Boundary {
 
         int choice = readChoice(1, index + 1);
 
-        if (choice == index + 1) start();
+        if (choice == index + 1) end();
         else {
             Movie movie = listOfMovie.get(choice - 1);
 
-            movieDetailView(movie);
+            direct(this, new DisplayMovieDetailsBoundary(movie));
         }
 
     }
 
-    private void movieDetailView(Movie movie){
-        SupportFunctions.clearScreen();
-        printHeader("Movie details");
-        printMenu(movie.toString(),
-                "1. Display showtime",
-                "2. Display/write reviews",
-                "3. Go back", "");
-
-        int choice = readChoice(1, 3);
-        switch (choice) {
-            case 1:
-                direct(this, new DisplayShowTimeBoundary(movie));
-                break;
-            case 2:
-                //intent(this, new ReviewView(movie));
-                break;
-            case 3:
-                break;
-        }
-       // displayMovieListing();
-    }
 }
 
