@@ -79,7 +79,7 @@ public class AddScreeningSchedule extends Boundary {
 
         ShowSchedule toAppend= new ShowSchedule();
         toAppend.setTime(toAppendDate);
-        toAppend.setMovie(movie);
+        toAppend.setMovie(this.movie);
         toAppend.setTheatre(theatreToUse);
 
         try {

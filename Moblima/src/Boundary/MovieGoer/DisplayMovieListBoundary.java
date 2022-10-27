@@ -70,7 +70,6 @@ public class DisplayMovieListBoundary extends Boundary {
         int index = 0;
 
 
-
         //TO FILTER OUT THE END_OF_SHOWING MOVIES, AS WELL AS TO SET TO COMING SOON and NOW SHOWING
         for (Movie movie:listOfMovie){
             if(today.after(movie.getTakeDownDate())) {movie.setMovieStatus(readMovieStatus("END OF SHOWING")); }
@@ -89,9 +88,9 @@ public class DisplayMovieListBoundary extends Boundary {
 
         //DISPLAY THE ENTIRE LIST OF THE MOVIE
             for (Movie movie : listOfMovie) {
-                if (movie.getMovieStatus().equals(MovieEnums.MovieStatus.END_OF_SHOWING)) {
-                    ++index;
-                    continue;}
+//                if (movie.getMovieStatus().equals(MovieEnums.MovieStatus.END_OF_SHOWING)) {
+//                    ++index;
+//                    continue;}
                 printMenu(++index + ". " + movie.getMovieName() + generateSpaces(47 - movie.getMovieName().length())
                         + "(" + movie.getMovieStatus().toString() + ") " +
                         "[" + (getAvgMovieRating(movie) == 0.0 ? "No rating" : getAvgMovieRating(movie)) + "]");

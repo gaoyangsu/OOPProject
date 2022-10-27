@@ -128,6 +128,10 @@ public class Movie implements java.io.Serializable {
         return getMovieName().equals(movie.getMovieName()) && getMovieDesc().equals(movie.getMovieDesc()) && getMovieDirector().equals(movie.getMovieDirector());
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getMovieId(), getMovieName(), getMovieDesc());
+    }
 
     @Override
     public String toString() {

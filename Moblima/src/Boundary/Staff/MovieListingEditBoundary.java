@@ -36,28 +36,20 @@ public class MovieListingEditBoundary extends Boundary {
 
         }
 
-        //UPDATE THE MOVIE STATUS BASED ON CURRENT TIME
-//        for (Movie movie:listOfMovie){
-//            if(today.after(movie.getTakeDownDate())) {movie.setMovieStatus(readMovieStatus("END OF SHOWING")); }
-//            else if (today.before(movie.getReleaseDate())) {
-//                if (movie.getMovieStatus().toString()=="PREVIEW") {
-//                    movie.setMovieStatus(readMovieStatus("PREVIEW"));
-//                }
-//                else{
-//                    movie.setMovieStatus(readMovieStatus("COMING SOON"));
-//                }
-//            }
-//            else {
-//                movie.setMovieStatus(readMovieStatus("NOW SHOWING"));
-//            }
-//        }
-
-//        try {
-//            overWriteMovieListNewList(displayMovieList);
-//        }
-//        catch (IOException ex) {
-//            System.out.println("Failed to reset Data");
-//        }
+        for (Movie movie:listOfMovie){
+            if(today.after(movie.getTakeDownDate())) {movie.setMovieStatus(readMovieStatus("END OF SHOWING")); }
+            else if (today.before(movie.getReleaseDate())) {
+                if (movie.getMovieStatus().toString()=="PREVIEW") {
+                    movie.setMovieStatus(readMovieStatus("PREVIEW"));
+                }
+                else{
+                    movie.setMovieStatus(readMovieStatus("COMING SOON"));
+                }
+            }
+            else {
+                movie.setMovieStatus(readMovieStatus("NOW SHOWING"));
+            }
+        }
 
 
         for (Movie movie :listOfMovie) {
@@ -79,7 +71,7 @@ public class MovieListingEditBoundary extends Boundary {
 
     }
 
-    private void addNewMovie() {
+    public void addNewMovie() {
         int ID;
 
 
@@ -144,7 +136,7 @@ public class MovieListingEditBoundary extends Boundary {
         }
     }
 
-    private void modifyIndividualMovie(Movie movie){
+    public void modifyIndividualMovie(Movie movie){
         printHeader("Modify Movie" + movie.getMovieName());
         printMenu("1.Modify the details of movie",
                 "2.Add ScreenTime for the movie",
