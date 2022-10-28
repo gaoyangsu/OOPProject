@@ -109,8 +109,8 @@ public class DisplayMovieListBoundary extends Boundary {
 
             direct(this, new DisplayMovieDetailsBoundary(movie));
         }
-
+    
     }
-
+    
 }
 
