@@ -21,6 +21,7 @@ public class DisplaySearchMovieBoundary extends Boundary{
         display();
     }
 
+    
     private void display() {
         
         SupportFunctions.clearScreen();

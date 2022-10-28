@@ -20,7 +20,7 @@ import static Controller.CRUDTheatre.*;
 
 public class DisplayShowTimeBoundary extends Boundary {
     private Movie movie;
-    public DisplayShowTimeBoundary(Movie movie){
+    public DisplayShowTimeBoundary(Movie movie ){
         this.movie = movie;
     }
 
@@ -67,8 +67,8 @@ public class DisplayShowTimeBoundary extends Boundary {
         }
 
         ShowSchedule toBookParticularSchedule = movieShowTime.get(choice - 1);
-        direct(this, new DisplayShowtimeDetailMenu(toBookParticularSchedule));
-        
-        end();
+        //displayShowtimeDetailMenu(showtime);
+
+
     }
 }

@@ -39,7 +39,8 @@ public class Seat implements Serializable {
     public String displayOccupancy(){
         if (isAssigned==true) return "{X}";
         else return "{ }";
+
+
     }
-    
-    
+
 }

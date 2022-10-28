@@ -7,7 +7,6 @@ import java.util.Objects;
 public class ShowSchedule implements Serializable {
 
     private Movie movie;
-    private String cinemaCode;
     private Theatre theatre;
     private Date time;
     private Seat[][] seats;
