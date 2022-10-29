@@ -4,6 +4,7 @@ import Boundary.Boundary;
 import Boundary.SupportFunctions;
 import Entity.Movie;
 import Entity.MovieEnums;
+import Entity.ShowSchedule;
 
 import static Controller.CRUDMovies.*;
 import static Controller.MiscMethods.*;
@@ -17,6 +18,12 @@ import java.util.Scanner;
 import static Controller.MiscMethods.*;
 
 public class DisplayBookingConfirmation extends Boundary{
+
+    private ShowSchedule schedule;
+    public DisplayBookingConfirmation(ShowSchedule schedule){
+        this.schedule=schedule;
+    };
+
     protected void start() {
         display();
     }
@@ -24,10 +31,13 @@ public class DisplayBookingConfirmation extends Boundary{
     private void display() {
         SupportFunctions.clearScreen();
         printHeader("Booking Confirmation");
-        DisplayTicketPrice();
+        BookingConfirmation();
     }
 
-    private void DisplayTicketPrice(){
+    private void BookingConfirmation(){
 
+        
     }
+
+
 }

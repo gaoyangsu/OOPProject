@@ -36,8 +36,8 @@ public class DisplayReviewBoundary extends Boundary {
             end();
         }
         
-        printMenu("1. Write a review",
-                "2. View all reviews",
+        printMenu("1. Give a Review/Rating",
+                "2. View all Reviews/Ratings",
                 "3. Go back", "");
         int choice = readChoice(1, 3);
         switch (choice) {
@@ -59,8 +59,9 @@ public class DisplayReviewBoundary extends Boundary {
         SupportFunctions.clearScreen();
         Scanner sc= new Scanner(System.in);
         printHeader("Please Give us a review");
-        System.out.println("Please enter your name");
+        System.out.println("Please enter your name (press enter to return)");
         String name= sc.nextLine();
+        if(name == ""){display();}
         System.out.println("Give your ratings for this movie (1-5)");
         int rating= readChoice(1,5);
         System.out.println("Please give us your written review");
@@ -71,9 +72,13 @@ public class DisplayReviewBoundary extends Boundary {
         try {
             addReviewIntoList(movie, review1);
             System.out.println("Review Given!");
+            System.out.println("Press any key to return");
+            String r= sc.nextLine();
         }
         catch (IOException ex) {
             System.out.println("Review failed to upload!");
+            System.out.println("Press any key to return");
+            String r= sc.nextLine();
         }
         finally {
             display();

@@ -4,6 +4,7 @@ import Boundary.Boundary;
 import Boundary.SupportFunctions;
 import Entity.Movie;
 import Entity.MovieEnums;
+import Entity.Review;
 
 import static Controller.CRUDMovies.*;
 import static Controller.MiscMethods.*;
@@ -34,9 +35,10 @@ public class DisplayMovieDetailsBoundary extends Boundary{
     private void movieDetailView(Movie movie){
         SupportFunctions.clearScreen();
         printHeader("Movie details");
-        printMenu(movie.toString(),
+        printMenu(
+                movie.toString(),
                 "1. Display showtime",
-                "2. Display/write movie reviews",
+                "2. Display/write movie reviews/rating",
                 "3. Go back", "");
 
         int choice = readChoice(1, 3);
