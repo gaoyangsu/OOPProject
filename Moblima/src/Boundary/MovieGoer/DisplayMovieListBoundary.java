@@ -36,13 +36,10 @@ public class DisplayMovieListBoundary extends Boundary {
                 direct(this, new DisplaySearchMovieBoundary());
                 break;
             case 2:
-                isTopFive=false;
                 movieListingView();
                 break;
             case 3:
-                //topFive = true;
-                //displayMovieListing();
-                end();
+                direct(this, new DisplayTop5MoviesBoundary());
                 break;
             case 4:
                 end();
@@ -58,9 +55,8 @@ public class DisplayMovieListBoundary extends Boundary {
         Date today = new Date();
         SupportFunctions.clearScreen();
         ArrayList<Movie> listOfMovie;
-
-        if (isTopFive) listOfMovie = retrieveTopFiveMovie();
-        else listOfMovie = retrieveMovieList();
+        
+        listOfMovie = retrieveMovieList();
         printHeader("Movies");
         if (listOfMovie.isEmpty()) {
             printMenu("Movie listing is not available");
