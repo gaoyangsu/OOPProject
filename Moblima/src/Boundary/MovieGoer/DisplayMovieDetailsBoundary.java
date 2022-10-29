@@ -36,7 +36,7 @@ public class DisplayMovieDetailsBoundary extends Boundary{
         printHeader("Movie details");
         printMenu(movie.toString(),
                 "1. Display showtime",
-                "2. Display/write reviews",
+                "2. Display/write movie reviews",
                 "3. Go back", "");
 
         int choice = readChoice(1, 3);
@@ -45,7 +45,7 @@ public class DisplayMovieDetailsBoundary extends Boundary{
                 direct(this, new DisplayShowTimeBoundary(movie));
                 break;
             case 2:
-                //intent(this, new ReviewView(movie));
+                direct(this, new DisplayReviewBoundary(movie));
                 break;
             case 3:
                 end();
