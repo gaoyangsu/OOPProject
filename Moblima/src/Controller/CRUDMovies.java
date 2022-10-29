@@ -110,8 +110,13 @@ public class CRUDMovies {
         else {
             double sum = 0;
             for (Review review : reviewList) sum += review.getRating();
-            return Math.round(sum / reviewList.size());
+            return round((sum / reviewList.size()), 1);
         }
+    }
+
+    private static double round (double value, int precision) {
+        int scale = (int) Math.pow(10, precision);
+        return (double) Math.round(value * scale) / scale;
     }
 
 //    public static void addMovie(Movie movie){

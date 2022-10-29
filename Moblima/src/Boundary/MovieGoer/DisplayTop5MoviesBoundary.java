@@ -51,7 +51,7 @@ public class DisplayTop5MoviesBoundary extends Boundary {
             for(int i=0; i<SortBySales.size();i++){
                 String sales = ++count + ". " + SortBySales.get(i).getMovieName() + " [" + SortBySales.get(i).getSalesNum() + " Tickets Sold]";
                 String rating = (count+SortBySales.size()) + ". " + SortByRating.get(i).getMovieName() + 
-                " [" + (getAvgMovieRating(SortByRating.get(i)) == 0.0 ? "No rating" : getAvgMovieRating(SortByRating.get(i))) + "]" + "\n";
+                " [" + (getAvgMovieRating(SortByRating.get(i)) == 0.0 ? "NA" : getAvgMovieRating(SortByRating.get(i))) + "]" + "\n";
                 
                 System.out.printf( sales + generateSpaces(47 - sales.length()) + rating);
             }
