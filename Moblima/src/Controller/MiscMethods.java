@@ -33,7 +33,12 @@ public class MiscMethods {
         for (int i = 0; i < length; i++) System.out.print("#");
         System.out.println();
     }
-
+    public static double readDouble(String... message){
+        for (String m : message) System.out.println(m);
+        Scanner sc = new Scanner(System.in);
+        return sc.nextDouble();
+    }
+    
     public static int readChoice(int i, int j) {
         Scanner sc = new Scanner(System.in);
         int choice;

@@ -5,6 +5,7 @@ import static Controller.CRUDMovies.*;
 import static Controller.AdminController.*;
 import Boundary.Staff.ModifyTheatreBoundary;
 import Boundary.Staff.MovieListingEditBoundary;
+import Boundary.Staff.ModifySystemSettingsBoundary;
 import Entity.Admin;
 import Entity.Movie;
 
@@ -25,7 +26,7 @@ public class StaffMain extends Boundary {
                 "3. Modify System Settings",
                 "4. Back","");
 
-        int choice = readChoice(1, 3);
+        int choice = readChoice(1, 4);
 
         switch (choice) {
             case 1:
@@ -57,6 +58,5 @@ public class StaffMain extends Boundary {
                 
             }
         }
-        if(signedIn){displayAdminView();}
+        if(signedIn){displayAdminView();}else end();}
     };
-}

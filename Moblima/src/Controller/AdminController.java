@@ -1,9 +1,12 @@
 package Controller;
 import Entity.Movie;
 import Entity.Review;
+import Entity.SystemSettings;
 import Entity.Theatre;
 import Entity.TheatreEnums;
 import Entity.Admin;
+import Entity.Holiday;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -16,7 +19,10 @@ import static Controller.RWController.*;
 public class AdminController {
     private static final String ADMIN_FILE = "Data/admin.dat";
     private static ArrayList<Admin> listofAdmins;
-
+    private static final String SETTINGS_FILE = "Data/settings.dat";
+    private static ArrayList<SystemSettings> systemSetting;
+    private static final String HOLIDAY_FILE = "Data/holiday.dat";
+    private static ArrayList<Holiday> holidays;
 //    public static boolean CRUDTheatresInitialise() {
 //        try {
 //            readTheatreList();
@@ -28,7 +34,35 @@ public class AdminController {
 //
 //        return true;
 //    }
-
+    public static void readHolidays() throws IOException, ClassNotFoundException {
+        if (serialisedRead(HOLIDAY_FILE) == null) holidays = new ArrayList<>();
+        else holidays = (ArrayList<Holiday>) serialisedRead(HOLIDAY_FILE);
+    }
+    public static void updateHolidays() throws IOException {
+        serialisedWrite(HOLIDAY_FILE, holidays);
+    }
+    public static ArrayList<Holiday> retrieveHolidays() {
+        return holidays;
+    }
+    public static void addHoliday(Holiday holiday) throws IOException {
+        holidays.add(holiday);
+        updateHolidays();
+    }
+    
+    public static void removeHoliday(Holiday holiday) throws IOException{
+        holidays.remove(holiday);
+        updateHolidays();
+    }
+    public static void readSystemSettings() throws IOException, ClassNotFoundException {
+        if (serialisedRead(SETTINGS_FILE) == null) systemSetting = new ArrayList<>();
+        else systemSetting = (ArrayList<SystemSettings>) serialisedRead(SETTINGS_FILE);
+    }
+    public static void updateSystemSettings() throws IOException {
+        serialisedWrite(SETTINGS_FILE, systemSetting);
+    }
+    public static SystemSettings retrieveSystemSettings() {
+        return systemSetting.get(0);
+    }
     //THIS READ FUNCTION HAS TO BE USED EVERYTIME THE PROGRAMME STARTS
     public static void readAdminList() throws IOException, ClassNotFoundException {
         if (serialisedRead(ADMIN_FILE) == null) listofAdmins = new ArrayList<>();
@@ -52,9 +86,5 @@ public class AdminController {
     public static void removeAdminFromList(Admin admin) throws IOException{
         listofAdmins.remove(admin);
         updateAdminList();
-    }
-    public static boolean authenticate(String id,String password){
-        
-        return true;
     }
 }

@@ -2,6 +2,7 @@ package Controller;
 import Entity.Admin;
 import Entity.Movie;
 import Entity.Review;
+import Entity.SystemSettings;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -29,6 +30,8 @@ public class CRUDMovies {
             readReviewList();
             readTheatreList();
             readAdminList();
+            readHolidays();
+            readSystemSettings();
             // Admin one = new Admin("admin","default@default.com",81234567);
             // Admin two = new Admin("moe","default@default.com",65234567);
             // one.setAdminId("default");
@@ -37,6 +40,9 @@ public class CRUDMovies {
             // two.setAdminPassword("123456");
             // addAdminIntoList(one);
             // addAdminIntoList(two);
+            //SystemSettings one = new SystemSettings(2.50, 1.50, 4.50, 3, 8.50, 2.50, 1, 1);
+            //retrieveSystemSettings().
+            ////updateSystemSettings();
             
         } catch (IOException ex) {
             ex.printStackTrace();
