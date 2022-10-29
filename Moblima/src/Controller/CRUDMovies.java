@@ -1,4 +1,5 @@
 package Controller;
+import Entity.Admin;
 import Entity.Movie;
 import Entity.Review;
 
@@ -12,7 +13,7 @@ import java.util.*;
 import static Controller.RWController.*;
 import static Controller.CRUDShowSchedule.*;
 import static Controller.CRUDTheatre.*;
-
+import static Controller.AdminController.*;
 
 public class CRUDMovies {
 
@@ -27,6 +28,16 @@ public class CRUDMovies {
             readMovieShowSchedule();
             readReviewList();
             readTheatreList();
+            readAdminList();
+            // Admin one = new Admin("admin","default@default.com",81234567);
+            // Admin two = new Admin("moe","default@default.com",65234567);
+            // one.setAdminId("default");
+            // two.setAdminId("kingsmil");
+            // one.setAdminPassword("password");
+            // two.setAdminPassword("123456");
+            // addAdminIntoList(one);
+            // addAdminIntoList(two);
+            
         } catch (IOException ex) {
             ex.printStackTrace();
 
