@@ -90,7 +90,7 @@ public class DisplayMovieListBoundary extends Boundary {
 //                    continue;}
                 printMenu(++index + ". " + movie.getMovieName() + generateSpaces(47 - movie.getMovieName().length())
                         + "(" + movie.getMovieStatus().toString() + ") " +
-                        "[" + (getAvgMovieRating(movie) == 0.0 ? "No rating" : getAvgMovieRating(movie)) + "]");
+                        "[" + (getAvgMovieRating(movie) == 0.0 ? "NA" : getAvgMovieRating(movie)) + "]");
 
             }
 
