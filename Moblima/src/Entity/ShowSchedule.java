@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.Objects;
 
 public class ShowSchedule implements Serializable {
+	
+	private static final long serialVersionUID=-2166830098834089557L;
 
     private Movie movie;
     private Theatre theatre;
@@ -16,6 +18,24 @@ public class ShowSchedule implements Serializable {
     public ShowSchedule(){
         seats= new Seat[numRows][numCols];
         createSeats();
+    }
+    
+    public void showSeatLayout() {
+    	for (int row=0;row<numRows;row++) {
+    		System.out.print(row+1);
+    		System.out.print("  ");
+    		for (int column=0;column<numCols;column++) {
+    			if (seats[row][column]!=null) {
+    				System.out.print(seats[row][column].displayOccupancy());
+    			}
+    			else {
+    				System.out.print("   ");
+    			}
+    		}
+    		System.out.print("  ");
+    		System.out.print(row+1);
+    		System.out.print("\n");
+    	}
     }
 
     public Seat getSpecificSeat(int row, int col){
@@ -41,6 +61,7 @@ public class ShowSchedule implements Serializable {
             if((j!=8)&&(j!=9)&&(j!=10)) seats[numRows-1][j]= new Seat(numRows-1,j,this);
         }
     }
+    
     public Movie getMovie() {
         return movie;
     }

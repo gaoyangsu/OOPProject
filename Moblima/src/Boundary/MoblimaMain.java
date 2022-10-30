@@ -2,7 +2,6 @@ package Boundary;
 import Controller.CRUDMovies;
 import Controller.CRUDShowSchedule;
 import Controller.CRUDTheatre;
-
 import java.util.*;
 import static Controller.MiscMethods.*;
 
@@ -22,8 +21,6 @@ public class MoblimaMain extends Boundary {
             System.out.println("Application terminating...");
             return;
         }
-
-
         
         SupportFunctions.clearScreen();
         SupportFunctions.printMoblima();
