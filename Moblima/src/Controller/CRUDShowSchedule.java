@@ -18,8 +18,7 @@ public class CRUDShowSchedule {
 
     private static final String SHOWSCHEDULE_FILE="Data/ShowSchedule.dat";
     private static HashMap<Movie, ArrayList<ShowSchedule>> movieShowScheduleList;
-
-
+    
     public static boolean CRUDShowScheduleInitialise() {
         try {
             readMovieShowSchedule();
@@ -58,9 +57,5 @@ public class CRUDShowSchedule {
         movieShowScheduleList.get(showSchedule.getMovie()).remove(showSchedule);
         updateMovieShowSchedule();
     }
-
-
-
-
 
 }

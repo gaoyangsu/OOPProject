@@ -10,6 +10,8 @@ import static Controller.MiscMethods.*;
 
 
 public class Movie implements java.io.Serializable {
+	
+	private static final long serialVersionUID=1906756998803084247L;
 
     private int movieId;
     private String movieName;
@@ -118,7 +120,6 @@ public class Movie implements java.io.Serializable {
     public int getSalesNum() {
         return salesNum;
     }
-
 
 
     @Override

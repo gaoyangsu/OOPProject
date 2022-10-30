@@ -33,7 +33,7 @@ public class DisplayShowTimeBoundary extends Boundary {
 
         Date today= new Date();
 
-        printHeader("View ShowSchdule of the Movie");
+        printHeader("View ShowSchedule of the Movie");
 
         ArrayList<ShowSchedule> movieShowTime=  new ArrayList<>();
 
@@ -56,7 +56,7 @@ public class DisplayShowTimeBoundary extends Boundary {
                     +"      "+showSchedule.getTheatre().getCode()+"      "+"ShowTime: "+dateOutput(showSchedule.getTime()));
             System.out.println();
         }
-
+        
         System.out.println("Please choose a showtime (enter 0 to go back):");
 
         System.out.println();
@@ -67,8 +67,6 @@ public class DisplayShowTimeBoundary extends Boundary {
         }
 
         ShowSchedule toBookParticularSchedule = movieShowTime.get(choice - 1);
-        //displayShowtimeDetailMenu(showtime);
-
-
+        direct(this,new DisplayShowtimeDetailMenu(toBookParticularSchedule));
     }
 }

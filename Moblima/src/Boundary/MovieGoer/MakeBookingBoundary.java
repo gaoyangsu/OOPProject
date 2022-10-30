@@ -37,7 +37,7 @@ public class MakeBookingBoundary extends Boundary{
                   + "[" + movie.getAgeAdvisory().toString()+ "]");
         }
         
-        printMenu("Please select your movie:");
+        printMenu("\nPlease select your movie:");
       
         int choice = readChoice(1, index + 1);
         
