@@ -22,7 +22,7 @@ public class StaffMain extends Boundary {
         printHeader("Staff");
         printMenu("Welcome, please make a selection:",
                 "1. Modify Movie Listing",
-                "2. Modify theatres",
+                "2. Modify Theatres",
                 "3. Modify System Settings",
                 "4. Back","");
 

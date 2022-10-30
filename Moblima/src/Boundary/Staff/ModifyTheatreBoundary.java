@@ -5,7 +5,7 @@ import Entity.*;
 import static Controller.CRUDMovies.*;
 import static Controller.CRUDTheatre.*;
 import static Controller.MiscMethods.*;
-
+import static Boundary.SupportFunctions.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -58,10 +58,12 @@ public class ModifyTheatreBoundary extends Boundary {
 
             }
             System.out.println("1. Add theatres in "+cineplex.toString());
-            System.out.println("2. Return ");
+            System.out.println("2. Remove theatres in "+cineplex.toString());
+            System.out.println("3. Return ");
             int choice = readChoice(1, 2);
             if (choice ==1) addTheatres(cineplex);
-            else if (choice == 2) display();
+            if (choice ==2) removeTheatres(cineplex);
+            else if (choice == 3) display();
         }
     }
 
@@ -103,9 +105,34 @@ public class ModifyTheatreBoundary extends Boundary {
             System.out.println("Added sucessfully!");
         } catch(IOException i){
             i.printStackTrace();
-            System.out.println("Failed to add into system..");
+            System.out.println("Failed to add into system.");
         } finally{
             end();
         }
     }
+
+    public void removeTheatres(TheatreEnums.Cineplex cineplex) {
+
+        System.out.println("Enter the 3 Character code name of the theatre to be removed: ");
+        Scanner sc= new Scanner (System.in);
+        String codeName= sc.nextLine();
+        
+        for (Theatre theatre: retrieveTheatreList(cineplex)){
+            if(theatre.getCode().equals(codeName)){
+                try{
+                    removeTheatreFromList(theatre);
+                    System.out.println("Removed sucessfully!");
+                } 
+                catch(IOException i){
+                    System.out.println("Failed to remove the theatre.");
+                } 
+                finally{
+                    clearScreen();
+                    end();
+                }
+            }
+        }
+
+    }
+
 }

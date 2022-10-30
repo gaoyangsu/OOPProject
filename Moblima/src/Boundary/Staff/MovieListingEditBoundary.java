@@ -51,7 +51,6 @@ public class MovieListingEditBoundary extends Boundary {
             }
         }
 
-
         for (Movie movie :listOfMovie) {
             System.out.println(++index + ". " + movie.getMovieName() + generateSpaces(70 - movie.getMovieName().length())+ "(" + movie.getMovieStatus().toString() + ")"
                     +" "+"Release Date: "+movie.releaseDateToString()+" "+"Take Down Date: "+movie.takeDownDateToString());
@@ -74,9 +73,7 @@ public class MovieListingEditBoundary extends Boundary {
     public void addNewMovie() {
         int ID;
 
-
         Scanner sc= new Scanner(System.in);
-
 
         String name, director, synopsis;
         MovieEnums.AgeAdvisory ageAdvisory = null;
@@ -87,8 +84,6 @@ public class MovieListingEditBoundary extends Boundary {
         System.out.println("Enter the movie ID");
         ID= sc.nextInt();
         name = readString("Enter the movie name:");
-
-
 
         // set age restriction
         while (ageAdvisory == null) {
@@ -122,7 +117,6 @@ public class MovieListingEditBoundary extends Boundary {
         System.out.println("Enter Take Down Date for "+ movie.getMovieName());
         movie.setTakeDownDate();
 
-
         // write to file
         try {
             addMovieIntoList(movie);
@@ -139,10 +133,10 @@ public class MovieListingEditBoundary extends Boundary {
     public void modifyIndividualMovie(Movie movie){
         printHeader("Modify Movie" + movie.getMovieName());
         printMenu("1.Modify movie details",
-                "2.Add ScreenTime for the movie",
-                "3.Remove ScreenTime for the movie",
+                "2.Add/remove screening for the movie",
+                "3.Remove movie from the list",
                 "4.Return/Back");
-        int choice =readChoice(1,4);
+        int choice =readChoice(1,5);
         switch (choice) {
             case 1:
                 //clearScreen();
@@ -158,13 +152,11 @@ public class MovieListingEditBoundary extends Boundary {
                 end();
                 break;
             case 3:
-                clearScreen();
-                end();
+                try{removeMovieFromList(movie);}catch(IOException e){System.out.println("Failed to delete movie record.");};
             case 4:
                 clearScreen();
                 end();
                 break;
-
 
         }
     }
