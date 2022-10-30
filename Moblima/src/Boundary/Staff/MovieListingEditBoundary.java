@@ -28,7 +28,7 @@ public class MovieListingEditBoundary extends Boundary {
 
         if(listOfMovie.isEmpty()){
             printMenu("No movie found in Database",
-                    "1.List New Movie",
+                    "1. List New Movie",
                     "2. Return");
             int choice = readChoice(1, 2);
             if (choice == 1) addNewMovie();
@@ -138,14 +138,15 @@ public class MovieListingEditBoundary extends Boundary {
 
     public void modifyIndividualMovie(Movie movie){
         printHeader("Modify Movie" + movie.getMovieName());
-        printMenu("1.Modify the details of movie",
+        printMenu("1.Modify movie details",
                 "2.Add ScreenTime for the movie",
                 "3.Remove ScreenTime for the movie",
                 "4.Return/Back");
         int choice =readChoice(1,4);
         switch (choice) {
             case 1:
-                clearScreen();
+                //clearScreen();
+                direct(this, new ModifyMovieDetails(movie));
                 //direct(this, new DisplayMovieListBoundary());
                 //PrintAllMovieNames();
                 //direct(this, new MovieGoerMain());
