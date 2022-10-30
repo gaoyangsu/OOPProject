@@ -28,7 +28,7 @@ public class HolidayBoundary extends Boundary {
         "3.Remove Holidays",
         "4.Back");
 
-        int choice = readChoice(1, 3);
+        int choice = readChoice(1, 4);
         switch(choice){
             case 1:
             displayHolidays();
