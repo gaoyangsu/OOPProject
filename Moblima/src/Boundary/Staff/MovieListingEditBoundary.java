@@ -1,5 +1,6 @@
 package Boundary.Staff;
 import Boundary.Boundary;
+import Boundary.SupportFunctions;
 import Boundary.MovieGoer.DisplayMovieListBoundary;
 import Entity.*;
 import static Controller.CRUDMovies.*;
@@ -20,15 +21,16 @@ public class MovieListingEditBoundary extends Boundary {
     }
 
     void display(){
+        SupportFunctions.clearScreen();
         Date today= new Date();
         int index=0;
         ArrayList<Movie> listOfMovie;
 
         listOfMovie=retrieveMovieList();
-
+        printHeader("Edit movie listing");
         if(listOfMovie.isEmpty()){
             printMenu("No movie found in Database",
-                    "1.List New Movie",
+                    "1. List New Movie",
                     "2. Return");
             int choice = readChoice(1, 2);
             if (choice == 1) addNewMovie();
@@ -72,11 +74,9 @@ public class MovieListingEditBoundary extends Boundary {
     }
 
     public void addNewMovie() {
+        SupportFunctions.clearScreen();
         int ID;
-
-
         Scanner sc= new Scanner(System.in);
-
 
         String name, director, synopsis;
         MovieEnums.AgeAdvisory ageAdvisory = null;
@@ -84,8 +84,9 @@ public class MovieListingEditBoundary extends Boundary {
         MovieEnums.MovieStatus movieStatus = null;
 
         printHeader("Add movie listing");
-        System.out.println("Enter the movie ID");
+        System.out.println("Enter the movie ID (enter -1 to return)");
         ID= sc.nextInt();
+        if(ID == -1)display();
         name = readString("Enter the movie name:");
 
 
@@ -137,15 +138,17 @@ public class MovieListingEditBoundary extends Boundary {
     }
 
     public void modifyIndividualMovie(Movie movie){
+        SupportFunctions.clearScreen();
         printHeader("Modify Movie" + movie.getMovieName());
-        printMenu("1.Modify the details of movie",
+        printMenu("1.Modify movie details",
                 "2.Add ScreenTime for the movie",
                 "3.Remove ScreenTime for the movie",
                 "4.Return/Back");
         int choice =readChoice(1,4);
         switch (choice) {
             case 1:
-                clearScreen();
+                //clearScreen();
+                direct(this, new ModifyMovieDetails(movie));
                 //direct(this, new DisplayMovieListBoundary());
                 //PrintAllMovieNames();
                 //direct(this, new MovieGoerMain());

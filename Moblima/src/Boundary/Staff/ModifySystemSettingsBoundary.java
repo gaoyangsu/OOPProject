@@ -19,6 +19,7 @@ public class ModifySystemSettingsBoundary extends Boundary {
         display();
     }
     private void display(){
+        SupportFunctions.clearScreen();
         printHeader("Modify System Setting");
         printMenu("Select Choice",
         "1.Holidays Ticket Increment",
