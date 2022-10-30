@@ -1,6 +1,7 @@
 package Boundary.Staff;
 
 import Boundary.Boundary;
+import Boundary.SupportFunctions;
 import Boundary.MovieGoer.DisplayMovieListBoundary;
 import Entity.*;
 import static Controller.CRUDMovies.*;
@@ -31,7 +32,7 @@ public class ModifyMovieDetails extends Boundary {
     }
 
     private void display(){
-
+        SupportFunctions.clearScreen();
         printHeader("Modifying details for "+movie.getMovieName());
 
         int id, moreupdates=1;

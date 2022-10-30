@@ -17,7 +17,7 @@ public class StaffMain extends Boundary {
         else signin();
     }
     private void displayAdminView() {
-        //SupportFunctions.clearScreen();
+        SupportFunctions.clearScreen();
         //NEED TO DO LOG IN PAGE.. this one is just for testing
         printHeader("Staff");
         printMenu("Welcome, please make a selection:",
@@ -31,12 +31,10 @@ public class StaffMain extends Boundary {
         switch (choice) {
             case 1:
                 direct(this, new MovieListingEditBoundary());
-                //SupportFunctions.clearScreen();
                 end();
                 break;
             case 2:
                 direct(this, new ModifyTheatreBoundary());
-                //SupportFunctions.clearScreen();
                 end();
                 break;
             case 3:
@@ -48,15 +46,20 @@ public class StaffMain extends Boundary {
         }
     }
     private void signin(){
+        SupportFunctions.clearScreen();
         printHeader("Staff");
-        String user = readString("Enter Username");
+        String user = readString("Enter Username (press enter to return)");
+        if(user == "")end();
         String password = readString("Enter Password");
         for(Admin admin : retrieveAdminList()){
             if(user.equals(admin.getAdminId()) && password.equals(admin.getAdminPassword())){
                 signedIn= true;
-                printHeader("Authenticated");
-                
             }
         }
-        if(signedIn){displayAdminView();}else end();}
+        if(signedIn){displayAdminView();}
+        else {
+            readString("\nUsername or Password is incorrect!");
+            end();
+        }
+    }
     };

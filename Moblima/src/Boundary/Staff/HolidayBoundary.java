@@ -13,12 +13,14 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.io.*;
 public class HolidayBoundary extends Boundary {
+    
     Scanner sc= new Scanner(System.in);
     @Override
     protected void start() {
         display();
     }
     private void display(){
+        SupportFunctions.clearScreen();
         printHeader("Modify Holidays");
         printMenu("Select Choice",
         "1.Display Holidays",
@@ -30,15 +32,12 @@ public class HolidayBoundary extends Boundary {
         switch(choice){
             case 1:
             displayHolidays();
-            display();
             break;
             case 2:
             addHolidayToIndex();
-            display();
             break;
             case 3:
             deleteHolidayInIndex();
-            display();
             break;
             case 4:
             end();
@@ -47,26 +46,45 @@ public class HolidayBoundary extends Boundary {
             }
         }
     private void displayHolidays(){
+        SupportFunctions.clearScreen();
         int index=0;
         for(Holiday holiday : retrieveHolidays()){
-            System.out.println(++index + holiday.getHolidayName() +" "+holiday.getDate());
+            System.out.println(++index  + " " + holiday.getHolidayName() +" "+holiday.getDate());
+            readString("\npress enter to return");
+            display();
         }
-        if(index == 0){System.out.println("No holidays indexed");}
+        if(index == 0){readString("\nNo holidays indexed");}
     }
     private  void addHolidayToIndex(){
-        String name = readString("Enter name of the holiday").toUpperCase();
+        SupportFunctions.clearScreen();
+        String name = readString("Enter name of the holiday (press enter to return)").toUpperCase();
+        if(name == "")display();
         System.out.println("Set date of holiday");
         Holiday holiday = new Holiday(dateInput(),name);
+        readString("\nHoliday successfully added!");
+        display();
         try{addHoliday(holiday);}catch(IOException e){
             System.out.println(e);
+            readString("\npress enter to return");
         };
     }
     private  void deleteHolidayInIndex(){
-        System.out.println("Select Index of removed holiday");
-        displayHolidays();
+        SupportFunctions.clearScreen();
+        System.out.println("Select Index of holiday to remove (enter 0 to return)");
+        int index=0;
+        for(Holiday holiday : retrieveHolidays()){
+            System.out.println(++index + " " + holiday.getHolidayName() +" "+holiday.getDate());
+        }
         int i = sc.nextInt();
-        try{removeHoliday(retrieveHolidays().get(i));}catch(IOException e){
+        if(i == 0)display();
+        try{removeHoliday(retrieveHolidays().get(i-1));
+            readString("\nHoliday "+ retrieveHolidays().get(i-1).getHolidayName() + retrieveHolidays().get(i-1).getDate() + " successfully removed!");
+            display();
+        }
+        
+        catch(IOException e){
             System.out.println(e);
+            readString("\npress enter to return");
         };
     }
 }

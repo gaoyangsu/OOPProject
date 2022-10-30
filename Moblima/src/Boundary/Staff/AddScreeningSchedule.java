@@ -1,5 +1,6 @@
 package Boundary.Staff;
 import Boundary.Boundary;
+import Boundary.SupportFunctions;
 import Boundary.MovieGoer.DisplayMovieListBoundary;
 import Entity.*;
 import static Controller.CRUDMovies.*;
@@ -29,6 +30,7 @@ public class AddScreeningSchedule extends Boundary {
     }
 
     private void display(){
+        SupportFunctions.clearScreen();
         ArrayList<ShowSchedule> scheduleForMovie =retrieveMovieShowSchedule(movie);
         printHeader("Show Scheduling for "+movie.getMovieName());
 
@@ -57,7 +59,7 @@ public class AddScreeningSchedule extends Boundary {
     }
 
     public void addScheduling(Movie movie){
-
+        SupportFunctions.clearScreen();
         Date toAppendDate=null;
         Scanner sc= new Scanner (System.in);
 
