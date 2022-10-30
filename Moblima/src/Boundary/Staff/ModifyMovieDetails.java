@@ -114,12 +114,12 @@ public class ModifyMovieDetails extends Boundary {
         }
     }
 
-        try{
-            removeMovieFromList(movie);
-        }
-        catch(IOException e){
-            System.out.println("Something went wrong.");
-        };
+        // try{
+        //     removeMovieFromList(movie);
+        // }
+        // catch(IOException e){
+        //     System.out.println("Something went wrong.");
+        // };
 
         Movie newMovie = new Movie(id,name,synopsis,director,cast,movieStatus,ageAdvisory);
         System.out.println("Confirm the Release Date for "+ newMovie.getMovieName());
@@ -129,6 +129,9 @@ public class ModifyMovieDetails extends Boundary {
 
         try {
             addMovieIntoList(newMovie);
+            updateReviews(movie, newMovie);
+//            newMovie.setSalesNum(movie.getSalesNum());
+            removeMovieFromList(movie);
             System.out.println("Successfully updated movie " + newMovie.getMovieName());
         }
         catch (IOException ex) {
@@ -140,4 +143,22 @@ public class ModifyMovieDetails extends Boundary {
 
     }
 
+    public void updateReviews(Movie movie, Movie newMovie){
+
+        ArrayList<Review> listOfReview = retrieveReviewList(movie);
+        if(!(listOfReview==null)){
+            for (Review ratings : listOfReview) {
+                Review review1 = new Review(ratings.getRating(), ratings.getReview(), this.movie, ratings.getName());
+                try {
+                    addReviewIntoList(newMovie, review1);
+                }
+                catch (IOException ex) {
+                    System.out.println(ex);
+                }
+            }
+        }
+
+    }
+
 }
+
