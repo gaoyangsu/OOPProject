@@ -64,8 +64,9 @@ public class DisplayMovieListBoundary extends Boundary {
             return;
         }
 
-        int index = 0;
+        
 
+        
 
         //TO FILTER OUT THE END_OF_SHOWING MOVIES, AS WELL AS TO SET TO COMING SOON and NOW SHOWING
         for (Movie movie:listOfMovie){
@@ -84,17 +85,23 @@ public class DisplayMovieListBoundary extends Boundary {
         }
 
 
-        ArrayList<Movie> movieList=getListOfCurrentlyShowingMovies(listOfMovie);
+        //TO FILTER OUT THE END OF SHOWING MOVIES
+        ArrayList<Movie> moviesCurrentlyAvailList=  new ArrayList<>();
+        for (Movie movie: listOfMovie){
+            if ((movie.getMovieStatus().toString()=="PREVIEW")||(movie.getMovieStatus().toString()=="NOW SHOWING")) moviesCurrentlyAvailList.add(movie);
+        }
+            
 
-
-        //DISPLAY THE ENTIRE LIST OF THE MOVIE
-            for (Movie movie : movieList) {
+        
+        //DISPLAY THE FILTERED LIST OF MOVIE
+        int index = 0;
+            for (Movie movie : moviesCurrentlyAvailList) {
 //                if (movie.getMovieStatus().equals(MovieEnums.MovieStatus.END_OF_SHOWING)) {
 //                    ++index;
 //                    continue;}
                 printMenu(++index + ". " + movie.getMovieName() + generateSpaces(47 - movie.getMovieName().length())
                         + "(" + movie.getMovieStatus().toString() + ") " +
-                        "[" + (getAvgMovieRating(movie) == 0.0 ? "NA" : getAvgMovieRating(movie)) + "]");
+                        "[" + (getAvgMovieRating(movie) == 0.0 ? "NA" : getAvgMovieRating(movie)) + "]"+"\tSalesNumber: " + movie.getSalesNum());
 
             }
 
@@ -105,24 +112,14 @@ public class DisplayMovieListBoundary extends Boundary {
 
         if (choice == index + 1) end();
         else {
-            Movie movie = listOfMovie.get(choice - 1);
+            Movie movie = moviesCurrentlyAvailList.get(choice - 1);
 
             direct(this, new DisplayMovieDetailsBoundary(movie));
         }
 
     }
 
-    private ArrayList<Movie> getListOfCurrentlyShowingMovies(ArrayList<Movie> movieList) {
-		ArrayList<Movie> result=new ArrayList<Movie>();
-		
-		for (Movie m:movieList) {
-			if (m.getMovieStatus().toString()=="PREVIEW" || m.getMovieStatus().toString()=="NOW SHOWING") {
-				result.add(m);
-			}
-		}
-		
-		return result;
-	}
+    
 
 }
 

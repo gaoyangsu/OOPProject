@@ -13,9 +13,11 @@ import Entity.SystemSettings;
 import Entity.TheatreEnums.TheatreClass;
 
 import static Controller.CRUDMovies.*;
+import static Controller.CRUDShowSchedule.*;
 import static Controller.AdminController.*;
 import static Controller.MiscMethods.*;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -128,6 +130,28 @@ public class DisplayBookingConfirmation extends Boundary{
         	 
         	 printMenu("\nBooking Confirmed!");
          }
+
+		 else if(choice==2){
+			for (Seat seat: bookedSeats){
+				seat.unassignSeat();
+			}
+			end();
+		 }
+
+		try {
+			Movie movieToAppend= schedule.getMovie();
+			retrieveMovieList().get(retrieveMovieList().indexOf(movieToAppend)).increaseCount(bookedSeats.size());
+		
+            updateMovieList();
+
+			updateMovieShowSchedule();
+            System.out.println("Payment has been made. We wish you a great day!");
+        }
+        catch (IOException ex) {
+            ex.printStackTrace();
+            System.out.println("Payment failed.");
+        }
+		 
          direct(this,new MovieGoerMain());
     }
 }
