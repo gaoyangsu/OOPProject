@@ -55,7 +55,7 @@ public class DisplayBookingConfirmation extends Boundary{
     	int studentCount=numStudent;
     	int seniorCount=numSenior;
     	int adultCount=numAdult;
-    	int total=0;
+    	double total=0;
     	boolean is3d=schedule.getTheatre().isIs3D();
     	TheatreClass typeOfSeats=schedule.getTheatre().getTheatreClass();
     	double studentPrice=priceList.getStandardPrice()-priceList.getChildDiscount();
