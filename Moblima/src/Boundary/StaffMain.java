@@ -5,6 +5,7 @@ import static Controller.CRUDMovies.*;
 import static Controller.AdminController.*;
 import Boundary.Staff.ModifyTheatreBoundary;
 import Boundary.Staff.MovieListingEditBoundary;
+import Boundary.MovieGoer.DisplayTop5MoviesBoundary;
 import Boundary.Staff.ModifySystemSettingsBoundary;
 import Entity.Admin;
 import Entity.Movie;
@@ -24,9 +25,10 @@ public class StaffMain extends Boundary {
                 "1. Modify Movie Listing",
                 "2. Modify Theatres",
                 "3. Modify System Settings",
-                "4. Back","");
+                "4. Display Top 5 Movies ",
+                "5. Back","");
 
-        int choice = readChoice(1, 4);
+        int choice = readChoice(1, 5);
 
         switch (choice) {
             case 1:
@@ -41,6 +43,9 @@ public class StaffMain extends Boundary {
                 direct(this, new ModifySystemSettingsBoundary());
                 break;
             case 4:
+                direct(this, new DisplayTop5MoviesBoundary());
+                break;
+            case 5:
                 end();
                 break;
         }
