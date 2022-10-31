@@ -2,24 +2,35 @@ package Entity;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 public class Booking implements Serializable{
+	
+	private static final long serialVersionUID=1L;
+	
 	private String transactionId;
 	private String cinemaCode;
-	private float price;
+	private double price;
 	private String movieName;
 	private Date transactionDate;
 	private Date showTime;
+	private ArrayList<Seat> bookedSeats;
+	
+	public Booking() {
+		
+	}
 
-	public Booking(Date showTime, String cinemaCode, String movieName,float price) {
-		setTransactionId(showTime, cinemaCode);
+	public Booking(Date showTime, String cinemaCode, String movieName,double price,ArrayList<Seat> bookedSeats) {
 		this.showTime = showTime;
 		this.movieName = movieName;
-                this.price = price;
+        this.price = price;
+        this.cinemaCode=cinemaCode;
 		transactionDate = new Date();
+		this.bookedSeats=bookedSeats;
+		setTransactionId(transactionDate,cinemaCode);
 	} 
 	
 	public String getCinemaCode() {
@@ -30,7 +41,7 @@ public class Booking implements Serializable{
 		return transactionId;
 	}
 
-	public float getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
@@ -45,14 +56,18 @@ public class Booking implements Serializable{
 	public Date getShowTime() {
 		return showTime;
 	}
+	
+	public ArrayList<Seat> getSeat() {
+		return bookedSeats;
+	}
 
 	public void setTransactionId(Date dateTime, String cinemaCode) {
 		SimpleDateFormat dateFormatter = new SimpleDateFormat("YYYYMMDDHHMM");
 		this.transactionId = cinemaCode + dateFormatter.format(dateTime);
 	}
 
-	public void setTotalPayment(float totalPayment) {
-		this.price = price;
+	public void setTotalPayment(double totalPayment) {
+		this.price = totalPayment;
 	}
 
 	public void setMovieName(String movieName) {

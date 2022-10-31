@@ -57,7 +57,7 @@ public class DisplayShowTimeBoundary extends Boundary {
             System.out.println();
         }
         
-        System.out.println("Please choose a showtime (enter 0 to go back):");
+        System.out.println("Please choose a showtime(Enter 0 to go back):");
 
         System.out.println();
         int choice = readChoice(0, movieShowTime.size());

@@ -30,7 +30,7 @@ public class MovieGoerMain extends Boundary{
                 end();
                 break;
             case 3:
-            	//direct(this, new DisplayBookingHistoryBoundary());
+            	direct(this, new DisplayBookingHistoryBoundary());
                 //direct(this, new MovieGoerMain());
                 end();
                 break;

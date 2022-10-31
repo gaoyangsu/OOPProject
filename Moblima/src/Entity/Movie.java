@@ -37,6 +37,11 @@ public class Movie implements java.io.Serializable {
         this.ageAdvisory = ageAdvisory;
         this.salesNum = 0;
     }
+    
+    public void increaseCount(int count) {
+    	salesNum+=count;
+    }
+    
     public void setReleaseDate(){
         this.releaseDate=dateInput();
     }

@@ -7,12 +7,14 @@ import java.util.Objects;
 
 public class Customer extends Person {
 	private static final long serialVersionUID = 1L;
-	private String movieGoerId;
+	private String movieGoerId; // unique 6 digit identification, based on first 3 characters of email, followed by first 3 numbers of contact number
+	private ArrayList<Booking> bookings;
 	
 
 	public Customer(String name, String email, int contact)
 	{
 		super(name, email, contact);
+		this.bookings=new ArrayList<Booking>();
 	}
 
 	public String getMovieGoerId() {
@@ -21,6 +23,14 @@ public class Customer extends Person {
 
 	public void setMovieGoerId(String movieGoerId) {
 		this.movieGoerId = movieGoerId;
+	}
+	
+	public ArrayList<Booking> getBookings() {
+		return bookings;
+	}
+	
+	public void addBookingEntries(Booking booking) {
+		bookings.add(booking);
 	}
 	
 	@Override

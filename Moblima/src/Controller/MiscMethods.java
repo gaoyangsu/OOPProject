@@ -218,7 +218,7 @@ public class MiscMethods {
 
 
     public static String dateOutput(Date date){
-        SimpleDateFormat dateForm= new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        SimpleDateFormat dateForm= new SimpleDateFormat("yyyy-MM-dd' T 'HH:mm:ss");
         return dateForm.format(date);
     }
 
