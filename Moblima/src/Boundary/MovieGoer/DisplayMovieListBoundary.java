@@ -83,8 +83,12 @@ public class DisplayMovieListBoundary extends Boundary {
             }
         }
 
+
+        ArrayList<Movie> movieList=getListOfCurrentlyShowingMovies(listOfMovie);
+
+
         //DISPLAY THE ENTIRE LIST OF THE MOVIE
-            for (Movie movie : listOfMovie) {
+            for (Movie movie : movieList) {
 //                if (movie.getMovieStatus().equals(MovieEnums.MovieStatus.END_OF_SHOWING)) {
 //                    ++index;
 //                    continue;}
@@ -107,6 +111,18 @@ public class DisplayMovieListBoundary extends Boundary {
         }
 
     }
+
+    private ArrayList<Movie> getListOfCurrentlyShowingMovies(ArrayList<Movie> movieList) {
+		ArrayList<Movie> result=new ArrayList<Movie>();
+		
+		for (Movie m:movieList) {
+			if (m.getMovieStatus().toString()=="PREVIEW" || m.getMovieStatus().toString()=="NOW SHOWING") {
+				result.add(m);
+			}
+		}
+		
+		return result;
+	}
 
 }
 

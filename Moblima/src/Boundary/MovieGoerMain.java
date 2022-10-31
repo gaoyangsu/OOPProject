@@ -1,5 +1,6 @@
 package Boundary;
 
+import Boundary.MovieGoer.DisplayBookingHistoryBoundary;
 import Boundary.MovieGoer.DisplayMovieListBoundary;
 import Boundary.MovieGoer.MakeBookingBoundary;
 
