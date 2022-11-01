@@ -17,6 +17,7 @@ import java.util.Scanner;
 import static Controller.MiscMethods.*;
 
 public class DisplayTop5MoviesBoundary extends Boundary {
+	
     protected void start() {
         display();
     }

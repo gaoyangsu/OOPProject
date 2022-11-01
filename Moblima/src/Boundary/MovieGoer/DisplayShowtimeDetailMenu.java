@@ -28,7 +28,19 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 		int numSeniors=0;
 		int count=0;
 		
+		printHeader("Pricing Information");
 		showPricing();
+		printHeader("Booking menu");
+		printMenu("What would you like to do?"+
+				"\n1. Proceed to booking."+
+				"\n2. Go back");
+		
+		int choice=readChoice(1,2);
+		
+		if (choice==2) {
+			end();
+		}
+		
 		printMenu("\nPlease enter number of seats(Press 0 to go back)");
 		int numSeats=readChoice(0,134);
 		
@@ -59,10 +71,11 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 			if(count==numSeats) break;
 			printMenu("Please select your seats: "+"("+(numSeats-count)+" left)");
 			
-			printMenu("Select your row(choose a number between 1-9)");
-			int row=readChoice(1,9);
+			printMenu("Select your row(choose an alphabet from A to I)");
+			char result=readCharacter();
+			int row=(int)(result-64);
 			
-			printMenu("Select your Column(choose a number between 1-17, excluding 8)");
+			printMenu("Select your Column(choose a number between 1-17, excluding 9)");
 			int column=readChoice(1,17);
 			
 			if (showtime.getSpecificSeat(row, column)==null) {

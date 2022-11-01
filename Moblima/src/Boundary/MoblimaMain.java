@@ -1,4 +1,5 @@
 package Boundary;
+import Controller.CRUDCustomerBooking;
 import Controller.CRUDMovies;
 import Controller.CRUDShowSchedule;
 import Controller.CRUDTheatre;
@@ -16,7 +17,7 @@ public class MoblimaMain extends Boundary {
     @Override
     protected void start() {
 
-        boolean initialized = CRUDMovies.initialize();
+        boolean initialized= (CRUDCustomerBooking.initialise() && CRUDMovies.initialize());
         if (!initialized) {
             System.out.println("Error: failed to read data, please check file integrity.");
             System.out.println("Application terminating...");
@@ -36,11 +37,13 @@ public class MoblimaMain extends Boundary {
         switch(choice) {
             case 1:
                 //SupportFunctions.clearScreen();
-                direct(this, new MovieGoerMain());
+                direct(this, new MovieGoerSelection());
+                end();
                 break;
             case 2:
                 //SupportFunctions.clearScreen();
                 direct(this, new StaffMain());
+                end();
                 break;
             case 3:
                 System.out.println("Goodbye!");

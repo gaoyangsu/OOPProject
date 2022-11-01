@@ -34,19 +34,19 @@ public class DisplayMovieListBoundary extends Boundary {
         switch (choice) {
             case 1:
                 direct(this, new DisplaySearchMovieBoundary());
+                end();
                 break;
             case 2:
                 movieListingView();
                 break;
             case 3:
                 direct(this, new DisplayTop5MoviesBoundary());
+                end();
                 break;
             case 4:
                 end();
                 break;
         }
-
-        end();
     }
 
 
@@ -116,10 +116,6 @@ public class DisplayMovieListBoundary extends Boundary {
 
             direct(this, new DisplayMovieDetailsBoundary(movie));
         }
-
     }
-
-    
-
 }
 

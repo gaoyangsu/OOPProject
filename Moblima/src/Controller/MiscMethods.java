@@ -69,6 +69,11 @@ public class MiscMethods {
         Scanner sc = new Scanner(System.in);
         return sc.nextLine();
     }
+    
+    public static char readCharacter() {
+        Scanner sc = new Scanner(System.in);
+        return Character.toUpperCase(sc.next().charAt(0));
+    }
 
     public static MovieEnums.AgeAdvisory readAgeAdvisory(String input) {
         switch (input.toUpperCase()) {
