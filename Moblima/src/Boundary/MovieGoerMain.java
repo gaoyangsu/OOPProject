@@ -9,8 +9,8 @@ public class MovieGoerMain extends Boundary{
     private boolean signedIn;
     @Override
     protected void start(){
-        if(signedIn)displayMovieGoerView();
-        else signin();
+        displayMovieGoerView();
+
     }
     private void displayMovieGoerView() {
         SupportFunctions.clearScreen();
@@ -34,23 +34,6 @@ public class MovieGoerMain extends Boundary{
             case 3:
             	end();
                 break;
-        }
-    }
-    private void signin(){
-        SupportFunctions.clearScreen();
-        printHeader("Moviegoer");
-        String user = readString("Enter Username (press enter to return)");
-        if(user == "")end();
-        String password = readString("Enter Password");
-        for(Customer customer : retrieveCustomerList()){
-            if(user.equals(customer.getMovieGoerId()) && password.equals(customer.getMovieGoerPassword())){
-                signedIn= true;
-            }
-        }
-        if(signedIn){displayMovieGoerView();}
-        else {
-            readString("Incorrect Details");
-            end();
         }
     }
 }
