@@ -60,7 +60,7 @@ public class ModifyTheatreBoundary extends Boundary {
             System.out.println("1. Add theatres in "+cineplex.toString());
             System.out.println("2. Remove theatres in "+cineplex.toString());
             System.out.println("3. Return ");
-            int choice = readChoice(1, 2);
+            int choice = readChoice(1, 3);
             if (choice ==1) addTheatres(cineplex);
             if (choice ==2) removeTheatres(cineplex);
             else if (choice == 3) display();

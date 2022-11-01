@@ -20,7 +20,8 @@ import static Controller.CRUDTheatre.*;
 
 public class DisplayShowTimeBoundary extends Boundary {
     private Movie movie;
-    public DisplayShowTimeBoundary(Movie movie ){
+    
+    public DisplayShowTimeBoundary(Movie movie){
         this.movie = movie;
     }
 

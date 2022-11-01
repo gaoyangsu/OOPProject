@@ -34,19 +34,19 @@ public class DisplayMovieListBoundary extends Boundary {
         switch (choice) {
             case 1:
                 direct(this, new DisplaySearchMovieBoundary());
+                end();
                 break;
             case 2:
                 movieListingView();
                 break;
             case 3:
                 direct(this, new DisplayTop5MoviesBoundary());
+                end();
                 break;
             case 4:
                 end();
                 break;
         }
-
-        end();
     }
 
 
@@ -64,8 +64,9 @@ public class DisplayMovieListBoundary extends Boundary {
             return;
         }
 
-        int index = 0;
+        
 
+        
 
         //TO FILTER OUT THE END_OF_SHOWING MOVIES, AS WELL AS TO SET TO COMING SOON and NOW SHOWING
         for (Movie movie:listOfMovie){
@@ -83,14 +84,24 @@ public class DisplayMovieListBoundary extends Boundary {
             }
         }
 
-        //DISPLAY THE ENTIRE LIST OF THE MOVIE
-            for (Movie movie : listOfMovie) {
+
+        //TO FILTER OUT THE END OF SHOWING MOVIES
+        ArrayList<Movie> moviesCurrentlyAvailList=  new ArrayList<>();
+        for (Movie movie: listOfMovie){
+            if ((movie.getMovieStatus().toString()=="PREVIEW")||(movie.getMovieStatus().toString()=="NOW SHOWING")) moviesCurrentlyAvailList.add(movie);
+        }
+            
+
+        
+        //DISPLAY THE FILTERED LIST OF MOVIE
+        int index = 0;
+            for (Movie movie : moviesCurrentlyAvailList) {
 //                if (movie.getMovieStatus().equals(MovieEnums.MovieStatus.END_OF_SHOWING)) {
 //                    ++index;
 //                    continue;}
                 printMenu(++index + ". " + movie.getMovieName() + generateSpaces(47 - movie.getMovieName().length())
                         + "(" + movie.getMovieStatus().toString() + ") " +
-                        "[" + (getAvgMovieRating(movie) == 0.0 ? "NA" : getAvgMovieRating(movie)) + "]");
+                        "[" + (getAvgMovieRating(movie) == 0.0 ? "NA" : getAvgMovieRating(movie)) + "]"+"\tSalesNumber: " + movie.getSalesNum());
 
             }
 
@@ -101,12 +112,10 @@ public class DisplayMovieListBoundary extends Boundary {
 
         if (choice == index + 1) end();
         else {
-            Movie movie = listOfMovie.get(choice - 1);
+            Movie movie = moviesCurrentlyAvailList.get(choice - 1);
 
             direct(this, new DisplayMovieDetailsBoundary(movie));
         }
-
     }
-
 }
 

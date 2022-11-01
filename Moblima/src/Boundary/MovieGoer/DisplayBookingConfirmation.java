@@ -4,7 +4,6 @@ import Boundary.Boundary;
 import Boundary.MovieGoerMain;
 import Boundary.SupportFunctions;
 import Entity.Booking;
-import Entity.Customer;
 import Entity.Movie;
 import Entity.MovieEnums;
 import Entity.Seat;
@@ -13,9 +12,12 @@ import Entity.SystemSettings;
 import Entity.TheatreEnums.TheatreClass;
 
 import static Controller.CRUDMovies.*;
+import static Controller.CRUDShowSchedule.*;
 import static Controller.AdminController.*;
 import static Controller.MiscMethods.*;
+import static Controller.CRUDCustomerBooking.*;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -26,6 +28,7 @@ public class DisplayBookingConfirmation extends Boundary{
 
     private ShowSchedule schedule;
     private ArrayList<Seat> bookedSeats;
+    
     private int numStudent;
     private int numSenior;
     private int numAdult;
@@ -36,6 +39,7 @@ public class DisplayBookingConfirmation extends Boundary{
         this.numStudent=numStudent;
         this.numSenior=numSenior;
         this.numAdult=bookedSeats.size()-numStudent-numSenior;
+        
     };
 
     protected void start() {
@@ -53,7 +57,7 @@ public class DisplayBookingConfirmation extends Boundary{
     	int studentCount=numStudent;
     	int seniorCount=numSenior;
     	int adultCount=numAdult;
-    	int total=0;
+    	double total=0;
     	boolean is3d=schedule.getTheatre().isIs3D();
     	TheatreClass typeOfSeats=schedule.getTheatre().getTheatreClass();
     	double studentPrice=priceList.getStandardPrice()-priceList.getChildDiscount();
@@ -115,19 +119,42 @@ public class DisplayBookingConfirmation extends Boundary{
     	 int choice=readChoice(1,2);
          if (choice==1) {
         	 String name=readString("Please enter your name");
-        	 System.out.println();
         	 String email=readString("Please enter your email address");
-        	 String number=readString("Please enter your mobile number");
-        	 int phoneNumber=Integer.parseInt(number);
-        	 Customer newCustomer=new Customer(name,email,phoneNumber);
-        	 newCustomer.setMovieGoerId(email.substring(0,4)+number.substring(0,4));
-
-        	 Booking newBooking=new Booking(schedule.getTime(),schedule.getTheatre().getCode(),schedule.getMovie().getMovieName(),total,bookedSeats);
+    		 Integer number=Integer.parseInt(readString("Please enter your mobile number"));
         	 
-        	 newCustomer.addBookingEntries(newBooking);
-        	 
+        	 Booking newBooking=new Booking(name,email,number,schedule,new Date(),total,bookedSeats);
+        	 try {
+        		 retrieveBookingList().add(newBooking);
+        		 updateBookingList();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("Booking unsuccessfully saved.");
+			}
         	 printMenu("\nBooking Confirmed!");
          }
-         direct(this,new MovieGoerMain());
+
+		 else if(choice==2){
+			for (Seat seat: bookedSeats){
+				seat.unassignSeat();
+			}
+			end();
+		 }
+
+		try {
+			Movie movieToAppend= schedule.getMovie();
+			retrieveMovieList().get(retrieveMovieList().indexOf(movieToAppend)).increaseCount(bookedSeats.size());
+		
+            updateMovieList();
+            
+			updateMovieShowSchedule();
+            System.out.println("Payment has been made. We wish you a great day!");
+        }
+        catch (IOException ex) {
+            ex.printStackTrace();
+            System.out.println("Payment failed.");
+        }
+		 
+         end();
     }
 }

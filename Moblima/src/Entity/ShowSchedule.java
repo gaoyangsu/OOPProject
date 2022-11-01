@@ -22,7 +22,7 @@ public class ShowSchedule implements Serializable {
     
     public void showSeatLayout() {
     	for (int row=0;row<numRows;row++) {
-    		System.out.print(row+1);
+    		System.out.print((char)(row+65));
     		System.out.print("  ");
     		for (int column=0;column<numCols;column++) {
     			if (seats[row][column]!=null) {
@@ -33,9 +33,17 @@ public class ShowSchedule implements Serializable {
     			}
     		}
     		System.out.print("  ");
-    		System.out.print(row+1);
+    		System.out.print((char)(row+65));
     		System.out.print("\n");
     	}
+    	System.out.print("   ");
+    	for (int i=1;i<=9;i++) {
+    		System.out.print(" "+i+" ");
+    	}
+    	for (int i=10;i<=17;i++) {
+    		System.out.print(i+" ");
+    	}
+    	System.out.println();
     }
 
     public Seat getSpecificSeat(int row, int col){
