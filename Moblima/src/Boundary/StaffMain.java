@@ -7,6 +7,7 @@ import Boundary.Staff.ModifyTheatreBoundary;
 import Boundary.Staff.MovieListingEditBoundary;
 import Boundary.MovieGoer.DisplayTop5MoviesBoundary;
 import Boundary.Staff.ModifySystemSettingsBoundary;
+import Boundary.Staff.DisplayAdminRegiserBoundary;
 import Entity.Admin;
 import Entity.Movie;
 
@@ -26,7 +27,8 @@ public class StaffMain extends Boundary {
                 "2. Modify Theatres",
                 "3. Modify System Settings",
                 "4. Display Top 5 Movies ",
-                "5. Back","");
+                "5. Register New Admin",
+                "6. Back","");
 
         int choice = readChoice(1, 5);
 
@@ -46,6 +48,9 @@ public class StaffMain extends Boundary {
                 direct(this, new DisplayTop5MoviesBoundary());
                 break;
             case 5:
+                direct(this, new DisplayAdminRegiserBoundary());
+                break;
+            case 6:
                 end();
                 break;
         }
@@ -63,7 +68,7 @@ public class StaffMain extends Boundary {
         }
         if(signedIn){displayAdminView();}
         else {
-            readString("\nUsername or Password is incorrect!");
+            readString("Incorrect Details");
             end();
         }
     }

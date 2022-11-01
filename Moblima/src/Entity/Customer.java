@@ -9,7 +9,18 @@ public class Customer extends Person {
 	private static final long serialVersionUID = 1L;
 	private String movieGoerId; // unique 6 digit identification, based on first 3 characters of email, followed by first 3 numbers of contact number
 	private ArrayList<Booking> bookings;
-	
+	private String movieGoerPassword;
+	public void setBookings(ArrayList<Booking> bookings) {
+		this.bookings = bookings;
+	}
+
+	public String getMovieGoerPassword() {
+		return this.movieGoerPassword;
+	}
+
+	public void setMovieGoerPassword(String movieGoerPassword) {
+		this.movieGoerPassword = movieGoerPassword;
+	}
 
 	public Customer(String name, String email, int contact)
 	{
@@ -42,6 +53,6 @@ public class Customer extends Person {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getMovieGoerId());
+        return Objects.hash(getMovieGoerId(),getMovieGoerPassword());
     }
 }

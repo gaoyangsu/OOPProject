@@ -3,6 +3,9 @@ import Controller.CRUDMovies;
 import Controller.CRUDShowSchedule;
 import Controller.CRUDTheatre;
 import java.util.*;
+
+import Boundary.MovieGoer.DisplayMovieGoerRegisterBoundary;
+
 import static Controller.MiscMethods.*;
 
 
@@ -28,9 +31,10 @@ public class MoblimaMain extends Boundary {
         printMenu("User/Admin Page",
                 "1. I'm a moviegoer",
                 "2. I'm a staff",
-                "3. End","");
+                "3. I want to register as a moviegoer!",
+                "4. End","");
 
-        int choice = readChoice(1, 3);
+        int choice = readChoice(1, 4);
 
         switch(choice) {
             case 1:
@@ -42,6 +46,9 @@ public class MoblimaMain extends Boundary {
                 direct(this, new StaffMain());
                 break;
             case 3:
+                direct(this, new DisplayMovieGoerRegisterBoundary());
+                break;
+            case 4:
                 System.out.println("Goodbye!");
                 end();
                 break;

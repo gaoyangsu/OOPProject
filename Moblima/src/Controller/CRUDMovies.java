@@ -15,7 +15,7 @@ import static Controller.RWController.*;
 import static Controller.CRUDShowSchedule.*;
 import static Controller.CRUDTheatre.*;
 import static Controller.AdminController.*;
-
+import static Controller.CustomerController.*;
 public class CRUDMovies {
 
     private static final String MOVIE_FILE="Data/Movies.dat";
@@ -32,6 +32,7 @@ public class CRUDMovies {
             readAdminList();
             readHolidays();
             readSystemSettings();
+            readUserList();
             // Admin one = new Admin("admin","default@default.com",81234567);
             // Admin two = new Admin("moe","default@default.com",65234567);
             // one.setAdminId("default");
