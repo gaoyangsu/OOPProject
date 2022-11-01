@@ -19,7 +19,7 @@ import static Controller.RWController.*;
 public class CustomerController {
     private static final String CUSTOMER_FILE = "Data/Customer.dat";
     private static ArrayList<Customer> listOfCustomers;
-
+    private static int currentUserId = -1;
     
     //THIS READ FUNCTION HAS TO BE USED EVERYTIME THE PROGRAMME STARTS
     public static void readUserList() throws IOException, ClassNotFoundException {
@@ -40,7 +40,13 @@ public class CustomerController {
         updateCustomerList();
 
     }
-
+    public static void setCurrentUser(Customer C){
+        currentUserId =listOfCustomers.indexOf(C);
+    }
+    public static Customer getCurrentUser(){
+        if(currentUserId==-1) return null;
+        else return listOfCustomers.get(currentUserId);
+    }
     public static void removeCustomerFromList(Customer customer) throws IOException{
         listOfCustomers.remove(customer);
         updateCustomerList();

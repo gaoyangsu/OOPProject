@@ -39,7 +39,7 @@ public class Movie implements java.io.Serializable {
     }
     
     public void increaseCount(int count) {
-    	salesNum+=count;
+    	this.salesNum+=count;
     }
     
     public void setReleaseDate(){
@@ -123,7 +123,7 @@ public class Movie implements java.io.Serializable {
     }
 
     public int getSalesNum() {
-        return salesNum;
+        return this.salesNum;
     }
 
 

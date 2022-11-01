@@ -5,7 +5,7 @@ import Boundary.MovieGoer.DisplayMovieListBoundary;
 import static Controller.MiscMethods.*;
 import static Controller.CustomerController.*;
 import Entity.Customer;
-public class MovieGoerMain extends Boundary{
+public class MovieGoerMainLogin extends Boundary{
     private boolean signedIn;
     @Override
     protected void start(){
@@ -45,6 +45,7 @@ public class MovieGoerMain extends Boundary{
         for(Customer customer : retrieveCustomerList()){
             if(user.equals(customer.getMovieGoerId()) && password.equals(customer.getMovieGoerPassword())){
                 signedIn= true;
+                setCurrentUser(customer);
             }
         }
         if(signedIn){displayMovieGoerView();}

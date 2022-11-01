@@ -17,6 +17,7 @@ import java.util.Scanner;
 import static Controller.MiscMethods.*;
 
 public class DisplayTop5MoviesBoundary extends Boundary {
+	
     protected void start() {
         display();
     }
@@ -29,16 +30,18 @@ public class DisplayTop5MoviesBoundary extends Boundary {
 
     private void FindTop5ByTicketSalesAndRatings(){
         ArrayList<Movie> listOfMovies = retrieveMovieList();;
-        ArrayList<Movie> SortBySales = listOfMovies;
-        ArrayList<Movie> SortByRating = listOfMovies;
-        listOfMovies = retrieveMovieList();
-
+        ArrayList<Movie> SortBySales = new ArrayList<>();
+        ArrayList<Movie> SortByRating = new ArrayList<>();
+        for(int i=0; i<listOfMovies.size();i++){
+            SortBySales.add(listOfMovies.get(i));
+            SortByRating.add(listOfMovies.get(i));
+        }
 
         Collections.sort(SortBySales,((o1, o2) -> Integer.compare(o2.getSalesNum(),o1.getSalesNum())));
         while (SortBySales.size()>5) SortBySales.remove(5);
 
 
-        Collections.sort(SortByRating,((o1, o2) -> Double.compare(getAvgMovieRating(o2),getAvgMovieRating(o1))));
+        Collections.sort(SortByRating,((o3, o4) -> Double.compare(getAvgMovieRating(o4),getAvgMovieRating(o3))));
         while (SortByRating.size()>5) SortByRating.remove(5);
 
 

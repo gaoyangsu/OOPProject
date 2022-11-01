@@ -65,7 +65,7 @@ public class DisplaySearchMovieBoundary extends Boundary{
 
         if (choice == count + 1) end();
         else {
-            Movie movie = listOfMovie.get(choice - 1);
+            Movie movie = listOfSearchResults.get(choice - 1);
             direct(this, new DisplayMovieDetailsBoundary(movie));
         }
     }

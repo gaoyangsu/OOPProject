@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public class Seat implements Serializable {
 
+    
+
     private int row;
     private int col;
     private boolean isAssigned;
@@ -36,11 +38,13 @@ public class Seat implements Serializable {
         isAssigned=true;
     }
 
+    public void unassignSeat(){
+        isAssigned=false;
+    }
+
     public String displayOccupancy(){
         if (isAssigned==true) return "{X}";
         else return "{ }";
-
-
     }
 
 }

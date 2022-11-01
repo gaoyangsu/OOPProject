@@ -19,7 +19,7 @@ import static Controller.MiscMethods.*;
 public class DisplayMovieDetailsBoundary extends Boundary{
 
     private Movie movie;
-    public DisplayMovieDetailsBoundary(Movie movie ){
+    public DisplayMovieDetailsBoundary(Movie movie){
         this.movie = movie;
     }
 
@@ -37,7 +37,7 @@ public class DisplayMovieDetailsBoundary extends Boundary{
         printHeader("Movie details");
         printMenu(
                 movie.toString(),
-                "1. Display showtime",
+                "1. Make a booking",
                 "2. Display/write movie reviews/rating",
                 "3. Go back", "");
 
@@ -53,6 +53,5 @@ public class DisplayMovieDetailsBoundary extends Boundary{
                 end();
                 break;
         }
-       // displayMovieListing();
     }
 }

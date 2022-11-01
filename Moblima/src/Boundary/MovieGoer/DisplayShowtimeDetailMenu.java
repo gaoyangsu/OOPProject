@@ -8,6 +8,8 @@ import static Controller.MiscMethods.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import static Boundary.SupportFunctions.*;
+
 public class DisplayShowtimeDetailMenu extends Boundary {
 	private ShowSchedule showtime;
 	private ArrayList<Seat> chosenSeats;
@@ -26,7 +28,19 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 		int numSeniors=0;
 		int count=0;
 		
+		printHeader("Pricing Information");
 		showPricing();
+		printHeader("Booking menu");
+		printMenu("What would you like to do?"+
+				"\n1. Proceed to booking."+
+				"\n2. Go back");
+		
+		int choice=readChoice(1,2);
+		
+		if (choice==2) {
+			end();
+		}
+		
 		printMenu("\nPlease enter number of seats(Press 0 to go back)");
 		int numSeats=readChoice(0,134);
 		
@@ -51,40 +65,49 @@ public class DisplayShowtimeDetailMenu extends Boundary {
     	printHeader("Screen");
 		showtime.showSeatLayout();
 		printHeader("Entrace");
+		System.out.println();
     	
-		while (count<numSeats) {
+		while (count<=numSeats) {
+			if(count==numSeats) break;
 			printMenu("Please select your seats: "+"("+(numSeats-count)+" left)");
 			
-			printMenu("\nSelect your row(choose a number between 1-9)");
-			int row=readChoice(1,9);
+			printMenu("Select your row(choose an alphabet from A to I)");
+			char result=readCharacter();
+			int row=(int)(result-64);
 			
-			printMenu("\nSelect your Column(choose a number between 1-17, excluding 8)");
+			printMenu("Select your Column(choose a number between 1-17, excluding 9)");
 			int column=readChoice(1,17);
 			
 			if (showtime.getSpecificSeat(row, column)==null) {
-				printMenu("\nNo such seat exists. Please pick another seat.");
-			}
-			
-			else if (showtime.getSpecificSeat(row, column).isAssigned()) {
-				printMenu("\nSeat is already occupied. Please pick another seat.");
+				printMenu("No such seat exists. Please pick another seat.");
 				continue;
 			}
-			else {
+			
+			if (showtime.getSpecificSeat(row, column).isAssigned()) {
+				printMenu("Seat is already occupied. Please pick another seat.");
+				continue;
+			}
 				showtime.getSpecificSeat(row,column).assignSeat();
 				chosenSeats.add(showtime.getSpecificSeat(row, column));
-				printMenu("\nSeat succesfully selected.");
-				count++;
-			}
-			printHeader("Screen");
-			showtime.showSeatLayout();
-			printHeader("Entrace");
+				printMenu("Seat succesfully selected.");
+				printHeader("Screen");
+				showtime.showSeatLayout();
+				printHeader("Entrace");
+				System.out.println();
+				count++;	
+			
 		}
+
+
 		if (showtime.getMovie().getAgeAdvisory().toString()=="M18" ||showtime.getMovie().getAgeAdvisory().toString()=="R21") {
 			printMenu("Please note that this movie is rated "+showtime.getMovie().getAgeAdvisory().toString());
 			printMenu("MOBLIMA welcomes all guests aged 18 and above to the Platinum Movie Suites.");
 		}
 		direct(this, new DisplayBookingConfirmation(showtime,chosenSeats,numStudent,numSeniors));
 		end();
+
+
+		
 	}
 	
 	public static void showPricing() {
