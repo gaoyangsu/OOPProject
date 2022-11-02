@@ -30,7 +30,7 @@ public class StaffMain extends Boundary {
                 "5. Register New Admin",
                 "6. Back","");
 
-        int choice = readChoice(1, 5);
+        int choice = readChoice(1, 6);
 
         switch (choice) {
             case 1:
