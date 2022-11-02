@@ -111,13 +111,10 @@ public class AddScreeningSchedule extends Boundary {
 
         System.out.println("Which ShowSchedule would you like to modify?");
 
-        System.out.println("Enter the Theatre Code(EG. GJ1): ");
-        Scanner sc= new Scanner (System.in);
-        String code= sc.nextLine().toUpperCase();
+        String code= readString("Enter the Theatre Code(EG. GJ1): ").toUpperCase();
         Theatre theatre = getTheatreThroughCode(code);
 
-        // System.out.println("Enter the movie name: ");
-        // String name = sc.nextLine();
+//        String name = readString("Enter the movie name:");
 
         System.out.println("Enter the movie ShowTime: ");
         Date showTime = dateInput();
@@ -135,32 +132,35 @@ public class AddScreeningSchedule extends Boundary {
 
         printHeader("Modifying this ShowTime");
 
-        // System.out.println("1. Update Movie");
+//        System.out.println("1. Update Movie");
         System.out.println("1. Update Theatre");
         System.out.println("2. Update Show Time");
         System.out.println("3. Exit");
         System.out.print("Choice: ");
-        int choice = sc.nextInt();
-        sc.nextLine();
+        int choice = readChoice(1,3);
 
         switch (choice){
 
-        // case 1:
-        // name = readString("Enter the new movie name:");
-        // for (Movie allMovies:retrieveMovieList()){
-        //     if(movie.getMovieName().equals(name)) movie = allMovies;
-        // }
-        // break;
+//        case 1:
+//        name = readString("Enter the new movie name:");
+//        for (Movie allMovies:retrieveMovieList()){
+//            if(allMovies.getMovieName().equals(name)) {
+//            	showScheduleToModify.setMovie(allMovies);
+//            	break;
+//            }
+//        }
+//        break;
 
         case 1:
-        System.out.println("Enter the Theatre Code(EG. GJ1): ");
-        code= sc.nextLine().toUpperCase();
+        code= readString("Enter the Theatre Code(EG. GJ1): ").toUpperCase();
         theatre = getTheatreThroughCode(code);
+        showScheduleToModify.setTheatre(theatre);
         break;
 
         case 2:
         System.out.println("Enter the new ShowTime: ");
         showTime = dateInput();
+        showScheduleToModify.setTime(showTime);
         break;
 
         case 3:
@@ -173,16 +173,16 @@ public class AddScreeningSchedule extends Boundary {
         }
     }
 
-        ShowSchedule newShowSchedule = new ShowSchedule();
-        newShowSchedule.setMovie(movie);
-        newShowSchedule.setTheatre(theatre);
-        newShowSchedule.setTime(showTime);
+        // ShowSchedule newShowSchedule = new ShowSchedule();
+        // newShowSchedule.setMovie(movie);
+        // newShowSchedule.setTheatre(theatre);
+        // newShowSchedule.setTime(showTime);
 
         try {
-            addMovieShowSchedule(newShowSchedule);
-//            updateReviews(movie, newMovie);
-//            newMovie.setSalesNum(movie.getSalesNum());
-            removeMovieShowSchedule(showScheduleToModify);
+            // addMovieShowSchedule(newShowSchedule);
+            // removeMovieShowSchedule(showScheduleToModify);
+//            updateMovieList();
+        	updateMovieShowSchedule();
             System.out.println("Successfully updated ShowTime.");
         }
         catch (IOException ex) {

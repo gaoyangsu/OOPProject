@@ -2,18 +2,15 @@ package Boundary;
 
 import Boundary.MovieGoer.DisplayBookingHistoryBoundary;
 import Boundary.MovieGoer.DisplayMovieListBoundary;
-import Entity.Customer;
-import static Controller.CustomerController.*;
 import static Controller.MiscMethods.*;
 import static Controller.CustomerController.*;
 import Entity.Customer;
-
-public class MovieGoerMain extends Boundary{
+public class MovieGoerMainLogin extends Boundary{
     private boolean signedIn;
     @Override
     protected void start(){
-        displayMovieGoerView();
-
+        if(signedIn)displayMovieGoerView();
+        else signin();
     }
     private void displayMovieGoerView() {
         SupportFunctions.clearScreen();
@@ -37,6 +34,24 @@ public class MovieGoerMain extends Boundary{
             case 3:
             	end();
                 break;
+        }
+    }
+    private void signin(){
+        SupportFunctions.clearScreen();
+        printHeader("Moviegoer");
+        String user = readString("Enter Username (press enter to return)");
+        if(user == "")end();
+        String password = readString("Enter Password");
+        for(Customer customer : retrieveCustomerList()){
+            if(user.equals(customer.getMovieGoerId()) && password.equals(customer.getMovieGoerPassword())){
+                signedIn= true;
+                setCurrentUser(customer);
+            }
+        }
+        if(signedIn){displayMovieGoerView();}
+        else {
+            readString("Incorrect Details");
+            end();
         }
     }
 }

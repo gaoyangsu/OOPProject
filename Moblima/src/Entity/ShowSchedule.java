@@ -94,15 +94,15 @@ public class ShowSchedule implements Serializable {
         this.time = time;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ShowSchedule that)) return false;
-        return Objects.equals(getMovie(), that.getMovie()) && getTheatre().equals(that.getTheatre()) && getTime().equals(that.getTime());
-    }
+    // @Override
+    // public boolean equals(Object o) {
+    //     if (this == o) return true;
+    //     if (!(o instanceof ShowSchedule that)) return false;
+    //     return Objects.equals(getMovie(), that.getMovie()) && getTheatre().equals(that.getTheatre()) && getTime().equals(that.getTime());
+    // }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getMovie(), getTheatre(), getTime());
-    }
+    // @Override
+    // public int hashCode() {
+    //     return Objects.hash(getMovie(), getTheatre(), getTime());
+    // }
 }

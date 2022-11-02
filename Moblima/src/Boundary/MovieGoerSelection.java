@@ -27,7 +27,7 @@ public class MovieGoerSelection extends Boundary{
 	                end();
 	                break;
 	            case 2:
-	            	//direct(this, new MovieGoerMember());
+	            	direct(this, new MovieGoerMainLogin());
 	                end();
 	                break;
 	            case 3:
