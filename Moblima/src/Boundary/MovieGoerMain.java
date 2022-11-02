@@ -2,20 +2,12 @@ package Boundary;
 
 import Boundary.MovieGoer.DisplayBookingHistoryBoundary;
 import Boundary.MovieGoer.DisplayMovieListBoundary;
-<<<<<<< HEAD
-import Boundary.MovieGoer.MakeBookingBoundary;
 import Entity.Customer;
 import static Controller.CustomerController.*;
 import static Controller.MiscMethods.*;
 
 public class MovieGoerMain extends Boundary{
     private boolean signedIn;
-=======
-import static Controller.MiscMethods.*;
-
-public class MovieGoerMain extends Boundary{
-	
->>>>>>> 1362c6aa0af163a7eaafc90ca78fd36bb3e4c11d
     @Override
     protected void start(){
         if(signedIn)displayMovieGoerView();
@@ -36,14 +28,8 @@ public class MovieGoerMain extends Boundary{
                 direct(this, new DisplayMovieListBoundary());
                 end();
                 break;
-<<<<<<< HEAD
-            case 3:
-            	//direct(this, new DisplayBookingHistoryBoundary());
-                //direct(this, new MovieGoerMain());
-=======
             case 2:
             	direct(this, new DisplayBookingHistoryBoundary());
->>>>>>> 1362c6aa0af163a7eaafc90ca78fd36bb3e4c11d
                 end();
                 break;
             case 3:

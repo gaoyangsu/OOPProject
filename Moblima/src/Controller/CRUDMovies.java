@@ -41,8 +41,8 @@ public class CRUDMovies {
             // two.setAdminPassword("123456");
             // addAdminIntoList(one);
             // addAdminIntoList(two);
-            //SystemSettings one = new SystemSettings(2.50, 1.50, 4.50, 3, 8.50, 2.50, 1, 1);
-            //retrieveSystemSettings().
+            ///SystemSettings one = new SystemSettings(2.50, 1.50, 4.50, 3, 8.50, 2.50, 1, 1);
+            ///retrieveSystemSettings().
             ////updateSystemSettings();
             
         } catch (IOException ex) {
