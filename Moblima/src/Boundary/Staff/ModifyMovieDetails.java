@@ -35,7 +35,7 @@ public class ModifyMovieDetails extends Boundary {
         printHeader("Modifying details for "+movie.getMovieName());
 
         int moreupdates=1;
-        String name, director;
+        String name, director, synopsis;
         ArrayList<String> cast;
         MovieEnums.AgeAdvisory ageAdvisory;
         MovieEnums.MovieStatus movieStatus;
@@ -52,14 +52,14 @@ public class ModifyMovieDetails extends Boundary {
         // System.out.println("1. Update Movie Name");
         System.out.println("1. Update Age Restriction");
         System.out.println("2. Update Movie Director");
-        // System.out.println("4. Update Movie Synopsis");
-        System.out.println("3. Update Movie Cast");
-        System.out.println("4. Update Movie Status");
-        System.out.println("5. Update Release Date");
-        System.out.println("6. Update Takedown Date");
-        System.out.println("7. Exit");
+        System.out.println("3. Update Movie Synopsis");
+        System.out.println("4. Update Movie Cast");
+        System.out.println("5. Update Movie Status");
+        System.out.println("6. Update Release Date");
+        System.out.println("7. Update Takedown Date");
+        System.out.println("8. Exit");
         System.out.print("Choice: ");
-        int choice = readChoice(1,7);
+        int choice = readChoice(1,8);
 
         switch (choice){
 
@@ -79,34 +79,35 @@ public class ModifyMovieDetails extends Boundary {
         movie.setMovieDirector(director);
         break;
 
-        // case 4:
-        // synopsis = readString("Enter new synopsis:");
-        // break;
-
         case 3:
+        synopsis = readString("Enter new synopsis:");
+        movie.setMovieDesc(synopsis);
+        break;
+
+        case 4:
         String[] casts = readString("Enter new casts, separate with comma(,), Last CAST NO NEED!").split(",");
         cast = new ArrayList<>();
         for (int i = 0; i < casts.length; i++) cast.add(casts[i]);
         movie.setMovieCast(cast);
         break;
 
-        case 4:
+        case 5:
         input = readString("Enter new movie status, please enter one of the following:",
             "COMING SOON, PREVIEW, NOW SHOWING, END OF SHOWING").toUpperCase();
         movie.setMovieStatus(readMovieStatus(input));
         break;
         
-        case 5:
+        case 6:
         System.out.println("Enter the new Release Date for "+ movie.getMovieName());
         movie.setReleaseDate();
         break;
 
-        case 6:
+        case 7:
         System.out.println("Enter the new Take Down Date for "+ movie.getMovieName());
         movie.setTakeDownDate();
         break;
 
-        case 7:
+        case 8:
         moreupdates=0;
         break;
 

@@ -35,11 +35,11 @@ public class StaffMain extends Boundary {
         switch (choice) {
             case 1:
                 direct(this, new MovieListingEditBoundary());
-                end();
+                // end();
                 break;
             case 2:
                 direct(this, new ModifyTheatreBoundary());
-                end();
+                // end();
                 break;
             case 3:
                 direct(this, new ModifySystemSettingsBoundary());

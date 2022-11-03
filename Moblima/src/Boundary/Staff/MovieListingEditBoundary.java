@@ -59,7 +59,7 @@ public class MovieListingEditBoundary extends Boundary {
         }
         System.out.println(index + 1 + ". Go back");
 
-        printMenu("Please choose a movie to modify/ add a screening Schedule based on the Movie.",
+        printMenu("Please choose a movie to modify/add a screening Schedule based on the Movie.",
                 "To list a new movie, enter 0:");
 
         int choice = readChoice(0, index + 1);

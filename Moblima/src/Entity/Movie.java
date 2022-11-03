@@ -136,7 +136,7 @@ public class Movie implements java.io.Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getMovieId(), getMovieName(), getMovieDesc());
+        return Objects.hash(getMovieId(), getMovieName());
     }
 
     @Override
