@@ -45,7 +45,7 @@ public class StaffMain extends Boundary {
                 direct(this, new ModifySystemSettingsBoundary());
                 break;
             case 4:
-                direct(this, new DisplayTop5MoviesBoundary());
+                direct(this, new DisplayTop5MoviesBoundary(""));
                 break;
             case 5:
                 direct(this, new DisplayAdminRegiserBoundary());

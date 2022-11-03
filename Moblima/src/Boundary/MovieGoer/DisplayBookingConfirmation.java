@@ -1,11 +1,10 @@
 package Boundary.MovieGoer;
 
 import Boundary.Boundary;
-import Boundary.MovieGoerMain;
 import Boundary.SupportFunctions;
 import Entity.Booking;
+import Entity.Customer;
 import Entity.Movie;
-import Entity.MovieEnums;
 import Entity.Seat;
 import Entity.ShowSchedule;
 import Entity.SystemSettings;
@@ -16,16 +15,13 @@ import static Controller.CRUDShowSchedule.*;
 import static Controller.AdminController.*;
 import static Controller.MiscMethods.*;
 import static Controller.CRUDCustomerBooking.*;
+import static Controller.CustomerController.*;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
-import static Controller.MiscMethods.*;
-
 public class DisplayBookingConfirmation extends Boundary{
-
+	private String userId;
     private ShowSchedule schedule;
     private ArrayList<Seat> bookedSeats;
     
@@ -33,13 +29,13 @@ public class DisplayBookingConfirmation extends Boundary{
     private int numSenior;
     private int numAdult;
     
-    public DisplayBookingConfirmation(ShowSchedule schedule,ArrayList<Seat> bookedSeats,int numStudent,int numSenior){
+    public DisplayBookingConfirmation(ShowSchedule schedule,ArrayList<Seat> bookedSeats,int numStudent,int numSenior,String userId){
         this.schedule=schedule;
         this.bookedSeats=bookedSeats;
         this.numStudent=numStudent;
         this.numSenior=numSenior;
         this.numAdult=bookedSeats.size()-numStudent-numSenior;
-        
+        this.userId=userId;
     };
 
     protected void start() {
@@ -118,9 +114,25 @@ public class DisplayBookingConfirmation extends Boundary{
          		"\n2.No");
     	 int choice=readChoice(1,2);
          if (choice==1) {
-        	 String name=readString("Please enter your name");
-        	 String email=readString("Please enter your email address");
-    		 Integer number=Integer.parseInt(readString("Please enter your mobile number"));
+        	 String name="";
+        	 String email="";
+        	 int number=0;
+        	 if (userId=="") {
+        		 name=readString("Please enter your name");
+            	 email=readString("Please enter your email address");
+        		 number=Integer.parseInt(readString("Please enter your mobile number"));
+        	 }
+        	 
+        	 else {
+        		 ArrayList<Customer> customers=retrieveCustomerList();
+        		 for (Customer c:customers) {
+        			 if (c.getMovieGoerId().equals(userId)) {
+        				 name=c.getName();
+        				 email=c.getEmail();
+        				 number=c.getContact();
+        			 }
+        		 }
+        	 }
         	 
         	 Booking newBooking=new Booking(name,email,number,schedule,new Date(),total,bookedSeats);
         	 try {

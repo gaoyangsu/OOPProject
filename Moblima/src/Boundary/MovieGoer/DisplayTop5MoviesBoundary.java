@@ -17,6 +17,12 @@ import java.util.Scanner;
 import static Controller.MiscMethods.*;
 
 public class DisplayTop5MoviesBoundary extends Boundary {
+	private String userId;
+	
+	public DisplayTop5MoviesBoundary(String userId) {
+		this.userId=userId;
+	}
+	
 	
     protected void start() {
         display();
@@ -67,11 +73,11 @@ public class DisplayTop5MoviesBoundary extends Boundary {
         else {
             if(choice <= SortBySales.size()){
                 Movie movie = SortBySales.get(choice - 1);
-                direct(this, new DisplayMovieDetailsBoundary(movie));
+                direct(this, new DisplayMovieDetailsBoundary(movie,userId));
             }
             else{
                 Movie movie = SortByRating.get(choice - SortBySales.size() - 1);
-                direct(this, new DisplayMovieDetailsBoundary(movie));
+                direct(this, new DisplayMovieDetailsBoundary(movie,userId));
             }
         }
     }

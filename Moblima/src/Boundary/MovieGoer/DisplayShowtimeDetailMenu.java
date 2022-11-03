@@ -8,14 +8,14 @@ import static Controller.MiscMethods.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import static Boundary.SupportFunctions.*;
-
 public class DisplayShowtimeDetailMenu extends Boundary {
 	private ShowSchedule showtime;
 	private ArrayList<Seat> chosenSeats;
+	private String userId;
 	
-	public DisplayShowtimeDetailMenu(ShowSchedule showtime) {
+	public DisplayShowtimeDetailMenu(ShowSchedule showtime,String userId) {
 		this.showtime=showtime;
+		this.userId=userId;
 		this.chosenSeats=new ArrayList<Seat>();
 	}
 	
@@ -103,7 +103,7 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 			printMenu("Please note that this movie is rated "+showtime.getMovie().getAgeAdvisory().toString());
 			printMenu("MOBLIMA welcomes all guests aged 18 and above to the Platinum Movie Suites.");
 		}
-		direct(this, new DisplayBookingConfirmation(showtime,chosenSeats,numStudent,numSeniors));
+		direct(this, new DisplayBookingConfirmation(showtime,chosenSeats,numStudent,numSeniors,userId));
 		end();
 
 

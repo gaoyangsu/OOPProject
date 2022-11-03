@@ -16,11 +16,12 @@ import static Controller.MiscMethods.printHeader;
 import static Controller.CRUDMovies.*;
 
 public class DisplayReviewBoundary extends Boundary {
-
+	private String userId;
     private Movie movie;
 
-    public DisplayReviewBoundary(Movie movie){
+    public DisplayReviewBoundary(Movie movie,String userId){
         this.movie=movie;
+        this.userId=userId;
     };
 
     @Override

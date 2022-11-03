@@ -4,8 +4,6 @@ import static Controller.MiscMethods.printHeader;
 import static Controller.MiscMethods.printMenu;
 import static Controller.MiscMethods.readChoice;
 
-import Boundary.MovieGoer.DisplayBookingHistoryBoundary;
-import Boundary.MovieGoer.DisplayMovieListBoundary;
 
 public class MovieGoerSelection extends Boundary{
 	

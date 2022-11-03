@@ -7,6 +7,8 @@ import static Controller.CustomerController.*;
 import Entity.Customer;
 public class MovieGoerMainLogin extends Boundary{
     private boolean signedIn;
+    private String userId;
+    
     @Override
     protected void start(){
         if(signedIn)displayMovieGoerView();
@@ -24,11 +26,11 @@ public class MovieGoerMainLogin extends Boundary{
 
         switch (choice) {
             case 1:
-                direct(this, new DisplayMovieListBoundary());
+                direct(this, new DisplayMovieListBoundary(userId));
                 end();
                 break;
             case 2:
-            	direct(this, new DisplayBookingHistoryBoundary());
+            	direct(this, new DisplayBookingHistoryBoundary(userId));
                 end();
                 break;
             case 3:
@@ -41,6 +43,7 @@ public class MovieGoerMainLogin extends Boundary{
         printHeader("Moviegoer");
         String user = readString("Enter Username (press enter to return)");
         if(user == "")end();
+        this.userId=user;
         String password = readString("Enter Password");
         for(Customer customer : retrieveCustomerList()){
             if(user.equals(customer.getMovieGoerId()) && password.equals(customer.getMovieGoerPassword())){

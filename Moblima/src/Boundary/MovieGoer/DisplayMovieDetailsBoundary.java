@@ -17,10 +17,12 @@ import java.util.Scanner;
 import static Controller.MiscMethods.*;
 
 public class DisplayMovieDetailsBoundary extends Boundary{
-
+	private String userId;
     private Movie movie;
-    public DisplayMovieDetailsBoundary(Movie movie){
+    
+    public DisplayMovieDetailsBoundary(Movie movie,String userId){
         this.movie = movie;
+        this.userId=userId;
     }
 
     protected void start() {
@@ -44,10 +46,10 @@ public class DisplayMovieDetailsBoundary extends Boundary{
         int choice = readChoice(1, 3);
         switch (choice) {
             case 1:
-                direct(this, new DisplayShowTimeBoundary(movie));
+                direct(this, new DisplayShowTimeBoundary(movie,userId));
                 break;
             case 2:
-                direct(this, new DisplayReviewBoundary(movie));
+                direct(this, new DisplayReviewBoundary(movie,""));
                 break;
             case 3:
                 end();

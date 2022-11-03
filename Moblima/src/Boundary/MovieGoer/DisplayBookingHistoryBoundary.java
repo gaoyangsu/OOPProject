@@ -7,16 +7,23 @@ import java.util.ArrayList;
 import Boundary.Boundary;
 import Boundary.SupportFunctions;
 import Entity.Booking;
+import Entity.Customer;
 import Entity.Seat;
 
 import static Controller.CRUDCustomerBooking.*;
+import static Controller.CustomerController.*;
 
 public class DisplayBookingHistoryBoundary extends Boundary {
+	private String userId;
+	
+	public DisplayBookingHistoryBoundary(String userId) {
+		this.userId=userId;
+	}
 	
     @Override
     protected void start() {
         SupportFunctions.clearScreen();
-    //    display();
+        display();
     }
     
     private void display() {
@@ -26,13 +33,33 @@ public class DisplayBookingHistoryBoundary extends Boundary {
         
         printHeader("Booking History");
         
-    	String email=readString("Please enter your email to view your booking history: ");
+        if (userId=="") {
+        	String email=readString("Please enter your email to view your booking history: ");
+            
+            for (Booking b:bookings) {
+            	if (b.getCustomerEmail().equals(email)) {
+            		foundBookings.add(b);
+            		indicator=1;
+            	}
+            }
+        }
         
-        for (Booking b:bookings) {
-        	if (b.getCustomerEmail().equals(email)) {
-        		foundBookings.add(b);
-        		indicator=1;
+        else {
+        	ArrayList<Customer> customers=retrieveCustomerList();
+        	String targetEmail="";
+        	for (Customer c:customers) {
+        		if (c.getMovieGoerId().equals(userId)) {
+        			targetEmail=c.getEmail();
+        			break;
+        		}
         	}
+        	
+        	for (Booking b:bookings) {
+            	if (b.getCustomerEmail().equals(targetEmail)) {
+            		foundBookings.add(b);
+            		indicator=1;
+            	}
+            }
         }
         
         if (indicator==-1) {
@@ -42,6 +69,7 @@ public class DisplayBookingHistoryBoundary extends Boundary {
         
         if (indicator==1) {
         	showBookings(foundBookings);
+        	end();
         }
     }
     

@@ -16,7 +16,12 @@ import java.util.Scanner;
 import static Controller.MiscMethods.*;
 
 public class DisplayMovieListBoundary extends Boundary {
-
+	private String userId;
+	
+	public DisplayMovieListBoundary(String userId) {
+		this.userId=userId;
+	}
+	
     private boolean isTopFive =false;
     protected void start() {
         display();
@@ -33,14 +38,14 @@ public class DisplayMovieListBoundary extends Boundary {
         int choice = readChoice(1, 4);
         switch (choice) {
             case 1:
-                direct(this, new DisplaySearchMovieBoundary());
+                direct(this, new DisplaySearchMovieBoundary(userId));
                 end();
                 break;
             case 2:
                 movieListingView();
                 break;
             case 3:
-                direct(this, new DisplayTop5MoviesBoundary());
+                direct(this, new DisplayTop5MoviesBoundary(userId));
                 end();
                 break;
             case 4:
@@ -114,7 +119,7 @@ public class DisplayMovieListBoundary extends Boundary {
         else {
             Movie movie = moviesCurrentlyAvailList.get(choice - 1);
 
-            direct(this, new DisplayMovieDetailsBoundary(movie));
+            direct(this, new DisplayMovieDetailsBoundary(movie,userId));
         }
     }
 }

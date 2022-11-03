@@ -1,13 +1,11 @@
 package Controller;
+import Entity.Booking;
 
-import java.util.*;
-
-import static Controller.RWController.serialisedRead;
-import static Controller.RWController.serialisedWrite;
 
 import java.io.*;
+import java.util.*;
 
-import Entity.Booking;
+import static Controller.RWController.*;
 
 public class CRUDCustomerBooking {
 	

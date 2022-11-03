@@ -16,6 +16,11 @@ import java.util.Scanner;
 import static Controller.MiscMethods.*;
 
 public class DisplaySearchMovieBoundary extends Boundary{
+	private String userId;
+	
+	public DisplaySearchMovieBoundary(String userId) {
+		this.userId=userId;
+	}
     
     protected void start() {
         display();
@@ -66,7 +71,7 @@ public class DisplaySearchMovieBoundary extends Boundary{
         if (choice == count + 1) end();
         else {
             Movie movie = listOfSearchResults.get(choice - 1);
-            direct(this, new DisplayMovieDetailsBoundary(movie));
+            direct(this, new DisplayMovieDetailsBoundary(movie,userId));
         }
     }
 
