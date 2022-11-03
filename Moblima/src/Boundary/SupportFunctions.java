@@ -12,7 +12,7 @@ public class SupportFunctions {
 
     public static void printMoblima(){
 
-        System.out.println(";,--.   ,--.  ,-----.  ,-----.   ,--.    ,--. ,--.   ,--.   ,--- . ");
+        System.out.println(",--.   ,--.  ,-----.  ,-----.   ,--.    ,--. ,--.   ,--.   ,--- . ");
         System.out.println("|   `.'   | '  .-.  ' |  |) /_  |  |    |  | |   `.'    |  /  O   ] ");
         System.out.println("|  |'.'|  | |  | |  | |  .-.    |  |    |  | |  |'.'|   | |  .-.   | ");
         System.out.println("|  |   |  | '  '-'  ' |  '--' / |  '--. |  | |  |   |   | |  | |   | ");
