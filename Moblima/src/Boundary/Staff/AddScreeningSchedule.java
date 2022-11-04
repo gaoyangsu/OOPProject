@@ -92,6 +92,8 @@ public class AddScreeningSchedule extends Boundary {
         try {
             addMovieShowSchedule(toAppend);
             System.out.println("Successfully added showtime and location for " + movie.getMovieName());
+            System.out.println("Press any key to return");
+            sc.nextLine();
         }
         catch (IOException ex) {
             System.out.println("Failed to add Showtime and location for "+ movie.getMovieName());
@@ -195,6 +197,8 @@ public class AddScreeningSchedule extends Boundary {
 //            updateMovieList();
         	updateMovieShowSchedule();
             System.out.println("Successfully updated ShowTime.");
+            System.out.println("Press any key to continue");
+            sc.nextLine();
         }
         catch (IOException ex) {
             System.out.println("Failed to update ShowTime.");

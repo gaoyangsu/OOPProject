@@ -128,6 +128,8 @@ public class MovieListingEditBoundary extends Boundary {
         try {
             addMovieIntoList(movie);
             System.out.println("Successfully listed movie " + name);
+            System.out.println("Press any key to return");
+            sc.nextLine();
         }
         catch (IOException ex) {
             System.out.println("Failed to list the movie.");

@@ -8,6 +8,7 @@ import static Controller.MiscMethods.*;
 import static Controller.AdminController.*;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -46,29 +47,53 @@ public class HolidayBoundary extends Boundary {
             }
         }
     private void displayHolidays(){
+
+        Scanner sc= new Scanner(System.in);
         SupportFunctions.clearScreen();
         int index=0;
-        for(Holiday holiday : retrieveHolidays()){
-            System.out.println(++index  + " " + holiday.getHolidayName() +" "+holiday.getDate());
-            readString("\npress enter to return");
+        ArrayList<Holiday> listofHols;
+
+        listofHols=retrieveHolidays();
+        if(listofHols.isEmpty()){
+            printMenu("No holiday records found in database",
+            "Press any key to return");
+            sc.nextLine();
             display();
         }
-        if(index == 0){readString("\nNo holidays indexed");}
-    }
-    private  void addHolidayToIndex(){
-        SupportFunctions.clearScreen();
-        String name = readString("Enter name of the holiday (press enter to return)").toUpperCase();
-        if(name == "")display();
-        System.out.println("Set date of holiday");
-        Holiday holiday = new Holiday(dateInput(),name);
-        readString("\nHoliday successfully added!");
+
+        for(Holiday holiday : listofHols){
+            System.out.println(++index  + " " + holiday.getHolidayName() +" "+holiday.getDate());
+            
+        }
+        readString("\npress enter to return");
         display();
-        try{addHoliday(holiday);}catch(IOException e){
-            System.out.println(e);
-            readString("\npress enter to return");
-        };
     }
-    private  void deleteHolidayInIndex(){
+    public  void addHolidayToIndex(){
+        Scanner sc = new Scanner (System.in);
+        //SupportFunctions.clearScreen();
+        System.out.println("Enter the name of the holiday. Enter 0 to return.");
+        String name = sc.nextLine();
+        if (name=="0") display();
+        System.out.println("Set date of holiday");
+        Date dateInput = dateInput();
+        Holiday holiday = new Holiday(dateInput ,name);
+        
+        try{
+            addHoliday(holiday);
+            System.out.println("Successfully listed Holiday "+ name);
+            System.out.println("Press any key to return");
+            sc.nextLine();
+        }catch(IOException e){
+            System.out.println(e);
+            System.out.println("Failed to list movie");   
+        }
+        finally {
+            display();
+        }
+        
+
+    }
+    public void deleteHolidayInIndex(){
         SupportFunctions.clearScreen();
         System.out.println("Select Index of holiday to remove (enter 0 to return)");
         int index=0;
