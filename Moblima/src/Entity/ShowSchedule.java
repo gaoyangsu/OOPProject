@@ -69,6 +69,32 @@ public class ShowSchedule implements Serializable {
             if((j!=8)&&(j!=9)&&(j!=10)) seats[numRows-1][j]= new Seat(numRows-1,j,this);
         }
     }
+
+    public int checkAllSeatsEmpty(){
+        for(int i=0;i<4;i++){
+            for(int j=2;j<numCols;j++){
+                if(j!=8) {
+                    if(seats[i][j].isAssigned()) return 0;
+                }
+            }
+        }
+
+        for(int i=4;i<8;i++){
+            for(int j=0;j<numCols;j++){
+                if(j!=8) {
+                    if(seats[i][j].isAssigned()) return 0;
+                }
+            }
+        }
+
+        for(int j=0;j<numCols;j++){
+            if((j!=8)&&(j!=9)&&(j!=10)){
+                if(seats[numRows-1][j].isAssigned()) return 0;
+            } 
+        }
+
+        return 1;
+    }
     
     public Movie getMovie() {
         return movie;
@@ -94,15 +120,15 @@ public class ShowSchedule implements Serializable {
         this.time = time;
     }
 
-    // @Override
-    // public boolean equals(Object o) {
-    //     if (this == o) return true;
-    //     if (!(o instanceof ShowSchedule that)) return false;
-    //     return Objects.equals(getMovie(), that.getMovie()) && getTheatre().equals(that.getTheatre()) && getTime().equals(that.getTime());
-    // }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ShowSchedule that)) return false;
+        return Objects.equals(getMovie(), that.getMovie()) ;
+    }
 
-    // @Override
-    // public int hashCode() {
-    //     return Objects.hash(getMovie(), getTheatre(), getTime());
-    // }
+    @Override
+    public int hashCode() {
+        return Objects.hash(getMovie());
+    }
 }

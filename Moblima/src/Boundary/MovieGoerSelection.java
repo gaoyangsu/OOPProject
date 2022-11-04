@@ -13,7 +13,7 @@ public class MovieGoerSelection extends Boundary{
 	        SupportFunctions.clearScreen();
 	        printHeader("Moviegoer");
 	        printMenu("Welcome, please make a selection:",
-	                "1. Log in as guest",
+	                "1. Book as a guest",
 	                "2. Log in as member",
 	                "3. Back","");
 

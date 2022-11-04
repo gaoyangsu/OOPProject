@@ -98,13 +98,19 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 			
 		}
 
+		System.out.println();
+		printHeader("Screen");
+		showtime.showSeatLayout();
+		printHeader("Entrace");
+		System.out.println();
+
 
 		if (showtime.getMovie().getAgeAdvisory().toString()=="M18" ||showtime.getMovie().getAgeAdvisory().toString()=="R21") {
 			printMenu("Please note that this movie is rated "+showtime.getMovie().getAgeAdvisory().toString());
 			printMenu("MOBLIMA welcomes all guests aged 18 and above to the Platinum Movie Suites.");
 		}
 		direct(this, new DisplayBookingConfirmation(showtime,chosenSeats,numStudent,numSeniors,userId));
-		end();
+		
 
 
 		

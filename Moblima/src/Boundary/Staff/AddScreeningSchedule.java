@@ -105,6 +105,8 @@ public class AddScreeningSchedule extends Boundary {
 
     public void modifyScheduling(Movie movie){
 
+        Scanner sc = new Scanner(System.in);
+
         SupportFunctions.clearScreen();
         printHeader("Modifying ShowTime");
         ShowSchedule showScheduleToModify = new ShowSchedule();
@@ -124,6 +126,14 @@ public class AddScreeningSchedule extends Boundary {
                 && showSchedule.getTheatre().getCode().equals(code) && showSchedule.getTime().equals(showTime)){
                     showScheduleToModify = showSchedule;
                 }
+        }
+
+        if (showScheduleToModify.checkAllSeatsEmpty()==0){
+            System.out.println("This schedule has already been booked by customer(s)");
+            System.out.println("Cannot be amended!");
+            System.out.println("Press any key to return");
+            String r= sc.nextLine();
+            display();
         }
 
         int moreupdates=1;
@@ -171,6 +181,7 @@ public class AddScreeningSchedule extends Boundary {
         end();
 
         }
+        
     }
 
         // ShowSchedule newShowSchedule = new ShowSchedule();

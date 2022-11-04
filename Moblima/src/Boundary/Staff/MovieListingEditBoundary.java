@@ -39,6 +39,7 @@ public class MovieListingEditBoundary extends Boundary {
         }
 
         for (Movie movie:listOfMovie){
+            if(movie.getMovieStatus().toString()=="END OF SHOWING") continue;
             if(today.after(movie.getTakeDownDate())) {movie.setMovieStatus(readMovieStatus("END OF SHOWING")); }
             else if (today.before(movie.getReleaseDate())) {
                 if (movie.getMovieStatus().toString()=="PREVIEW") {

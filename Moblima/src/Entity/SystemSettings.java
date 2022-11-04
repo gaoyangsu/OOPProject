@@ -16,8 +16,10 @@ public class SystemSettings implements Serializable {
     blockBusterIncrement,
     weekendIncrement;
 
-    private ArrayList<Movie> top5;
-    private ArrayList<Movie> top5rating;
+    private int topFiveChoice;
+
+    // private ArrayList<Movie> top5;
+    // private ArrayList<Movie> top5rating;
     public SystemSettings(double holidaysIncrement, double childDiscount, double seniorCitizenDiscount, double premiumPrice, double standardPrice, double threeDIncrement, double blockBusterIncrement, double weekendIncrement) {
         this.holidaysIncrement = holidaysIncrement;
         this.childDiscount = childDiscount;
@@ -27,6 +29,7 @@ public class SystemSettings implements Serializable {
         this.threeDIncrement = threeDIncrement;
         this.blockBusterIncrement = blockBusterIncrement;
         this.weekendIncrement = weekendIncrement;
+        this.topFiveChoice=0;
     }
 
     @Override
@@ -37,12 +40,12 @@ public class SystemSettings implements Serializable {
             return false;
         }
         SystemSettings systemSettings = (SystemSettings) o;
-        return holidaysIncrement == systemSettings.holidaysIncrement && childDiscount == systemSettings.childDiscount && seniorCitizenDiscount == systemSettings.seniorCitizenDiscount && premiumPrice == systemSettings.premiumPrice && standardPrice == systemSettings.standardPrice && threeDIncrement == systemSettings.threeDIncrement && blockBusterIncrement == systemSettings.blockBusterIncrement && weekendIncrement == systemSettings.weekendIncrement && Objects.equals(top5, systemSettings.top5) && Objects.equals(top5rating, systemSettings.top5rating);
+        return holidaysIncrement == systemSettings.holidaysIncrement && childDiscount == systemSettings.childDiscount && seniorCitizenDiscount == systemSettings.seniorCitizenDiscount && premiumPrice == systemSettings.premiumPrice && standardPrice == systemSettings.standardPrice && threeDIncrement == systemSettings.threeDIncrement && blockBusterIncrement == systemSettings.blockBusterIncrement && weekendIncrement == systemSettings.weekendIncrement;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(holidaysIncrement, childDiscount, seniorCitizenDiscount, premiumPrice, standardPrice, threeDIncrement, blockBusterIncrement, weekendIncrement, top5, top5rating);
+        return Objects.hash(holidaysIncrement, childDiscount, seniorCitizenDiscount, premiumPrice, standardPrice, threeDIncrement, blockBusterIncrement, weekendIncrement);
     }
 
 
@@ -111,21 +114,30 @@ public class SystemSettings implements Serializable {
         this.weekendIncrement = weekendIncrement;
     }
 
-    public ArrayList<Movie> getTop5() {
-        return this.top5;
+    // public ArrayList<Movie> getTop5() {
+    //     return this.top5;
+    // }
+
+    // public void setTop5(ArrayList<Movie> top5) {
+    //     this.top5 = top5;
+    // }
+
+    // public ArrayList<Movie> getTop5rating() {
+    //     return this.top5rating;
+    // }
+
+    // public void setTop5rating(ArrayList<Movie> top5rating) {
+    //     this.top5rating = top5rating;
+    // }
+
+    public int getTopFivechoice() {
+        return this.topFiveChoice;
     }
 
-    public void setTop5(ArrayList<Movie> top5) {
-        this.top5 = top5;
+    public void setTopFivechoice(int topFivechoice){
+        this.topFiveChoice = topFivechoice;
     }
-
-    public ArrayList<Movie> getTop5rating() {
-        return this.top5rating;
-    }
-
-    public void setTop5rating(ArrayList<Movie> top5rating) {
-        this.top5rating = top5rating;
-    }
+    
 
 
 }

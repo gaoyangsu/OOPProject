@@ -22,7 +22,7 @@ public class DisplayMovieListBoundary extends Boundary {
 		this.userId=userId;
 	}
 	
-    private boolean isTopFive =false;
+    //private boolean isTopFive =false;
     protected void start() {
         display();
     }
@@ -58,6 +58,7 @@ public class DisplayMovieListBoundary extends Boundary {
     private void movieListingView() {
 
         Date today = new Date();
+        
         SupportFunctions.clearScreen();
         ArrayList<Movie> listOfMovie;
         
@@ -75,6 +76,7 @@ public class DisplayMovieListBoundary extends Boundary {
 
         //TO FILTER OUT THE END_OF_SHOWING MOVIES, AS WELL AS TO SET TO COMING SOON and NOW SHOWING
         for (Movie movie:listOfMovie){
+            if(movie.getMovieStatus().toString()=="END OF SHOWING") continue;
             if(today.after(movie.getTakeDownDate())) {movie.setMovieStatus(readMovieStatus("END OF SHOWING")); }
             else if (today.before(movie.getReleaseDate())) {
                 if (movie.getMovieStatus().toString()=="PREVIEW") {

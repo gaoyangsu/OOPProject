@@ -19,6 +19,7 @@ public class ModifySystemSettingsBoundary extends Boundary {
         display();
     }
     private void display(){
+        
         SupportFunctions.clearScreen();
         printHeader("Modify System Setting");
         printMenu("Select Choice",
@@ -31,8 +32,9 @@ public class ModifySystemSettingsBoundary extends Boundary {
         "7.BlockBuster Ticket Increment",
         "8.Weekend Ticket Increment",
         "9.Add/Remove Holidays",
-        "10.Save/Back");
-        int choice = readChoice(1, 10);
+        "10.Modify Top Five Listing",
+        "11.Save/Back");
+        int choice = readChoice(1, 11);
         switch(choice){
             case 1:
             System.out.printf("Current Price: ");
@@ -87,6 +89,12 @@ public class ModifySystemSettingsBoundary extends Boundary {
             display();
             break;
             case 10:
+            System.out.println("Please set preferred Top five movie listing for viewing: ");
+            System.out.println("0---- By Ratings \t1---- By SalesNumbers \t2---- By both  ");
+            retrieveSystemSettings().setTopFivechoice(readChoice(0, 2));
+            display();
+            break;
+            case 11:
             try{updateSystemSettings();}catch(IOException e){
                 System.out.println(e);
             }

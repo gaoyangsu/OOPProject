@@ -22,19 +22,19 @@ public class DisplayBookingHistoryBoundary extends Boundary {
 	
     @Override
     protected void start() {
-        SupportFunctions.clearScreen();
+        //SupportFunctions.clearScreen();
         display();
     }
     
     private void display() {
     	ArrayList<Booking> bookings=retrieveBookingList();
         int indicator=-1;
-        ArrayList<Booking> foundBookings=new ArrayList<Booking>();;
+        ArrayList<Booking> foundBookings=new ArrayList<Booking>();
         
         printHeader("Booking History");
         
-        if (userId=="") {
-        	String email=readString("Please enter your email to view your booking history: ");
+        if (this.userId.equals("")) {
+        	String email=readString("For Guests...Please enter your email to view your booking history: ");
             
             for (Booking b:bookings) {
             	if (b.getCustomerEmail().equals(email)) {
@@ -64,12 +64,14 @@ public class DisplayBookingHistoryBoundary extends Boundary {
         
         if (indicator==-1) {
         	printMenu("Record(s) not found.");
+			System.out.println("Input a character to return");
+			readCharacter();
         	end();
         }
         
         if (indicator==1) {
         	showBookings(foundBookings);
-        	end();
+        	//end();
         }
     }
     
@@ -98,6 +100,13 @@ public class DisplayBookingHistoryBoundary extends Boundary {
             + "  S$" + b.getPrice()+"\t"
             + seatInfo);
     	}
+
+		System.out.println("Press 0 to return");
+		int choice = readChoice(0,0);
+        if (choice == 0) {
+            end();
+            return;
+        }
     }
     
     public static String getCharForNumber(int i){
@@ -122,4 +131,6 @@ public class DisplayBookingHistoryBoundary extends Boundary {
 
         return result;
     }
+
+	
 }

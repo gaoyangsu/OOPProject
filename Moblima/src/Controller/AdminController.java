@@ -20,7 +20,7 @@ public class AdminController {
     private static final String ADMIN_FILE = "Data/admin.dat";
     private static ArrayList<Admin> listofAdmins;
     private static final String SETTINGS_FILE = "Data/settings.dat";
-    private static ArrayList<SystemSettings> systemSetting;
+    private static SystemSettings systemSetting;
     private static final String HOLIDAY_FILE = "Data/holiday.dat";
     private static ArrayList<Holiday> holidays;
 //    public static boolean CRUDTheatresInitialise() {
@@ -54,14 +54,14 @@ public class AdminController {
         updateHolidays();
     }
     public static void readSystemSettings() throws IOException, ClassNotFoundException {
-        if (serialisedRead(SETTINGS_FILE) == null) systemSetting = new ArrayList<>();
-        else systemSetting = (ArrayList<SystemSettings>) serialisedRead(SETTINGS_FILE);
+        if (serialisedRead(SETTINGS_FILE) == null) systemSetting = new SystemSettings(2.50, 1.50, 4.50, 3, 8.50, 2.50, 1, 1);
+        else systemSetting = (SystemSettings) serialisedRead(SETTINGS_FILE);
     }
     public static void updateSystemSettings() throws IOException {
         serialisedWrite(SETTINGS_FILE, systemSetting);
     }
     public static SystemSettings retrieveSystemSettings() {
-        return systemSetting.get(0);
+        return systemSetting;
     }
     //THIS READ FUNCTION HAS TO BE USED EVERYTIME THE PROGRAMME STARTS
     public static void readAdminList() throws IOException, ClassNotFoundException {

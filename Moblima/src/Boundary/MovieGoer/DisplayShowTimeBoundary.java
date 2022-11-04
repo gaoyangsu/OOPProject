@@ -40,7 +40,7 @@ public class DisplayShowTimeBoundary extends Boundary {
 
         ArrayList<ShowSchedule> movieShowTime=  new ArrayList<>();
 
-        if (retrieveMovieShowSchedule(movie) != null) {
+        if ((retrieveMovieShowSchedule(movie) != null)&&!(retrieveMovieShowSchedule(movie).isEmpty())) {
             for (ShowSchedule showSchedule :retrieveMovieShowSchedule(movie)) {
                 if (today.before(showSchedule.getTime())) movieShowTime.add(showSchedule);
             }
@@ -48,6 +48,8 @@ public class DisplayShowTimeBoundary extends Boundary {
 
         else {
             System.out.println("No show time for "+ movie.getMovieName());
+            System.out.println("Press any Key to Return!");
+            readCharacter();
             end();
         }
 
