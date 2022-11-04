@@ -35,8 +35,20 @@ public class DisplayMovieDetailsBoundary extends Boundary{
 
 
     private void movieDetailView(Movie movie){
+
+        Scanner sc= new Scanner(System.in);
+
         SupportFunctions.clearScreen();
         printHeader("Movie details");
+
+        if(movie.getMovieStatus().toString()=="COMING SOON"){
+            System.out.println(movie.getMovieName()+ " is Coming soon");
+            System.out.println("Stay tuned for updates about this film!");
+            System.out.println("Press any key to return");
+            sc.nextLine();
+            end();
+        }
+        
         printMenu(
                 movie.toString(),
                 "1. Make a booking",

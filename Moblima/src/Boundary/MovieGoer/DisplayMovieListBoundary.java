@@ -95,7 +95,7 @@ public class DisplayMovieListBoundary extends Boundary {
         //TO FILTER OUT THE END OF SHOWING MOVIES
         ArrayList<Movie> moviesCurrentlyAvailList=  new ArrayList<>();
         for (Movie movie: listOfMovie){
-            if ((movie.getMovieStatus().toString()=="PREVIEW")||(movie.getMovieStatus().toString()=="NOW SHOWING")) moviesCurrentlyAvailList.add(movie);
+            if ((movie.getMovieStatus().toString()=="PREVIEW")||(movie.getMovieStatus().toString()=="NOW SHOWING")||(movie.getMovieStatus().toString()=="COMING SOON")) moviesCurrentlyAvailList.add(movie);
         }
             
 
