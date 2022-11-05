@@ -3,15 +3,19 @@ package Boundary.MovieGoer;
 import static Controller.MiscMethods.*;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import Boundary.Boundary;
 import Boundary.SupportFunctions;
 import Entity.Booking;
 import Entity.Customer;
+import Entity.Holiday;
 import Entity.Seat;
 
 import static Controller.CRUDCustomerBooking.*;
 import static Controller.CustomerController.*;
+import static Controller.AdminController.*;
 
 public class DisplayBookingHistoryBoundary extends Boundary {
 	private String userId;
@@ -77,6 +81,21 @@ public class DisplayBookingHistoryBoundary extends Boundary {
     
     private void showBookings(ArrayList<Booking> foundBookings) {
     	int index=0;
+    	int indicator=-1;
+    	Date target=foundBookings.get(0).getShowTime();
+    	Calendar cal=Calendar.getInstance();
+    	cal.setTime(target);
+    	
+    	ArrayList<Holiday> holidayList=retrieveHolidays();
+    	Calendar cal2=Calendar.getInstance();
+    	
+    	for (Holiday h:holidayList) {
+    		cal2.setTime(h.getDate());
+    		if (cal2.get(Calendar.DAY_OF_YEAR)==cal.get(Calendar.DAY_OF_YEAR)) {
+    			indicator=1;
+    			break;
+    		}
+    	}
     	
     	for (Booking b:foundBookings) {
     		ArrayList<Seat> seat=b.getSeat();
@@ -95,10 +114,19 @@ public class DisplayBookingHistoryBoundary extends Boundary {
     		
     		seatInfo+="}";
     		
-    		printMenu(++index + ". " + b.getTransactionId() + generateSpaces(20 - b.getTransactionId().length())
-            + "(" + b.getShowTime() + ")"
-            + "  S$" + b.getPrice()+"\t"
-            + seatInfo);
+    		if (indicator==1) {
+    			printMenu(++index + ". " + b.getTransactionId() + generateSpaces(20 - b.getTransactionId().length())
+                + "(" + b.getShowTime() + ")"
+                + "  S$" + b.getPrice()+"\t"
+                + seatInfo
+                + "  PH/PH eve");
+    		}
+    		else {
+    			printMenu(++index + ". " + b.getTransactionId() + generateSpaces(20 - b.getTransactionId().length())
+                + "(" + b.getShowTime() + ")"
+                + "  S$" + b.getPrice()+"\t"
+                + seatInfo);
+    		}
     	}
 
 		System.out.println("Press 0 to return");

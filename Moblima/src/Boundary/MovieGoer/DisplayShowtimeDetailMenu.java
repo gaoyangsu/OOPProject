@@ -165,24 +165,30 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 		System.out.println("\nSenior Citizens*\t $4.00\t\t\t N.A");
 		System.out.println("Mon-Fri, before 6pm");
 		System.out.println();
-		System.out.println("Students**\t\t $7.00\t\t\t $9.00");
+		System.out.println("Students**\t\t $7.00\t\t\t $10.00");
 		System.out.println("Mon-Fri, before 6pm");
 		System.out.println();
-		System.out.println("Mon-Wed#\t\t $8.50\t\t\t $11.00");
+		System.out.println("Mon-Wed#\t\t $8.50\t\t\t $11.50");
 		System.out.println("All Sessions");
 		System.out.println();
-		System.out.println("Thu\t\t\t $9.50\t\t\t $11.00");
+		System.out.println("Thu\t\t\t $9.50\t\t\t $12.50");
 		System.out.println("All Sessions");
 		System.out.println();
-		System.out.println("Fri\t\t\t $9.50\t\t\t $15.00");
+		System.out.println("Fri\t\t\t $9.50\t\t\t $12.50");
 		System.out.println("Sessions before 6pm");
 		System.out.println();
-		System.out.println("Fri\t\t\t $11.00\t\t\t $15.00");
+		System.out.println("Fri\t\t\t $12.00\t\t\t $15.00");
 		System.out.println("Sessions after 6pm");
 		System.out.println();
-		System.out.println("Sat & Sun^\t\t $11.00\t\t\t $15.00");
+		System.out.println("Sat & Sun^\t\t $12.00\t\t\t $15.00");
 		System.out.println("All Sessions");
 		System.out.println();
-		System.out.println("\n**Not valid on PH/eve of PH | ^Include PH?eve of PH and weekend sneaks | *For patrons 55 years & older. Not valid on PH/eve of PH");
+		System.out.println("Gold Class^^\t\t $19.00\t\t\t $22.00");
+		System.out.println("All Sessions,Daily");
+		System.out.println();
+		System.out.println("Platinum Suites^^\t $28.50\t\t\t $31.50");
+		System.out.println("All Sessions,Daily");
+		System.out.println();
+		System.out.println("\n**Not valid on PH/eve of PH | ^Include PH?eve of PH and weekend sneaks | *For patrons 55 years & older. Not valid on PH/eve of PH | ^^Applies for Monday-Sunday,including PH/eve of PH");
 	}
 }

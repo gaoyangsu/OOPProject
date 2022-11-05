@@ -4,6 +4,7 @@ import Boundary.Boundary;
 import Boundary.SupportFunctions;
 import Entity.Booking;
 import Entity.Customer;
+import Entity.Holiday;
 import Entity.Movie;
 import Entity.Seat;
 import Entity.ShowSchedule;
@@ -50,6 +51,7 @@ public class DisplayBookingConfirmation extends Boundary{
 
     private void BookingConfirmation(){
     	SystemSettings priceList=retrieveSystemSettings();
+    	ArrayList<Holiday> holidayList=retrieveHolidays();
     	int studentCount=numStudent;
     	int seniorCount=numSenior;
     	int adultCount=numAdult;
@@ -59,9 +61,19 @@ public class DisplayBookingConfirmation extends Boundary{
     	double studentPrice=priceList.getStandardPrice()-priceList.getChildDiscount();
     	double seniorPrice=priceList.getStandardPrice()-priceList.getSeniorCitizenDiscount();
     	double price=0;
+    	int holidayIndicator=-1;
     	
     	Calendar cal=Calendar.getInstance();
     	cal.setTime(schedule.getTime());
+    	
+    	Calendar cal2=Calendar.getInstance();
+    	for (Holiday h:holidayList) {
+    		cal2.setTime(h.getDate());
+    		if (cal2.get(Calendar.DAY_OF_YEAR)==cal.get(Calendar.DAY_OF_YEAR)) {
+    			holidayIndicator=1;
+    			break;
+    		}
+    	}
     	
     	int dayOfWeek=cal.get(Calendar.DAY_OF_WEEK);
     	int hourOfDay=cal.get(Calendar.HOUR_OF_DAY);
@@ -74,12 +86,7 @@ public class DisplayBookingConfirmation extends Boundary{
     		price=priceList.getPremiumPrice();
     	}
     	
-    	if (is3d) {
-    		studentPrice+=priceList.getThreeDIncrement();
-    		price+=priceList.getThreeDIncrement();
-    	}
-    	
-    	if (dayOfWeek==1 | dayOfWeek==7 | (dayOfWeek==6 && hourOfDay>=18)) {
+    	if (dayOfWeek==1 | dayOfWeek==7 | (dayOfWeek==6 && hourOfDay>=18) | holidayIndicator==1) {
     		price+=priceList.getHolidaysIncrement();
     	}
     		
@@ -89,6 +96,11 @@ public class DisplayBookingConfirmation extends Boundary{
     	
     	else if (typeOfSeats.toString()=="Platinum Suites") {
     		price=3*priceList.getPremiumPrice();
+    	}
+		
+		if (is3d) {
+    		studentPrice+=priceList.getThreeDIncrement();
+    		price+=priceList.getThreeDIncrement();
     	}
     		
     	while (studentCount!=0) {
