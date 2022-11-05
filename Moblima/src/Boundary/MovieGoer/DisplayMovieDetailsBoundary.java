@@ -42,6 +42,8 @@ public class DisplayMovieDetailsBoundary extends Boundary{
         printHeader("Movie details");
 
         if(movie.getMovieStatus().toString()=="COMING SOON"){
+        	printMenu(movie.toString());
+        	System.out.println();
             System.out.println(movie.getMovieName()+ " is Coming soon");
             System.out.println("Stay tuned for updates about this film!");
             System.out.println("Press any key to return");

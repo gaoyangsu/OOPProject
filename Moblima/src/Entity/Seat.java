@@ -47,4 +47,15 @@ public class Seat implements Serializable {
         else return "{ }";
     }
 
+    public String displayCoupleSeatOccupancy(int parity) {
+    	if (parity==0) {
+    		if (isAssigned==true) return "{{X";
+        	else return "{{ ";
+    	}
+    	else if(parity==1) {
+    		if (isAssigned==true) return "X}}";
+        	else return " }}";
+    	}
+    	return "";
+    }
 }

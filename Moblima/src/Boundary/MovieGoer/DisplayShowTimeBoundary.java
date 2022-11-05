@@ -53,7 +53,7 @@ public class DisplayShowTimeBoundary extends Boundary {
             end();
         }
 
-        movieShowTime.sort(Comparator.comparing(o -> o.getTheatre().getCineplex().toString()));
+        movieShowTime.sort(Comparator.comparing(o -> o.getTime()));
 
         int index = 0;
         for (ShowSchedule showSchedule : movieShowTime) {

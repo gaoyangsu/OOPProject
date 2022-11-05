@@ -58,7 +58,7 @@ public class DisplayBookingConfirmation extends Boundary{
     	TheatreClass typeOfSeats=schedule.getTheatre().getTheatreClass();
     	double studentPrice=priceList.getStandardPrice()-priceList.getChildDiscount();
     	double seniorPrice=priceList.getStandardPrice()-priceList.getSeniorCitizenDiscount();
-    	double price=priceList.getStandardPrice();
+    	double price=0;
     	
     	Calendar cal=Calendar.getInstance();
     	cal.setTime(schedule.getTime());
@@ -66,12 +66,12 @@ public class DisplayBookingConfirmation extends Boundary{
     	int dayOfWeek=cal.get(Calendar.DAY_OF_WEEK);
     	int hourOfDay=cal.get(Calendar.HOUR_OF_DAY);
     	
-    	if (typeOfSeats.toString()=="Gold Class") {
-    		price+=priceList.getPremiumPrice();
+    	if (dayOfWeek==2 | dayOfWeek==3 | dayOfWeek==4) {
+    		price=priceList.getStandardPrice();
     	}
     	
-    	else if (typeOfSeats.toString()=="Platinum Suites") {
-    		price+=2*priceList.getPremiumPrice();
+    	if (dayOfWeek==5 | dayOfWeek==6 | dayOfWeek==7 | dayOfWeek==1) {
+    		price=priceList.getPremiumPrice();
     	}
     	
     	if (is3d) {
@@ -81,6 +81,14 @@ public class DisplayBookingConfirmation extends Boundary{
     	
     	if (dayOfWeek==1 | dayOfWeek==7 | (dayOfWeek==6 && hourOfDay>=18)) {
     		price+=priceList.getHolidaysIncrement();
+    	}
+    		
+		if (typeOfSeats.toString()=="Gold Class") {
+    		price=2*priceList.getPremiumPrice();
+    	}
+    	
+    	else if (typeOfSeats.toString()=="Platinum Suites") {
+    		price=3*priceList.getPremiumPrice();
     	}
     		
     	while (studentCount!=0) {

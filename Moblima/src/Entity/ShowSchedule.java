@@ -21,7 +21,7 @@ public class ShowSchedule implements Serializable {
     }
     
     public void showSeatLayout() {
-    	for (int row=0;row<numRows;row++) {
+    	for (int row=0;row<=6;row++) {
     		System.out.print((char)(row+65));
     		System.out.print("  ");
     		for (int column=0;column<numCols;column++) {
@@ -36,6 +36,7 @@ public class ShowSchedule implements Serializable {
     		System.out.print((char)(row+65));
     		System.out.print("\n");
     	}
+    	
     	System.out.print("   ");
     	for (int i=1;i<=9;i++) {
     		System.out.print(" "+i+" ");
@@ -44,6 +45,50 @@ public class ShowSchedule implements Serializable {
     		System.out.print(i+" ");
     	}
     	System.out.println();
+    	
+    	System.out.println("------------------COUPLE SEATS BELOW---------------------");
+    	
+    	for (int row=7;row<numRows;row++) {
+    		System.out.print((char)(row+65));
+    		System.out.print("  ");
+    		for (int column=0;column<=7;column++) {
+    			if (seats[row][column]!=null) {
+    				System.out.print(seats[row][column].displayCoupleSeatOccupancy(column%2));
+    			}
+    			else {
+    				System.out.print("   ");
+    			}
+    		}
+    		for (int column=8;column<numCols;column++) {
+    			if (seats[row][column]!=null) {
+    				System.out.print(seats[row][column].displayCoupleSeatOccupancy((column-1)%2));
+    			}
+    			else {
+    				System.out.print("   ");
+    			}
+    		}
+    		System.out.print("  ");
+    		System.out.print((char)(row+65));
+    		System.out.print("\n");
+    	}
+    	System.out.print("     ");
+    	for (int i=1;i<=7;i+=2) {
+    		if (i==7) {
+    			System.out.print(i+""+(i+1));
+        		System.out.print("   ");
+    		}
+    		else {
+    			System.out.print(i+""+(i+1));
+        		System.out.print("    ");
+    		}
+    	}
+    	System.out.print("9  ");
+    	for (int i=10;i<=17;i+=2) {
+    		System.out.print(i+""+(i+1));
+    		System.out.print("  ");
+    	}
+    	System.out.println();
+    	
     }
 
     public Seat getSpecificSeat(int row, int col){
