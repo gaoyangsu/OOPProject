@@ -32,7 +32,7 @@ public class DisplayReviewBoundary extends Boundary {
     private void display(){
         SupportFunctions.clearScreen();
         printHeader("Review" + " (" + movie.getMovieName() + ")");
-        if (movie.getMovieStatus()== MovieEnums.MovieStatus.COMING_SOON || movie.getMovieStatus()== MovieEnums.MovieStatus.PREVIEW){
+        if (movie.getMovieStatus()== MovieEnums.MovieStatus.COMING_SOON){
             readString("Not allowed to comment on movies yet to come." + "\n\nPress any key to return");
             end();
         }
@@ -92,7 +92,7 @@ public class DisplayReviewBoundary extends Boundary {
         Scanner sc= new Scanner(System.in);
         ArrayList<Review> listOfReview = retrieveReviewList(movie);
         if(!(listOfReview==null)){
-
+        	printHeader("Movie Reviews");
             for (Review ratings : listOfReview) {
                 System.out.println( " Name:     " + ratings.getName());
                 System.out.println( " Rating:   " + ratings.getRating());

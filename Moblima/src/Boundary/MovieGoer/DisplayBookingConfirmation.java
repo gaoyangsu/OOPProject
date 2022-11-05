@@ -82,7 +82,7 @@ public class DisplayBookingConfirmation extends Boundary{
     		price=priceList.getStandardPrice();
     	}
     	
-    	if (dayOfWeek==5 | dayOfWeek==6 | dayOfWeek==7 | dayOfWeek==1) {
+    	if (dayOfWeek==5 | dayOfWeek==6 | dayOfWeek==7 | dayOfWeek==1 | holidayIndicator==1) {
     		price=priceList.getPremiumPrice();
     	}
     	

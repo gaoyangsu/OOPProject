@@ -1,9 +1,14 @@
 package Boundary.MovieGoer;
 
 import Boundary.Boundary;
+import Entity.Holiday;
 import Entity.Seat;
 import Entity.ShowSchedule;
+import Entity.SystemSettings;
+import Entity.TheatreEnums.TheatreClass;
+
 import static Controller.MiscMethods.*;
+import static Controller.AdminController.*;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -29,6 +34,23 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 		int count=0;
 		int coupleSeatYesOrNo=0;
 		int numCoupleSeats=0;
+		int coupleSeatCount=0;
+		int regularSeat=104;
+		int coupleSeat=15;
+		
+		for (int i=1;i<=9;i++) {
+			for (int j=1;j<=17;j++) {
+				if (showtime.getSpecificSeat(i, j)!=null) {
+					if (showtime.getSpecificSeat(i, j).isAssigned() && i<=7) {
+						regularSeat--;
+					}
+					else if (showtime.getSpecificSeat(i, j).isAssigned() && i>=8) {
+						coupleSeat--;
+						j+=1;
+					}
+				}
+			}
+		}
 		
 		printHeader("Pricing Information");
 		showPricing();
@@ -58,6 +80,10 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 			if(coupleSeatYesOrNo==1) {
 				printMenu("How many pairs of couple seats would you like to book?");
 				numCoupleSeats=readChoice(1,numSeats/2);
+				if (numCoupleSeats>=coupleSeat) {
+					printMenu("Insufficient couple seats remaining in this theatre. Please select another showtime.");
+					end();
+				}
 			}
 		}
 		
@@ -67,8 +93,12 @@ public class DisplayShowtimeDetailMenu extends Boundary {
     	int dayOfWeek=cal.get(Calendar.DAY_OF_WEEK);
     	int hourOfDay=cal.get(Calendar.HOUR_OF_DAY);
     	
-    	if (coupleSeatYesOrNo!=1) {
-    		if (dayOfWeek>=2 && dayOfWeek<=6 && hourOfDay<18) {
+    	if (coupleSeatYesOrNo==2 | coupleSeatYesOrNo==0) {
+    		if (numSeats>=regularSeat) {
+    			printMenu("Insufficient seats remaining in this theatre. Please select another showtime.");
+    			end();
+    		}
+    		if ((dayOfWeek>=2 && dayOfWeek<=6) && hourOfDay<18) {
         		printMenu("Choose number of student tickets");
         		numStudent=readChoice(0,numSeats);
         		
@@ -79,20 +109,66 @@ public class DisplayShowtimeDetailMenu extends Boundary {
     	
     	printHeader("Screen");
 		showtime.showSeatLayout();
-		printHeader("Entrace");
+		printHeader("Entrance");
 		System.out.println();
-    	
+
+		int prevRow=0;
+		int prevCol=0;
+		
 		while (count<=numSeats) {
 			if(count==numSeats) break;
+			
 			
 			if (coupleSeatYesOrNo==0|coupleSeatYesOrNo==2) {
 				printMenu("Please select your seats: "+"("+(numSeats-count)+" left)");
 				printMenu("Select your Row(choose an alphabet from A to G)");
 				char result=readCharacter();
 				int row=(int)(result-64);
+				if (row<1 | row>7) {
+					printMenu("Invalid seat. Please pick another seat.");
+					continue;
+				}
+				
+				if (prevRow==0) {
+					prevRow=row;
+				}
+				
+				else if (row!=prevRow) {
+					printMenu("Please select seats within the same row.");
+					continue;
+				}
+				
+				prevRow=row;
 				
 				printMenu("Select your Column(choose a number between 1-17, excluding 9)");
 				int column=readChoice(1,17);
+				
+				if (prevCol==0) {
+					prevCol=column;
+				}
+				
+				else {
+					if (prevCol==1|prevCol==10) {
+						if (column!=prevCol+1) {
+							printMenu("Please select a valid adjacent seat within the same row.");
+							continue;
+						}
+					}
+					else if (prevCol==8|prevCol==17) {
+						if (column!=prevCol-1) {
+							printMenu("Please select a valid adjacent seat within the same row.");
+							continue;
+						}
+					}
+					else {
+						if (column!=prevCol+1 | column!=prevCol-1) {
+							printMenu("Please select a valid adjacent seat within the same row.");
+							continue;
+						}
+					}
+				}
+				
+				prevCol=column;
 				
 				if (showtime.getSpecificSeat(row, column)==null) {
 					printMenu("No such seat exists. Please pick another seat.");
@@ -113,10 +189,14 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 				count++;
 			}
 			else {
-				printMenu("Please select your couple seat: "+"("+(numCoupleSeats-count)+" left)");
-				printMenu("Select your Row(choose either H or I");
+				printMenu("Please select your couple seat: "+"("+(numCoupleSeats-coupleSeatCount)+" left)");
+				printMenu("Select your Row(choose either H or I)");
 				char result=readCharacter();
 				int row=(int)(result-64);
+				if (row<8 | row>9) {
+					printMenu("Invalid seat. Please pick another seat.");
+					continue;
+				}
 				
 				printMenu("Select your Column(choose one of 1,3,5,7,10,12,14,16)");
 				int column=readChoice(1,17);
@@ -139,12 +219,13 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 				showtime.getSpecificSeat(row, column+1).assignSeat();
 				chosenSeats.add(showtime.getSpecificSeat(row, column));
 				chosenSeats.add(showtime.getSpecificSeat(row, column+1));
-				printMenu("Seat succesfully selected.");
+				printMenu("Seat successfully selected.");
 				printHeader("Screen");
 				showtime.showSeatLayout();
 				printHeader("Entrace");
 				System.out.println();
 				count+=2;
+				coupleSeatCount++;
 			}
 		}
 
@@ -161,32 +242,48 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 	}
 	
 	public static void showPricing() {
+		SystemSettings priceList=retrieveSystemSettings();
+		double goldClassPrice=2*priceList.getPremiumPrice();
+		double goldClassPrice3D=goldClassPrice+priceList.getThreeDIncrement();
+		double platSuitesPrice=3*priceList.getPremiumPrice();
+		double platSuitesPrice3D=platSuitesPrice+priceList.getThreeDIncrement();
+    	double studentPrice=priceList.getStandardPrice()-priceList.getChildDiscount();
+    	double studentPrice3D=studentPrice+priceList.getThreeDIncrement();
+    	double seniorPrice=priceList.getStandardPrice()-priceList.getSeniorCitizenDiscount();
+    	double standardPrice=priceList.getStandardPrice();
+    	double standardPrice3D=standardPrice+priceList.getThreeDIncrement();
+    	double premiumPrice=priceList.getPremiumPrice();
+    	double premiumPrice3D=premiumPrice+priceList.getThreeDIncrement();
+    	double weekendPrice=premiumPrice+priceList.getWeekendIncrement();
+    	double weekendPrice3D=premiumPrice3D+priceList.getWeekendIncrement();
+
+		
 		System.out.println("Ticket Type\t\t Regular&Digital Movies\t 3D Movies");
-		System.out.println("\nSenior Citizens*\t $4.00\t\t\t N.A");
+		System.out.println("\nSenior Citizens*\t $"+seniorPrice+"\t\t\t N.A");
 		System.out.println("Mon-Fri, before 6pm");
 		System.out.println();
-		System.out.println("Students**\t\t $7.00\t\t\t $10.00");
+		System.out.println("Students**\t\t $"+studentPrice+"\t\t\t $"+studentPrice3D);
 		System.out.println("Mon-Fri, before 6pm");
 		System.out.println();
-		System.out.println("Mon-Wed#\t\t $8.50\t\t\t $11.50");
+		System.out.println("Mon-Wed#\t\t $"+standardPrice+"\t\t\t $"+standardPrice3D);
 		System.out.println("All Sessions");
 		System.out.println();
-		System.out.println("Thu\t\t\t $9.50\t\t\t $12.50");
+		System.out.println("Thu\t\t\t $"+premiumPrice+"\t\t\t $"+premiumPrice3D);
 		System.out.println("All Sessions");
 		System.out.println();
-		System.out.println("Fri\t\t\t $9.50\t\t\t $12.50");
+		System.out.println("Fri\t\t\t $"+premiumPrice+"\t\t\t $"+premiumPrice3D);
 		System.out.println("Sessions before 6pm");
 		System.out.println();
-		System.out.println("Fri\t\t\t $12.00\t\t\t $15.00");
+		System.out.println("Fri\t\t\t $"+weekendPrice+"\t\t\t $"+weekendPrice3D);
 		System.out.println("Sessions after 6pm");
 		System.out.println();
-		System.out.println("Sat & Sun^\t\t $12.00\t\t\t $15.00");
+		System.out.println("Sat & Sun^\t\t $"+weekendPrice+"\t\t\t $"+weekendPrice3D);
 		System.out.println("All Sessions");
 		System.out.println();
-		System.out.println("Gold Class^^\t\t $19.00\t\t\t $22.00");
+		System.out.println("Gold Class^^\t\t $"+goldClassPrice+"\t\t\t $"+goldClassPrice3D);
 		System.out.println("All Sessions,Daily");
 		System.out.println();
-		System.out.println("Platinum Suites^^\t $28.50\t\t\t $31.50");
+		System.out.println("Platinum Suites^^\t $"+platSuitesPrice+"\t\t\t $"+platSuitesPrice3D);
 		System.out.println("All Sessions,Daily");
 		System.out.println();
 		System.out.println("\n**Not valid on PH/eve of PH | ^Include PH?eve of PH and weekend sneaks | *For patrons 55 years & older. Not valid on PH/eve of PH | ^^Applies for Monday-Sunday,including PH/eve of PH");

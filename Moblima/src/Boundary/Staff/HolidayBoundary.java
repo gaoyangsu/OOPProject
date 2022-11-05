@@ -60,7 +60,9 @@ public class HolidayBoundary extends Boundary {
             sc.nextLine();
             display();
         }
-
+        
+        printMenu("------------HOLIDAYS-------------");
+        
         for(Holiday holiday : listofHols){
             System.out.println(++index  + " " + holiday.getHolidayName() +" "+holiday.getDate());
             

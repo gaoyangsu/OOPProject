@@ -42,8 +42,8 @@ public class ModifyTheatreBoundary extends Boundary {
         Scanner sc= new Scanner(System.in);
         ArrayList<Theatre> theatres = retrieveTheatreList(cineplex);
         if (theatres == null) {
-            System.out.println("No theatres Found");
-            System.out.println("1. Add theatres in "+cineplex.toString());
+            System.out.println("No Theatres Found");
+            System.out.println("1. Add Theatres in "+cineplex.toString());
             System.out.println("2. Return ");
             int choice = readChoice(1, 2);
             if (choice ==1) addTheatres(cineplex);
@@ -57,8 +57,8 @@ public class ModifyTheatreBoundary extends Boundary {
                 System.out.println();
 
             }
-            System.out.println("1. Add theatres in "+cineplex.toString());
-            System.out.println("2. Remove theatres in "+cineplex.toString());
+            System.out.println("1. Add Theatres in "+cineplex.toString());
+            System.out.println("2. Remove Theatres in "+cineplex.toString());
             System.out.println("3. Return ");
             int choice = readChoice(1, 3);
             if (choice ==1) addTheatres(cineplex);
@@ -78,24 +78,24 @@ public class ModifyTheatreBoundary extends Boundary {
         Scanner sc= new Scanner (System.in);
 
         while(location==null) {
-            String input = readString("Where is the location of the theatre? ",
+            String input = readString("Where is the location of the Theatre? ",
                     "Type Jurong East, Woodlands, Bugis").toUpperCase();
             location = readLocation(input);
         }
         while(theatreClass==null) {
-            String input2 = readString("What is the class of the theatre?",
+            String input2 = readString("What is the class of the Theatre?",
                     "Type Platinum Suites, Elite Club seats, Ultima seats",
                     "Dolby Atmos, Gold Class, normal ").toUpperCase();
             theatreClass = readTheatreClass(input2);
         }
 
-        System.out.println("is the theatre 3D? 1- yes, 0- no");
+        System.out.println("is the Theatre 3D? 1- yes, 0- no");
         int choice=  readChoice(0,1);
 
         if (choice ==0 ) is3D = false;
         else  is3D = true;
 
-        System.out.println("Enter a 3 Character code name of theatre: ");
+        System.out.println("Enter a 3 Character code name of Theatre: ");
         String codeName= sc.nextLine().toUpperCase();
 
         Theatre toAppend = new Theatre(is3D, theatreClass, cineplex, location, codeName);
@@ -113,7 +113,7 @@ public class ModifyTheatreBoundary extends Boundary {
 
     public void removeTheatres(TheatreEnums.Cineplex cineplex) {
 
-        System.out.println("Enter the 3 Character code name of the theatre to be removed: ");
+        System.out.println("Enter the 3 Character code name of the Theatre to be removed: ");
         Scanner sc= new Scanner (System.in);
         String codeName= sc.nextLine();
         
@@ -124,7 +124,7 @@ public class ModifyTheatreBoundary extends Boundary {
                     System.out.println("Removed sucessfully!");
                 } 
                 catch(IOException i){
-                    System.out.println("Failed to remove the theatre.");
+                    System.out.println("Failed to remove the Theatre.");
                 } 
                 finally{
                     clearScreen();

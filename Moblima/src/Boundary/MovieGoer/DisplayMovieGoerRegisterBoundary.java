@@ -15,15 +15,18 @@ public class DisplayMovieGoerRegisterBoundary extends Boundary{
     private void display(){
         printHeader("REGISTRATION (INSERT ANY EMPTY FIELD TO CANCEL");
         String user = readString("Enter name:");
+        if (user.equals("")) end();
         String password = readString("Enter Password:");
+        if (password.equals("")) end();
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter Contact: ");
         int contact = sc.nextInt();
         sc.nextLine();
         String email = readString("Enter Email:");
+        if (email.equals("")) end();
         String loginID = readString("Enter Login ID:");
+        if (loginID.equals("")) end();
         
-        if(user == ""||password ==""||email==""||loginID=="")end();
         for(Customer customer : retrieveCustomerList()){
             if(loginID.equals(customer.getMovieGoerId())){
                 readString("UserID taken");
@@ -34,7 +37,7 @@ public class DisplayMovieGoerRegisterBoundary extends Boundary{
         customer.setMovieGoerPassword(password);
         customer.setMovieGoerId(loginID);
         try{addCustomerIntoList(customer);}catch(IOException e){}
-        readString("Account Sucessfully Created!");
+        System.out.println("Account Successfully Created!");
         end();
     }
 }

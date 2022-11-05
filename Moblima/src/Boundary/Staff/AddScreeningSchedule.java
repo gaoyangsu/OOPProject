@@ -77,8 +77,6 @@ public class AddScreeningSchedule extends Boundary {
         String code= sc.nextLine();
         theatreToUse= getTheatreThroughCode(code);
 
-        System.out.println("Input show time and theatre location for :" + movie.getMovieName());
-
         toAppendDate=dateInput();
 
         System.out.println(dateOutput(toAppendDate));
@@ -118,7 +116,6 @@ public class AddScreeningSchedule extends Boundary {
         String code= readString("Enter the Theatre Code(EG. GJ1): ").toUpperCase();
         Theatre theatre = getTheatreThroughCode(code);
 
-//        String name = readString("Enter the movie name:");
 
         System.out.println("Enter the movie ShowTime: ");
         Date showTime = dateInput();
@@ -144,7 +141,6 @@ public class AddScreeningSchedule extends Boundary {
 
         printHeader("Modifying this ShowTime");
 
-//        System.out.println("1. Update Movie");
         System.out.println("1. Update Theatre");
         System.out.println("2. Update Show Time");
         System.out.println("3. Exit");
@@ -153,15 +149,6 @@ public class AddScreeningSchedule extends Boundary {
 
         switch (choice){
 
-//        case 1:
-//        name = readString("Enter the new movie name:");
-//        for (Movie allMovies:retrieveMovieList()){
-//            if(allMovies.getMovieName().equals(name)) {
-//            	showScheduleToModify.setMovie(allMovies);
-//            	break;
-//            }
-//        }
-//        break;
 
         case 1:
         code= readString("Enter the Theatre Code(EG. GJ1): ").toUpperCase();
@@ -186,15 +173,7 @@ public class AddScreeningSchedule extends Boundary {
         
     }
 
-        // ShowSchedule newShowSchedule = new ShowSchedule();
-        // newShowSchedule.setMovie(movie);
-        // newShowSchedule.setTheatre(theatre);
-        // newShowSchedule.setTime(showTime);
-
         try {
-            // addMovieShowSchedule(newShowSchedule);
-            // removeMovieShowSchedule(showScheduleToModify);
-//            updateMovieList();
         	updateMovieShowSchedule();
             System.out.println("Successfully updated ShowTime.");
             System.out.println("Press any key to continue");
@@ -211,30 +190,30 @@ public class AddScreeningSchedule extends Boundary {
 
     public void removeScheduling(Movie movie){
 
-        printMenu("Enter the cineplex: ",
-        "1.GV",
-        "2.Cathay",
-        "3.FilmGarde");
-        String selection = "";
-        int choice = readChoice(1, 3);
-        if (choice == 1) selection="GV";
-        else if (choice ==2) selection="Cathay";
-        else if (choice ==3) selection="FilmGarde";
-        TheatreEnums.Cineplex cineplex = readCineplex(selection);
+//        printMenu("Enter the cineplex: ",
+//        "1.GV",
+//        "2.Cathay",
+//        "3.FilmGarde");
+//        String selection = "";
+//        int choice = readChoice(1, 3);
+//        if (choice == 1) selection="GV";
+//        else if (choice ==2) selection="Cathay";
+//        else if (choice ==3) selection="FilmGarde";
+//        TheatreEnums.Cineplex cineplex = readCineplex(selection);
 
         System.out.println("Enter the Theatre Code(EG. GJ1): ");
         Scanner sc= new Scanner (System.in);
         String code= sc.nextLine().toUpperCase();
 
-        System.out.println("Enter the movie name: ");
-        String name = sc.nextLine();
+//        System.out.println("Enter the movie name: ");
+//        String name = sc.nextLine();
 
         System.out.println("Enter the movie ShowTime: ");
         Date showTime = dateInput();
         
         for (ShowSchedule showSchedule: retrieveMovieShowSchedule(movie)){
-            if(showSchedule.getMovie().getMovieName().equals(name) && showSchedule.getTheatre().getCineplex().equals(cineplex)
-                && showSchedule.getTheatre().getCode().equals(code) && showSchedule.getTime().equals(showTime)){
+            if(showSchedule.getMovie().getMovieName().equals(movie.getMovieName()) && 
+            		showSchedule.getTheatre().getCode().equals(code) && showSchedule.getTime().equals(showTime)){
                     try{
                         removeMovieShowSchedule(showSchedule);
                         updateMovieShowSchedule();
@@ -244,7 +223,6 @@ public class AddScreeningSchedule extends Boundary {
                         System.out.println("Failed to remove the show schedule.");
                     } 
                     finally{
-                        clearScreen();
                         end();
                     }
                 }

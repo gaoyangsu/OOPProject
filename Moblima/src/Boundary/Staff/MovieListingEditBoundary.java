@@ -27,7 +27,7 @@ public class MovieListingEditBoundary extends Boundary {
         ArrayList<Movie> listOfMovie;
 
         listOfMovie=retrieveMovieList();
-        printHeader("Edit movie listing");
+        printHeader("Edit Movie Listing");
         if(listOfMovie.isEmpty()){
             printMenu("No movie found in Database",
                     "1. List New Movie",
