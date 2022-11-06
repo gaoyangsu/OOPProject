@@ -58,7 +58,7 @@ public class DisplayShowTimeBoundary extends Boundary {
         int index = 0;
         for (ShowSchedule showSchedule : movieShowTime) {
             System.out.println(++index+"   "+showSchedule.getMovie().getMovieName()+"      "+ showSchedule.getTheatre().getCineplex()
-                    +"      "+showSchedule.getTheatre().getCode()+"      "+"ShowTime: "+showSchedule.getTime());
+                    +"      "+showSchedule.getTheatre().getCode()+" "+showSchedule.getTheatre().getTheatreClass()+" "+((showSchedule.getTheatre().isIs3D()) ? "3D":"  ")+"   "+"ShowTime: "+showSchedule.getTime());
             System.out.println();
         }
         
