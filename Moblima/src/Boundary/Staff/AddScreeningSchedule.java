@@ -48,8 +48,7 @@ public class AddScreeningSchedule extends Boundary {
         else {
             for (ShowSchedule showSchedule: scheduleForMovie){
                 System.out.println(showSchedule.getMovie().getMovieName()+"      "+ showSchedule.getTheatre().getCineplex()
-                        +"      "+showSchedule.getTheatre().getCode()+"      "+"ShowTime: "+dateOutput(showSchedule.getTime()));
-                System.out.println();
+                    +"      "+showSchedule.getTheatre().getCode()+" "+showSchedule.getTheatre().getTheatreClass()+" "+((showSchedule.getTheatre().isIs3D()) ? "3D":"  ")+"   "+"ShowTime: "+showSchedule.getTime());
 
             }
             System.out.println("1. Add scheduling for "+this.movie.getMovieName());
