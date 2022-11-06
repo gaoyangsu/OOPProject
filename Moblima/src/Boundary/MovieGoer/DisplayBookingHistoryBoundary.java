@@ -99,6 +99,7 @@ public class DisplayBookingHistoryBoundary extends Boundary {
     	
     	for (Booking b:foundBookings) {
     		ArrayList<Seat> seat=b.getSeat();
+    		String movieName=seat.get(0).getShowSchedule().getMovie().getMovieName();
     		String seatInfo="{";
     		
     		for (Seat s:seat) {
@@ -115,14 +116,14 @@ public class DisplayBookingHistoryBoundary extends Boundary {
     		seatInfo+="}";
     		
     		if (indicator==1) {
-    			printMenu(++index + ". " + b.getTransactionId() + generateSpaces(20 - b.getTransactionId().length())
+    			printMenu(++index + ". " +movieName+ "\t" + b.getTransactionId() + generateSpaces(20 - b.getTransactionId().length())
                 + "(" + b.getShowTime() + ")"
                 + "  S$" + b.getPrice()+"\t"
                 + seatInfo
                 + "  PH/PH eve");
     		}
     		else {
-    			printMenu(++index + ". " + b.getTransactionId() + generateSpaces(20 - b.getTransactionId().length())
+    			printMenu(++index + ". " +movieName+ "\t"  + b.getTransactionId() + generateSpaces(20 - b.getTransactionId().length())
                 + "(" + b.getShowTime() + ")"
                 + "  S$" + b.getPrice()+"\t"
                 + seatInfo);
