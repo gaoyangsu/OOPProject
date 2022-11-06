@@ -129,6 +129,23 @@ public class DisplayBookingConfirmation extends Boundary{
     	System.out.println("\nTotal Amount: "+total);
     	System.out.println();
     	
+    	if (schedule.getMovie().getAgeAdvisory().toString().equals("M18")|schedule.getMovie().getAgeAdvisory().toString().equals("R21")) {
+			printMenu("Please note that this movie is rated "+schedule.getMovie().getAgeAdvisory().toString());
+			printMenu("MOBLIMA welcomes all guests aged 18 and above to the Platinum Movie Suites.");
+			System.out.println("Press Y to proceed.");
+            if (readCharacter()!='Y') {
+            	for (Seat seat: bookedSeats){
+    				seat.unassignSeat();
+    			}
+    			total=0;
+    			studentCount=0;
+    			seniorCount=0;
+    			adultCount=0;
+    			bookedSeats=new ArrayList<Seat>();
+    			end();
+            }
+		}
+    	
     	 printMenu("Would you like to confirm your booking?",
          		"\n1.Yes",
          		"\n2.No");
