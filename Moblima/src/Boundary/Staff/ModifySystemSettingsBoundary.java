@@ -40,56 +40,56 @@ public class ModifySystemSettingsBoundary extends Boundary {
             System.out.printf("Current Price: ");
             System.out.println(retrieveSystemSettings().getHolidaysIncrement());
             retrieveSystemSettings().setHolidaysIncrement(readDouble("New Price:"));
-            printMenu("Price settings succesfully changed!");
+            printMenu("Price settings sucessfully changed!");
             display();
             break;
             case 2:
             System.out.printf("Current Price: ");
             System.out.println(retrieveSystemSettings().getChildDiscount());
             retrieveSystemSettings().setChildDiscount(readDouble("New Price:"));
-            printMenu("Price settings succesfully changed!");
+            printMenu("Price settings sucessfully changed!");
             display();
             break;
             case 3:
             System.out.printf("Current Price: ");
             System.out.println(retrieveSystemSettings().getSeniorCitizenDiscount());
             retrieveSystemSettings().setSeniorCitizenDiscount(readDouble("New Price:"));
-            printMenu("Price settings succesfully changed!");
+            printMenu("Price settings sucessfully changed!");
             display();
             break;
             case 4:
             System.out.printf("Current Price: ");
             System.out.println(retrieveSystemSettings().getPremiumPrice());
             retrieveSystemSettings().setPremiumPrice(readDouble("New Price:"));
-            printMenu("Price settings succesfully changed!");
+            printMenu("Price settings sucessfully changed!");
             display();
             break;
             case 5:
             System.out.printf("Current Price: ");
             System.out.println(retrieveSystemSettings().getStandardPrice());
             retrieveSystemSettings().setStandardPrice(readDouble("New Price:"));
-            printMenu("Price settings succesfully changed!");
+            printMenu("Price settings sucessfully changed!");
             display();
             break;
             case 6:
             System.out.printf("Current Price: ");
             System.out.println(retrieveSystemSettings().getThreeDIncrement());
             retrieveSystemSettings().setThreeDIncrement(readDouble("New Price:"));
-            printMenu("Price settings succesfully changed!");
+            printMenu("Price settings sucessfully changed!");
             display();
             break;
             case 7:
             System.out.printf("Current Price: ");
             System.out.println(retrieveSystemSettings().getBlockBusterIncrement());
             retrieveSystemSettings().setBlockBusterIncrement(readDouble("New Price:"));
-            printMenu("Price settings succesfully changed!");
+            printMenu("Price settings sucessfully changed!");
             display();
             break;
             case 8:
             System.out.printf("Current Price: ");
             System.out.println(retrieveSystemSettings().getWeekendIncrement());
             retrieveSystemSettings().setWeekendIncrement(readDouble("New Price:"));
-            printMenu("Price settings succesfully changed!");
+            printMenu("Price settings sucessfully changed!");
             display();
             break;
             case 9:

@@ -167,10 +167,10 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 				
 				showtime.getSpecificSeat(row,column).assignSeat();
 				chosenSeats.add(showtime.getSpecificSeat(row, column));
-				printMenu("Seat succesfully selected.");
+				printMenu("Seat sucessfully selected.");
 				printHeader("Screen");
 				showtime.showSeatLayout();
-				printHeader("Entrace");
+				printHeader("Entrance");
 				System.out.println();
 				count++;
 			}
@@ -208,7 +208,7 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 				printMenu("Seat successfully selected.");
 				printHeader("Screen");
 				showtime.showSeatLayout();
-				printHeader("Entrace");
+				printHeader("Entrance");
 				System.out.println();
 				count+=2;
 				coupleSeatCount++;
