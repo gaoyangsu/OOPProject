@@ -75,7 +75,9 @@ public class HolidayBoundary extends Boundary {
         //SupportFunctions.clearScreen();
         System.out.println("Enter the name of the holiday. Enter 0 to return.");
         String name = sc.nextLine();
-        if (name=="0") display();
+        System.out.println(name.equals("0"));
+        if (name.equals("0")) display();
+        else{
         System.out.println("Set date of holiday");
         Date dateInput = dateInput();
         Holiday holiday = new Holiday(dateInput ,name);
@@ -91,7 +93,7 @@ public class HolidayBoundary extends Boundary {
         }
         finally {
             display();
-        }
+        }}
         
 
     }
