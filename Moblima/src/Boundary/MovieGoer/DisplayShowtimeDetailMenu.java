@@ -267,6 +267,6 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 		System.out.println("Platinum Suites^^\t $"+platSuitesPrice+"\t\t\t $"+platSuitesPrice3D);
 		System.out.println("All Sessions,Daily");
 		System.out.println();
-		System.out.println("\n**Not valid on PH/eve of PH | ^Include PH?eve of PH and weekend sneaks | *For patrons 55 years & older. Not valid on PH/eve of PH | ^^Applies for Monday-Sunday,including PH/eve of PH");
+		System.out.println("\n**Not valid on PH/eve of PH | ^Include PH/eve of PH and weekend sneaks | *For patrons 55 years & older. Not valid on PH/eve of PH | ^^Applies for Monday-Sunday,including PH/eve of PH");
 	}
 }
