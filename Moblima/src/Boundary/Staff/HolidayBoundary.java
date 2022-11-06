@@ -105,8 +105,10 @@ public class HolidayBoundary extends Boundary {
         }
         int i = sc.nextInt();
         if(i == 0)display();
+        String holname = retrieveHolidays().get(i-1).getHolidayName();
+        Date holdate = retrieveHolidays().get(i-1).getDate();
         try{removeHoliday(retrieveHolidays().get(i-1));
-            readString("\nHoliday "+ retrieveHolidays().get(i-1).getHolidayName() + retrieveHolidays().get(i-1).getDate() + " successfully removed!");
+            readString("\nHoliday "+ holname + holdate + " successfully removed!");
             display();
         }
         
