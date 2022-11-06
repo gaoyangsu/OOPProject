@@ -39,7 +39,7 @@ public class DisplayMovieDetailsBoundary extends Boundary{
         Scanner sc= new Scanner(System.in);
 
         SupportFunctions.clearScreen();
-        printHeader("Movie details");
+        printHeader("Movie Details");
 
         if(movie.getMovieStatus().toString()=="COMING SOON"){
         	printMenu(movie.toString());

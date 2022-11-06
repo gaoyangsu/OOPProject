@@ -33,7 +33,7 @@ public class DisplayTop5MoviesBoundary extends Boundary {
 
     private void display() {
         SupportFunctions.clearScreen();
-        printHeader("TOP 5 MOVIES!");
+        printHeader("Top 5 Movies");
         FindTop5ByTicketSalesAndRatings();
     }
 

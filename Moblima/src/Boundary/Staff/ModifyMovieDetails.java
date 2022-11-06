@@ -32,7 +32,7 @@ public class ModifyMovieDetails extends Boundary {
 
     private void display(){
         SupportFunctions.clearScreen();
-        printHeader("Modifying details for "+movie.getMovieName());
+        printHeader("Modifying Details for "+movie.getMovieName());
 
         int moreupdates=1;
         String name, director, synopsis;

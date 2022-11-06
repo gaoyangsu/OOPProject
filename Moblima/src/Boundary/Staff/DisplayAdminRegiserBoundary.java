@@ -12,7 +12,7 @@ public class DisplayAdminRegiserBoundary extends Boundary{
         display();
     }
     private void display(){
-        printHeader("REGISTRATION (INSERT ANY EMPTY FIELD TO CANCEL");
+        printHeader("Registration (Insert any empty field to cancel)");
         String user = readString("Enter name:");
         String password = readString("Enter Password:");
         Scanner sc = new Scanner(System.in);
@@ -33,7 +33,7 @@ public class DisplayAdminRegiserBoundary extends Boundary{
         admin.setAdminPassword(password);
         admin.setAdminId(loginID);
         try{addAdminIntoList(admin);}catch(IOException e){}
-        readString("Account Sucessfully Created!");
+        readString("Account Successfully Created!");
         end();
     }
 }

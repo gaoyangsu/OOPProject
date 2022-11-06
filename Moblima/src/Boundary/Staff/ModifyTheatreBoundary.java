@@ -102,7 +102,7 @@ public class ModifyTheatreBoundary extends Boundary {
 
         try{
             addTheatreIntoList(toAppend);
-            System.out.println("Added sucessfully!");
+            System.out.println("Added successfully!");
         } catch(IOException i){
             i.printStackTrace();
             System.out.println("Failed to add into system.");
@@ -121,7 +121,7 @@ public class ModifyTheatreBoundary extends Boundary {
             if(theatre.getCode().equals(codeName)){
                 try{
                     removeTheatreFromList(theatre);
-                    System.out.println("Removed sucessfully!");
+                    System.out.println("Removed successfully!");
                 } 
                 catch(IOException i){
                     System.out.println("Failed to remove the Theatre.");

@@ -23,7 +23,7 @@ public class MovieGoerMain extends Boundary{
     }
     private void displayMovieGoerView() {
         SupportFunctions.clearScreen();
-        printHeader("Moviegoer");
+        printHeader("MovieGoer");
         printMenu("Welcome, please make a selection:",
                 "1. Search or list movies",
                 "2. View booking history",

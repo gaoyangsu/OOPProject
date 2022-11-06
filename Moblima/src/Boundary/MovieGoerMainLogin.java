@@ -16,7 +16,7 @@ public class MovieGoerMainLogin extends Boundary{
     }
     private void displayMovieGoerView() {
         SupportFunctions.clearScreen();
-        printHeader("Moviegoer");
+        printHeader("MovieGoer");
         printMenu("Welcome, please make a selection:",
                 "1. Search or list movies",
                 "2. View booking history",
@@ -40,7 +40,7 @@ public class MovieGoerMainLogin extends Boundary{
     }
     private void signin(){
         SupportFunctions.clearScreen();
-        printHeader("Moviegoer");
+        printHeader("MovieGoer");
         String user = readString("Enter Username (press enter to return)");
         if(user == "")end();
         this.userId=user;

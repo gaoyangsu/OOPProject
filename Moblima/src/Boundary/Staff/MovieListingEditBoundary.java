@@ -86,7 +86,7 @@ public class MovieListingEditBoundary extends Boundary {
         ArrayList<String> cast;
         MovieEnums.MovieStatus movieStatus = null;
 
-        printHeader("Add movie listing");
+        printHeader("Add Movie Listing");
         System.out.println("Enter the movie ID (enter -1 to return)");
         ID= sc.nextInt();
         if(ID == -1)display();

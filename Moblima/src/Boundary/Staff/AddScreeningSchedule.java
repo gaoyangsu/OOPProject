@@ -108,7 +108,7 @@ public class AddScreeningSchedule extends Boundary {
         Scanner sc = new Scanner(System.in);
 
         SupportFunctions.clearScreen();
-        printHeader("Modifying ShowTime");
+        printHeader("Modifying Showtime");
         ShowSchedule showScheduleToModify = new ShowSchedule();
 
         System.out.println("Which ShowSchedule would you like to modify?");
@@ -139,7 +139,7 @@ public class AddScreeningSchedule extends Boundary {
 
         while(moreupdates==1){
 
-        printHeader("Modifying this ShowTime");
+        printHeader("Modifying this Showtime");
 
         System.out.println("1. Update Theatre");
         System.out.println("2. Update Show Time");
@@ -217,7 +217,7 @@ public class AddScreeningSchedule extends Boundary {
                     try{
                         removeMovieShowSchedule(showSchedule);
                         updateMovieShowSchedule();
-                        System.out.println("Removed sucessfully!");
+                        System.out.println("Removed successfully!");
                     } 
                     catch(IOException i){
                         System.out.println("Failed to remove the show schedule.");

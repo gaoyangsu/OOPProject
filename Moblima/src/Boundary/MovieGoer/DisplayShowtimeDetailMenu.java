@@ -55,7 +55,7 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 		
 		printHeader("Pricing Information");
 		showPricing();
-		printHeader("Booking menu");
+		printHeader("Booking Menu");
 		printMenu("What would you like to do?"+
 				"\n1. Proceed to booking."+
 				"\n2. Go back");
@@ -66,7 +66,7 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 			end();
 		}
 		
-		printMenu("\nPlease enter number of seats(Press 0 to go back)");
+		printMenu("\nPlease enter number of seats (Press 0 to go back)");
 		int numSeats=readChoice(0,134);
 		
 		if (numSeats==0) {
@@ -103,7 +103,7 @@ public class DisplayShowtimeDetailMenu extends Boundary {
         		printMenu("Choose number of student tickets");
         		numStudent=readChoice(0,numSeats);
         		
-        		printMenu("Choose number of Senior Citizen tickets");
+        		printMenu("Choose number of senior citizen tickets");
         		numSeniors=readChoice(0,numSeats-numStudent);
         	}
     	}
@@ -122,7 +122,7 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 			if (coupleSeatYesOrNo==0|coupleSeatYesOrNo==2) {
 				printMenu("Please select your seats: "+"("+(numSeats-count)+" left)\n");
 				printMenu("Seats {A1,A2,A9,B1,B2,B9,C1,C2,C9,D1,D2,D9,E9,F9,G9} are not available. Please refrain from picking those seats.\n");
-				printMenu("Select your Row(choose an alphabet from A to G)");
+				printMenu("Select your Row (choose an alphabet from A to G)");
 				char result=readCharacter();
 				int row=(int)(result-64);
 				if (row<1 | row>7) {
@@ -139,7 +139,7 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 					continue;
 				}
 				
-				printMenu("Select your Column(choose a number between 1-17, excluding 9)");
+				printMenu("Select your Column (choose a number between 1-17, excluding 9)");
 				int column=readChoice(1,17);
 				
 				if (prevCol==0) {
@@ -167,7 +167,7 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 				
 				showtime.getSpecificSeat(row,column).assignSeat();
 				chosenSeats.add(showtime.getSpecificSeat(row, column));
-				printMenu("Seat sucessfully selected.");
+				printMenu("Seat successfully selected.");
 				printHeader("Screen");
 				showtime.showSeatLayout();
 				printHeader("Entrance");
@@ -176,7 +176,7 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 			}
 			else {
 				printMenu("Please select your couple seat: "+"("+(numCoupleSeats-coupleSeatCount)+" left)");
-				printMenu("Select your Row(choose either H or I)");
+				printMenu("Select your Row (choose either H or I)");
 				char result=readCharacter();
 				int row=(int)(result-64);
 				if (row<8 | row>9) {
@@ -184,7 +184,7 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 					continue;
 				}
 				
-				printMenu("Select your Column(choose one of 1,3,5,7,10,12,14,16)");
+				printMenu("Select your Column (choose one of 1,3,5,7,10,12,14,16)");
 				int column=readChoice(1,17);
 				if (column==2|column==4|column==6|column==8|column==11|column==13|column==15|column==17) {
 					printMenu("Please select a valid couple seat.\n\n");

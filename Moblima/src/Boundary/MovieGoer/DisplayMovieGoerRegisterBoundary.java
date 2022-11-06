@@ -13,7 +13,7 @@ public class DisplayMovieGoerRegisterBoundary extends Boundary{
         display();
     }
     private void display(){
-        printHeader("REGISTRATION (INSERT ANY EMPTY FIELD TO CANCEL");
+        printHeader("Registration (Insert any empty field to cancel)");
         String user = readString("Enter name:");
         if (user.equals("")) end();
         String password = readString("Enter Password:");

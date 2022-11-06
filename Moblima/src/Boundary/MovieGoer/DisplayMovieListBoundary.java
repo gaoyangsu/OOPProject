@@ -30,7 +30,7 @@ public class DisplayMovieListBoundary extends Boundary {
     private void display() {
         
         SupportFunctions.clearScreen();
-        printHeader("Search or list movies");
+        printHeader("Search or List Movies");
         printMenu("1. Search movies",
                 "2. List all movies",
                 "3. List the top 5 movies",

@@ -36,7 +36,7 @@ public class DisplayShowTimeBoundary extends Boundary {
 
         Date today= new Date();
 
-        printHeader("View ShowSchedule of the Movie");
+        printHeader("View Show Schedule of the Movie");
 
         ArrayList<ShowSchedule> movieShowTime=  new ArrayList<>();
 
