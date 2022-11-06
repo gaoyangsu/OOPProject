@@ -37,6 +37,7 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 		int coupleSeatCount=0;
 		int regularSeat=104;
 		int coupleSeat=15;
+		chosenSeats=new ArrayList<Seat>();
 		
 		for (int i=1;i<=9;i++) {
 			for (int j=1;j<=17;j++) {
@@ -98,7 +99,7 @@ public class DisplayShowtimeDetailMenu extends Boundary {
     			printMenu("Insufficient seats remaining in this theatre. Please select another showtime.");
     			end();
     		}
-    		if ((dayOfWeek>=2 && dayOfWeek<=6) && hourOfDay<18) {
+    		if ((dayOfWeek>=2 & dayOfWeek<=6) & hourOfDay<18) {
         		printMenu("Choose number of student tickets");
         		numStudent=readChoice(0,numSeats);
         		
@@ -118,14 +119,14 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 		while (count<=numSeats) {
 			if(count==numSeats) break;
 			
-			
 			if (coupleSeatYesOrNo==0|coupleSeatYesOrNo==2) {
-				printMenu("Please select your seats: "+"("+(numSeats-count)+" left)");
+				printMenu("Please select your seats: "+"("+(numSeats-count)+" left)\n");
+				printMenu("Seats {A1,A2,A9,B1,B2,B9,C1,C2,C9,D1,D2,D9,E9,F9,G9} are not available. Please refrain from picking those seats.\n");
 				printMenu("Select your Row(choose an alphabet from A to G)");
 				char result=readCharacter();
 				int row=(int)(result-64);
 				if (row<1 | row>7) {
-					printMenu("Invalid seat. Please pick another seat.");
+					printMenu("Invalid seat. Please pick another seat.\n");
 					continue;
 				}
 				
@@ -134,11 +135,9 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 				}
 				
 				else if (row!=prevRow) {
-					printMenu("Please select seats within the same row.");
+					printMenu("Please select seats within the same row.\n");
 					continue;
 				}
-				
-				prevRow=row;
 				
 				printMenu("Select your Column(choose a number between 1-17, excluding 9)");
 				int column=readChoice(1,17);
@@ -147,38 +146,25 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 					prevCol=column;
 				}
 				
-				else {
-					if (prevCol==1|prevCol==10) {
-						if (column!=prevCol+1) {
-							printMenu("Please select a valid adjacent seat within the same row.");
-							continue;
-						}
-					}
-					else if (prevCol==8|prevCol==17) {
-						if (column!=prevCol-1) {
-							printMenu("Please select a valid adjacent seat within the same row.");
-							continue;
-						}
-					}
-					else {
-						if (column!=prevCol+1 | column!=prevCol-1) {
-							printMenu("Please select a valid adjacent seat within the same row.");
-							continue;
-						}
+				else{
+					if (column>prevCol+1 | column<prevCol-1) {
+						printMenu("Please select an adjacent seat within the same row.\n");
+						continue;
 					}
 				}
 				
-				prevCol=column;
-				
 				if (showtime.getSpecificSeat(row, column)==null) {
-					printMenu("No such seat exists. Please pick another seat.");
+					printMenu("No such seat exists. Please pick another seat.\n");
 					continue;
 				}
 				
 				if (showtime.getSpecificSeat(row, column).isAssigned()) {
-					printMenu("Seat is already occupied. Please pick another seat.");
+					printMenu("Seat is already occupied. Please pick another seat.\n");
 					continue;
 				}
+				
+				prevCol=column;
+				
 				showtime.getSpecificSeat(row,column).assignSeat();
 				chosenSeats.add(showtime.getSpecificSeat(row, column));
 				printMenu("Seat succesfully selected.");
@@ -230,7 +216,7 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 		}
 
 
-		if (showtime.getMovie().getAgeAdvisory().toString()=="M18" ||showtime.getMovie().getAgeAdvisory().toString()=="R21") {
+		if (showtime.getMovie().getAgeAdvisory().toString()=="M18"|showtime.getMovie().getAgeAdvisory().toString()=="R21") {
 			printMenu("Please note that this movie is rated "+showtime.getMovie().getAgeAdvisory().toString());
 			printMenu("MOBLIMA welcomes all guests aged 18 and above to the Platinum Movie Suites.");
 		}

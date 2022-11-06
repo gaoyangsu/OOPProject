@@ -170,6 +170,11 @@ public class DisplayBookingConfirmation extends Boundary{
 			for (Seat seat: bookedSeats){
 				seat.unassignSeat();
 			}
+			total=0;
+			studentCount=0;
+			seniorCount=0;
+			adultCount=0;
+			bookedSeats=new ArrayList<Seat>();
 			end();
 		 }
 
