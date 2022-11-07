@@ -16,7 +16,7 @@ import java.util.*;
 
 import static Controller.RWController.*;
 
-public class AdminController {
+public class AdminController implements Initialiser {
     private static final String ADMIN_FILE = "Data/admin.dat";
     private static ArrayList<Admin> listofAdmins;
     private static final String SETTINGS_FILE = "Data/settings.dat";
@@ -34,6 +34,7 @@ public class AdminController {
 //
 //        return true;
 //    }
+
     public static void readHolidays() throws IOException, ClassNotFoundException {
         if (serialisedRead(HOLIDAY_FILE) == null) holidays = new ArrayList<>();
         else holidays = (ArrayList<Holiday>) serialisedRead(HOLIDAY_FILE);
@@ -86,5 +87,18 @@ public class AdminController {
     public static void removeAdminFromList(Admin admin) throws IOException{
         listofAdmins.remove(admin);
         updateAdminList();
+    }
+    @Override
+    public boolean initialise(){
+        try{readHolidays();
+        readAdminList();
+        readSystemSettings();
+        return true;
+    } catch (IOException ex) {
+            ex.printStackTrace();
+            return false;
+        } catch (ClassNotFoundException ex) {
+            return true;
+        }
     }
 }

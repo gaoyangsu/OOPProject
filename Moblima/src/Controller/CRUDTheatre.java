@@ -13,21 +13,21 @@ import java.util.*;
 
 import static Controller.RWController.*;
 
-public class CRUDTheatre {
+public class CRUDTheatre implements Initialiser{
     private static final String THEATRES_FILE = "Data/Theatres.dat";
     private static HashMap<TheatreEnums.Cineplex, ArrayList<Theatre>> listOfTheatres;
+   @Override
+   public boolean initialise() {
+       try {
+           readTheatreList();
+       } catch (IOException ex) {
+           return false;
+       } catch (ClassNotFoundException ex) {
+           return true;
+       }
 
-//    public static boolean CRUDTheatresInitialise() {
-//        try {
-//            readTheatreList();
-//        } catch (IOException ex) {
-//            return false;
-//        } catch (ClassNotFoundException ex) {
-//            return true;
-//        }
-//
-//        return true;
-//    }
+       return true;
+   }
 
     //THIS READ FUNCTION HAS TO BE USED EVERYTIME THE PROGRAMME STARTS
     public static void readTheatreList() throws IOException, ClassNotFoundException {

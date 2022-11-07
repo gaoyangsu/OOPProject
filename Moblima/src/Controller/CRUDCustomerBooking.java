@@ -7,22 +7,12 @@ import java.util.*;
 
 import static Controller.RWController.*;
 
-public class CRUDCustomerBooking {
+public class CRUDCustomerBooking implements Initialiser{
 	
 	private static final String BOOKING_FILE="Data/Booking.dat";
 	private static ArrayList<Booking> listOfBookings;
-	
-	public static boolean initialise() {
-        try {
-            readBookingList();
-        } catch (IOException ex) {
-            return false;
-        } catch (ClassNotFoundException ex) {
-            return true;
-        }
 
-        return true;
-    }
+
 	
 	@SuppressWarnings("unchecked")
 	
@@ -40,4 +30,17 @@ public class CRUDCustomerBooking {
     public static void updateBookingList() throws IOException{
         serialisedWrite(BOOKING_FILE,listOfBookings);
     }
+    @Override
+	public boolean initialise() {
+        try {
+            readBookingList();
+        } catch (IOException ex) {
+            return false;
+        } catch (ClassNotFoundException ex) {
+            return true;
+        }
+
+        return true;
+    }
+    
 }

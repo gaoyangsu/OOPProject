@@ -16,7 +16,7 @@ import java.util.*;
 
 import static Controller.RWController.*;
 
-public class CustomerController {
+public class CustomerController implements Initialiser{
     private static final String CUSTOMER_FILE = "Data/Customer.dat";
     private static ArrayList<Customer> listOfCustomers;
     private static int currentUserId = -1;
@@ -50,5 +50,16 @@ public class CustomerController {
     public static void removeCustomerFromList(Customer customer) throws IOException{
         listOfCustomers.remove(customer);
         updateCustomerList();
+    }
+    @Override
+    public boolean initialise(){
+        try{readUserList();
+        return true;
+    } catch (IOException ex) {
+            ex.printStackTrace();
+            return false;
+        } catch (ClassNotFoundException ex) {
+            return true;
+        }
     }
 }

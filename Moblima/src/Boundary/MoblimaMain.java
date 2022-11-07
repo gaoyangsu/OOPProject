@@ -1,8 +1,11 @@
 package Boundary;
+import Controller.AdminController;
 import Controller.CRUDCustomerBooking;
 import Controller.CRUDMovies;
 import Controller.CRUDShowSchedule;
 import Controller.CRUDTheatre;
+import Controller.CustomerController;
+
 import java.util.*;
 
 import Boundary.MovieGoer.DisplayMovieGoerRegisterBoundary;
@@ -16,11 +19,23 @@ public class MoblimaMain extends Boundary {
         
         new MoblimaMain().start();
     }
-
+    CRUDCustomerBooking customerBooking = new CRUDCustomerBooking();
+    CRUDMovies movies = new CRUDMovies();
+    CRUDShowSchedule showSchedule = new CRUDShowSchedule();
+    CRUDTheatre theatre = new CRUDTheatre();
+    AdminController admin = new AdminController();
+    CustomerController moviegoer = new CustomerController();
     @Override
     protected void start() {
 
-        boolean initialized= (CRUDCustomerBooking.initialise() && CRUDMovies.initialize());
+        boolean initialized= (
+        customerBooking.initialise() &&
+        movies.initialise() &&
+        showSchedule.initialise() &&
+        theatre.initialise() &&
+        admin.initialise() &&
+        moviegoer.initialise()
+        );
         if (!initialized) {
             System.out.println("Error: failed to read data, please check file integrity.");
             System.out.println("Application terminating...");

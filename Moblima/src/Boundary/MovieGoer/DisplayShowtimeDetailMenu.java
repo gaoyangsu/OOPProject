@@ -27,7 +27,6 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 	protected void start() {
         display();
     }
-	
 	private void display() {
 		int numStudent=0;
 		int numSeniors=0;

@@ -16,34 +16,34 @@ import static Controller.CRUDShowSchedule.*;
 import static Controller.CRUDTheatre.*;
 import static Controller.AdminController.*;
 import static Controller.CustomerController.*;
-public class CRUDMovies {
+public class CRUDMovies implements Initialiser{
 
     private static final String MOVIE_FILE="Data/Movies.dat";
     private static final String REVIEW_FILE="Data/Reviews.dat";
     private static ArrayList<Movie> listofMovie;
     private static HashMap<Movie,ArrayList<Review>> listOfMovieReviews;
-
-    public static boolean initialize() {
+    @Override
+    public boolean initialise() {
         try {
             readMovieList();
-            readMovieShowSchedule();
+            // readMovieShowSchedule();
             readReviewList();
-            readTheatreList();
-            readAdminList();
-            readHolidays();
-            readSystemSettings();
-            readUserList();
-            // Admin one = new Admin("admin","default@default.com",81234567);
-            // Admin two = new Admin("moe","default@default.com",65234567);
-            // one.setAdminId("default");
-            // two.setAdminId("kingsmil");
-            // one.setAdminPassword("password");
-            // two.setAdminPassword("123456");
-            // addAdminIntoList(one);
-            // addAdminIntoList(two);
-            ///SystemSettings one = new SystemSettings(2.50, 1.50, 4.50, 3, 8.50, 2.50, 1, 1);
-            ///retrieveSystemSettings().
-            ////updateSystemSettings();
+            // readTheatreList();
+            // readAdminList();
+            // readHolidays();
+            // readSystemSettings();
+            // readUserList();
+            // // Admin one = new Admin("admin","default@default.com",81234567);
+            // // Admin two = new Admin("moe","default@default.com",65234567);
+            // // one.setAdminId("default");
+            // // two.setAdminId("kingsmil");
+            // // one.setAdminPassword("password");
+            // // two.setAdminPassword("123456");
+            // // addAdminIntoList(one);
+            // // addAdminIntoList(two);
+            // ///SystemSettings one = new SystemSettings(2.50, 1.50, 4.50, 3, 8.50, 2.50, 1, 1);
+            // ///retrieveSystemSettings().
+            // ////updateSystemSettings();
             
         } catch (IOException ex) {
             ex.printStackTrace();

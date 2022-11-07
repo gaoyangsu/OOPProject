@@ -14,12 +14,12 @@ import java.util.*;
 import static Controller.RWController.*;
 
 
-public class CRUDShowSchedule {
+public class CRUDShowSchedule implements Initialiser{
 
     private static final String SHOWSCHEDULE_FILE="Data/ShowSchedule.dat";
     private static HashMap<Movie, ArrayList<ShowSchedule>> movieShowScheduleList;
-    
-    public static boolean CRUDShowScheduleInitialise() {
+    @Override
+    public boolean initialise() {
         try {
             readMovieShowSchedule();
         } catch (IOException ex) {
