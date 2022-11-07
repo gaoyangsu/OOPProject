@@ -19,7 +19,7 @@ import static Controller.RWController.*;
  @version 1.0
  @since 2022-11-01
  */
-public class CRUDShowSchedule {
+public class CRUDShowSchedule implements Initialiser{
     /**
      * {@code String } denoting the location of the ShowSchedule.dat file
      */
@@ -29,13 +29,12 @@ public class CRUDShowSchedule {
      * to an individual movie be retrieved while the ShowSchedule.dat is being read
      */
     private static HashMap<Movie, ArrayList<ShowSchedule>> movieShowScheduleList;
-    
-    
     /** 
      * calls readMovieShowSchedule() to initialise the file
      * @return boolean
      */
-    public static boolean CRUDShowScheduleInitialise() {
+    @Override
+    public boolean initialise() {
         try {
             readMovieShowSchedule();
         } catch (IOException ex) {

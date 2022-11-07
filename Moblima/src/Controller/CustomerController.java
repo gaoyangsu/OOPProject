@@ -22,7 +22,7 @@ import static Controller.RWController.*;
  @version 1.0
  @since 2022-11-01
  */
-public class CustomerController {
+public class CustomerController implements Initialiser{
     /**
      * {@code String } denoting the location of the Customer.dat file
      */
@@ -105,5 +105,22 @@ public class CustomerController {
     public static void removeCustomerFromList(Customer customer) throws IOException{
         listOfCustomers.remove(customer);
         updateCustomerList();
+    }
+    /** 
+     * This method intialises the .dat files and place all of them 
+     * in runtime during execution of the java file
+     * @return boolean true to denote all the .dat files are properly read
+     * @return false to denote file integrity issues
+     */
+    @Override
+    public boolean initialise(){
+        try{readUserList();
+        return true;
+    } catch (IOException ex) {
+            ex.printStackTrace();
+            return false;
+        } catch (ClassNotFoundException ex) {
+            return true;
+        }
     }
 }

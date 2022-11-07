@@ -22,7 +22,7 @@ import static Controller.CustomerController.*;
  @version 1.0
  @since 2022-10-25
  */
-public class CRUDMovies {
+public class CRUDMovies implements Initialiser{
     /**
      * {@code String } denoting the location of the Movies.dat file
      */
@@ -43,35 +43,34 @@ public class CRUDMovies {
      * while the Reviews.dat is being read
      */
     private static HashMap<Movie,ArrayList<Review>> listOfMovieReviews;
-
-    
     /** 
      * Method to initialize the .dat files and place all of them 
      * in runtime during execution of the java file
      * @return boolean yes to denote all the .dat files are properly read
      * @return boolean no to denote file integrity issues
      */
-    public static boolean initialize() {
+    @Override
+    public boolean initialise() {
         try {
             readMovieList();
-            readMovieShowSchedule();
+            // readMovieShowSchedule();
             readReviewList();
-            readTheatreList();
-            readAdminList();
-            readHolidays();
-            readSystemSettings();
-            readUserList();
-            // Admin one = new Admin("admin","default@default.com",81234567);
-            // Admin two = new Admin("moe","default@default.com",65234567);
-            // one.setAdminId("default");
-            // two.setAdminId("kingsmil");
-            // one.setAdminPassword("password");
-            // two.setAdminPassword("123456");
-            // addAdminIntoList(one);
-            // addAdminIntoList(two);
-            ///SystemSettings one = new SystemSettings(2.50, 1.50, 4.50, 3, 8.50, 2.50, 1, 1);
-            ///retrieveSystemSettings().
-            ////updateSystemSettings();
+            // readTheatreList();
+            // readAdminList();
+            // readHolidays();
+            // readSystemSettings();
+            // readUserList();
+            // // Admin one = new Admin("admin","default@default.com",81234567);
+            // // Admin two = new Admin("moe","default@default.com",65234567);
+            // // one.setAdminId("default");
+            // // two.setAdminId("kingsmil");
+            // // one.setAdminPassword("password");
+            // // two.setAdminPassword("123456");
+            // // addAdminIntoList(one);
+            // // addAdminIntoList(two);
+            // ///SystemSettings one = new SystemSettings(2.50, 1.50, 4.50, 3, 8.50, 2.50, 1, 1);
+            // ///retrieveSystemSettings().
+            // ////updateSystemSettings();
             
         } catch (IOException ex) {
             ex.printStackTrace();

@@ -7,13 +7,14 @@ import java.util.*;
 
 import static Controller.RWController.*;
 
+
 /**
  A class of CRUD operations on the Booking.dat file
  Calls RWController to read and write data into .dat file
  @version 1.0
  @since 2022-11-01
  */
-public class CRUDCustomerBooking {
+public class CRUDCustomerBooking implements Initialiser{
 	 /**
      * {@code String} denoting the location of the Booking.dat file
      */
@@ -23,8 +24,6 @@ public class CRUDCustomerBooking {
      * while the Booking.dat is being read
      */
 	private static ArrayList<Booking> listOfBookings;
-	
-	
     /** 
      * This method intialises the .dat files and place all of them 
      * in runtime during execution of the java file
@@ -40,8 +39,7 @@ public class CRUDCustomerBooking {
             return true;
         }
 
-        return true;
-    }
+
 	
 	
     /** 
@@ -77,4 +75,17 @@ public class CRUDCustomerBooking {
     public static void updateBookingList() throws IOException{
         serialisedWrite(BOOKING_FILE,listOfBookings);
     }
+    @Override
+	public boolean initialise() {
+        try {
+            readBookingList();
+        } catch (IOException ex) {
+            return false;
+        } catch (ClassNotFoundException ex) {
+            return true;
+        }
+
+        return true;
+    }
+    
 }

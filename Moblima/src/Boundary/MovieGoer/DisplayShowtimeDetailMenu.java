@@ -44,7 +44,7 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 	protected void start() {
         display();
     }
-	
+
 	/** method to display the booking process to the user */
 	private void display() {
 		int numStudent=0;

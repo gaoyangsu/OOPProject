@@ -15,13 +15,14 @@ import java.io.ObjectOutputStream;
 import java.util.*;
 
 import static Controller.RWController.*;
+
 /**
  A class of CRUD operations on the admin.dat, settings.dat and holiday.dat file
  Calls RWController to read and write data into .dat file
  @version 1.0
  @since 2022-10-30
  */
-public class AdminController {
+public class AdminController implements Initialiser {
     /**
      * {@code String } denoting the location of the admin.dat file
      */
@@ -196,5 +197,24 @@ public class AdminController {
     public static void removeAdminFromList(Admin admin) throws IOException{
         listofAdmins.remove(admin);
         updateAdminList();
+    }
+    /** 
+     * This method intialises the .dat files and place all of them 
+     * in runtime during execution of the java file
+     * @return boolean true to denote all the .dat files are properly read
+     * @return false to denote file integrity issues
+     */
+    @Override
+    public boolean initialise(){
+        try{readHolidays();
+        readAdminList();
+        readSystemSettings();
+        return true;
+    } catch (IOException ex) {
+            ex.printStackTrace();
+            return false;
+        } catch (ClassNotFoundException ex) {
+            return true;
+        }
     }
 }

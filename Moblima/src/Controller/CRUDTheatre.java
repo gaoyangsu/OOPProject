@@ -19,7 +19,7 @@ import static Controller.RWController.*;
  @version 1.0
  @since 2022-10-25
  */
-public class CRUDTheatre {
+public class CRUDTheatre implements Initialiser{
      /**
      * {@code String } denoting the location of the Theatres.dat file
      */
@@ -30,18 +30,24 @@ public class CRUDTheatre {
      * while the Theatres.dat is being read
      */
     private static HashMap<TheatreEnums.Cineplex, ArrayList<Theatre>> listOfTheatres;
+    /** 
+     * This method intialises the .dat files and place all of them 
+     * in runtime during execution of the java file
+     * @return boolean true to denote all the .dat files are properly read
+     * @return false to denote file integrity issues
+     */
+   @Override
+   public boolean initialise() {
+       try {
+           readTheatreList();
+       } catch (IOException ex) {
+           return false;
+       } catch (ClassNotFoundException ex) {
+           return true;
+       }
 
-//    public static boolean CRUDTheatresInitialise() {
-//        try {
-//            readTheatreList();
-//        } catch (IOException ex) {
-//            return false;
-//        } catch (ClassNotFoundException ex) {
-//            return true;
-//        }
-//
-//        return true;
-//    }
+       return true;
+   }
 
    
     /** 
