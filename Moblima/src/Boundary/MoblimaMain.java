@@ -19,15 +19,15 @@ public class MoblimaMain extends Boundary {
         
         new MoblimaMain().start();
     }
-    CRUDCustomerBooking customerBooking = new CRUDCustomerBooking();
-    CRUDMovies movies = new CRUDMovies();
-    CRUDShowSchedule showSchedule = new CRUDShowSchedule();
-    CRUDTheatre theatre = new CRUDTheatre();
-    AdminController admin = new AdminController();
-    CustomerController moviegoer = new CustomerController();
+
     @Override
     protected void start() {
-
+        CRUDCustomerBooking customerBooking = new CRUDCustomerBooking();
+        CRUDMovies movies = new CRUDMovies();
+        CRUDShowSchedule showSchedule = new CRUDShowSchedule();
+        CRUDTheatre theatre = new CRUDTheatre();
+        AdminController admin = new AdminController();
+        CustomerController moviegoer = new CustomerController();
         boolean initialized= (
         customerBooking.initialise() &&
         movies.initialise() &&
