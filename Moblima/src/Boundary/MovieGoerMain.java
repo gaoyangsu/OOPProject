@@ -13,14 +13,29 @@ import static Controller.MiscMethods.*;
 import static Controller.CustomerController.*;
 import Entity.Customer;
 
+/**
+    Boundary/View Class representing a the Moviegoer main after logging in as member
+    or choose to book ticket as a guest
+    @version 1.0
+    @since 2022-10-23
+ */
 public class MovieGoerMain extends Boundary{
+    
+    /**boolean to denote if user signed in as member or logged in as guest */
     private boolean signedIn;
 
+    /**
+     * overriden start method from Boundary abstract class
+     */
     @Override
     protected void start(){
         displayMovieGoerView();
 
     }
+
+    /**
+     * display menu for moviegoers, to see if they want to search or list movies, or make booking history
+     */
     private void displayMovieGoerView() {
         SupportFunctions.clearScreen();
         printHeader("MovieGoer");

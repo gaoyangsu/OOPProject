@@ -10,13 +10,27 @@ import Boundary.MovieGoer.DisplayMovieGoerRegisterBoundary;
 import static Controller.MiscMethods.*;
 
 
-
+/**
+    Boundary/View Class representing a the main menu that kickstarts the app
+    @version 1.0
+    @since 2022-10-23
+ */
 public class MoblimaMain extends Boundary {
+    
+    /** 
+     * this method is used to start the entire application
+     * @param args
+     */
     public static void main(String[] args){
         
         new MoblimaMain().start();
     }
 
+    /** 
+     * start method implemented from {@code Boundary} interface
+     * to show the listing of mainmenu
+     * @param args
+     */
     @Override
     protected void start() {
 

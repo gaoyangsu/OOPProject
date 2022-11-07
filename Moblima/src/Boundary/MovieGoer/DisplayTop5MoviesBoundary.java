@@ -17,26 +17,46 @@ import java.util.Scanner;
 
 import static Controller.MiscMethods.*;
 
+
+/**
+    Boundary/View Class to display the Top 5 movies 
+    based on either rating, salesnumber or both 
+    (Only can be changed by system settings by Admin)
+    or choose to book ticket as a guest
+    @version 1.0
+    @since 2022-10-29
+ */
 public class DisplayTop5MoviesBoundary extends Boundary {
 
+    /** shows the Date today */
     private Date today= new Date();
+
+    /** userID passed in to show if the moviegoer is member or guest */
 	private String userId;
 	
+    /**
+     * Constructor to pass in the UserID to the top 5 movies boundary
+     * @param userId
+     */
 	public DisplayTop5MoviesBoundary(String userId) {
 		this.userId=userId;
 	}
 	
-	
+	 /**
+     * overriden start method from Boundary abstract class
+     */
     protected void start() {
         display();
     }
 
+    /** method to call FindTop5ByTicketSalesAndRatings(); */
     private void display() {
         SupportFunctions.clearScreen();
         printHeader("Top 5 Movies");
         FindTop5ByTicketSalesAndRatings();
     }
 
+    /** method to display top5 by either ticket sales or ratings, or both */
     private void FindTop5ByTicketSalesAndRatings(){
         ArrayList<Movie> listOfMovies = retrieveMovieList();;
         

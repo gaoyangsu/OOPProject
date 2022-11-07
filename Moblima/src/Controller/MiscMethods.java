@@ -8,7 +8,17 @@ import java.util.*;
 
 import static Boundary.Staff.AddScreeningSchedule.dateFormat;
 
+/**
+    Represents the miscellaneous controller methods to be used across the entire application.
+    @version 1.0
+    @since 2022-10-23
+ */
 public class MiscMethods {
+    
+    /** 
+     * This method is to print multiple Strings, separated by commas
+     * @param menu multiple Strings, separated by commas
+     */
     public static void printMenu(String... menu) {
         for (String s : menu) {
             System.out.println(s);
@@ -33,12 +43,26 @@ public class MiscMethods {
         for (int i = 0; i < length; i++) System.out.print("#");
         System.out.println();
     }
+    
+    /** 
+     * This method simplifies the reading of Doubles, 
+     * By combining display of text messages together an input of double double
+     * @param message the message to hint user on what double to input
+     * @return double
+     */
     public static double readDouble(String... message){
         for (String m : message) System.out.println(m);
         Scanner sc = new Scanner(System.in);
         return sc.nextDouble();
     }
     
+    
+    /** 
+     * A method to enter a particular int from a range between i to j
+     * @param i the lower threshold of allowable int to be entered
+     * @param j the upper threshold of allowable int to be entered
+     * @return int as a choice 
+     */
     public static int readChoice(int i, int j) {
         Scanner sc = new Scanner(System.in);
         int choice;
@@ -46,35 +70,59 @@ public class MiscMethods {
         try {
             choice = sc.nextInt();
         } catch (InputMismatchException ex) {
-            System.out.println("Invalid input, try again.");
+            System.out.println("You have entered an invalid choice, please try again.");
             sc.nextLine();  // flush scanner
             return readChoice(i, j);
         }
 
         if (choice < i || choice > j) {
-            System.out.println("Invalid input, try again.");
+            System.out.println("You have entered an invalid choice, please try again.");
             return readChoice(i, j);
         }
         return choice;
     }
 
+    
+    /** 
+     * A method to generate spaces between Strings
+     * @param size of the String
+     * @return String of the space generated
+     */
     public static String generateSpaces(int size) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < size; i++) stringBuilder.append(" ");
         return stringBuilder.toString();
     }
 
+    
+    /** 
+     * This method simplifies the reading of Strings, 
+     * By combining display of text messages together an input of a String
+     * @param message the String message to hint the user on what to type in
+     * @return String the message to type in
+     */
     public static String readString(String... message) {
         for (String m : message) System.out.println(m);
         Scanner sc = new Scanner(System.in);
         return sc.nextLine();
     }
     
+    
+    /** 
+     * This method simplifies the reading of characters.
+     * @return char
+     */
     public static char readCharacter() {
         Scanner sc = new Scanner(System.in);
         return Character.toUpperCase(sc.next().charAt(0));
     }
 
+    
+    /** 
+     * This method is to map the {@code String} to respective {@code AgeAdvisory}.
+     * @param input the {@code String} to be mapped
+     * @return the {@code AgeAdvisory} the input mapped to
+     */
     public static MovieEnums.AgeAdvisory readAgeAdvisory(String input) {
         switch (input.toUpperCase()) {
             case "G":
@@ -114,6 +162,12 @@ public class MiscMethods {
         }
     }
 
+    
+    /** 
+     * This method is to map the {@code String} to respective {@code Cineplex}.
+     * @param input the {@code String} to be mapped
+     * @return the {@code Cineplex} the input mapped to
+     */
     public static TheatreEnums.Cineplex readCineplex(String input) {
         switch (input.toUpperCase()) {
             case "GV":
@@ -128,6 +182,12 @@ public class MiscMethods {
     }
 
 
+    
+    /** 
+     * This method is to map the {@code String} to respective {@code CinemaLocation}.
+     * @param input the {@code String} to be mapped
+     * @return the {@code CinemaLocation} the input mapped to
+     */
     public static TheatreEnums.CinemaLocation readLocation(String input) {
         switch (input.toUpperCase()) {
             case "JURONG EAST":
@@ -142,6 +202,12 @@ public class MiscMethods {
     }
 
 
+    
+    /** 
+     * This method is to map the {@code String} to respective {@code TheatreClass}.
+     * @param input the {@code String} to be mapped
+     * @return the {@code TheatreClass} the input mapped to
+     */
     public static TheatreEnums.TheatreClass readTheatreClass(String input) {
         switch (input.toUpperCase()) {
             case "PLATINUM SUITES":
@@ -161,6 +227,15 @@ public class MiscMethods {
         }
     }
 
+    
+    /** 
+     * This method is to add line breaks based on {@code lengthOfSpace} and to 
+     * add new line based on {@code maxLineLength}
+     * @param input the original {@code String} to display
+     * @param maxLineLength the max num of chars per line, if exceed, \n into new line
+     * @param lengthOfSpace the empty spaces added from the {@code String}
+     * @return the updated {@code String} with line breaks
+     */
     public static String addLinebreaks(String input, int maxLineLength, int lengthOfSpace) {
         StringTokenizer tok = new StringTokenizer(input, " ");
         StringBuilder output = new StringBuilder(input.length());
@@ -179,6 +254,11 @@ public class MiscMethods {
         return output.toString();
     }
 
+    
+    /** 
+     * This method parses a date {@code String} into the {@code Date} class format
+     * @return a {@code Date} class
+     */
     public static Date dateInput(){
         System.out.println();
         System.out.println("    _/_/_/          _/_/    _/_/_/_/_/     _/_/_/_/");
@@ -201,6 +281,11 @@ public class MiscMethods {
         }
         return toReturnDate;
     }
+    
+    /** 
+     * {@code dateInput()} calls this method for the user to enter {@code String} of date
+     * @return String
+     */
     //convert String object into Date() object;
 
     public static String enterDateString() {
@@ -219,9 +304,12 @@ public class MiscMethods {
         return concat;
     }
 
-    //subfunction under enterDateString
-
-
+    
+    /** 
+     * This function converts a {@code Date} class into a SimpleDateFormat String
+     * @param date the input {@code Date} class
+     * @return the converted {@code Date} into a {@code String}
+     */
     public static String dateOutput(Date date){
         SimpleDateFormat dateForm= new SimpleDateFormat("yyyy-MM-dd' T 'HH:mm:ss");
         return dateForm.format(date);
@@ -229,5 +317,5 @@ public class MiscMethods {
 
     //Convert Date() object into String for Viewing on the console
 
-
+    
 }

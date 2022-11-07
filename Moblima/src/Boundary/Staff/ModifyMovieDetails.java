@@ -17,19 +17,35 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
+/**
+    Boundary/View Class for an admin to modify the details of a particular movie
+    @version 1.0
+    @since 2022-10-30
+ */
 public class ModifyMovieDetails extends Boundary {
 
+    /** movie object to be passed in for edit and update */
     Movie movie;
 
+    /**
+     * Constructor to pass in the movie 
+     * @param movie
+     */
     public ModifyMovieDetails(Movie movie){
         this.movie= movie;
     }
 
+    /**
+     * overriden start method from Boundary abstract class
+     */
     @Override
     protected void start() {
         display();
     }
 
+    /** method to display the movie edit view to the admins, 
+     * allow admin to enter their edits, to edit the attributes of the movie
+     */
     private void display(){
         SupportFunctions.clearScreen();
         printHeader("Modifying Details for "+movie.getMovieName());

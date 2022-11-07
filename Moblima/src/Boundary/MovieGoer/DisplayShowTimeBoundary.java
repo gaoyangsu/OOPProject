@@ -18,20 +18,38 @@ import static Controller.MiscMethods.*;
 import static Controller.CRUDShowSchedule.*;
 import static Controller.CRUDTheatre.*;
 
+/**
+    Boundary/View Class to display showScheduling based on a movie
+    @version 1.0
+    @since 2022-10-23
+ */
 public class DisplayShowTimeBoundary extends Boundary {
+    /** Movie class passed in */
     private Movie movie;
+    /** UID class to check if its customer ID or guest */
     private String userId;
     
+    /**
+     * Constructor to pass in movie and userId
+     * @param movie
+     * @param userId
+     */
     public DisplayShowTimeBoundary(Movie movie,String userId){
         this.movie = movie;
         this.userId=userId;
     }
 
+     /**
+     * overriden start method from Boundary abstract class
+     */
     @Override
     protected void start() {
         display();
     }
 
+    /** display a list of schedules for a movie
+     * can click into each schedule to make a booking
+     */
     private void display(){
 
         Date today= new Date();
