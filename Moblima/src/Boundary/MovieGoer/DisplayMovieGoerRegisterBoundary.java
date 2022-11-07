@@ -7,11 +7,24 @@ import static Controller.MiscMethods.*;
 
 import java.io.IOException;
 import java.util.Scanner;
+
+/**
+    Boundary/View Class for moviegoers to register an account 
+    in order to log in as a member
+    @version 1.0
+    @since 2022-11-01
+ */
 public class DisplayMovieGoerRegisterBoundary extends Boundary{
+    
+    /**
+     * overriden start method from Boundary abstract class
+     */
     @Override
     protected void start() {
         display();
     }
+
+    /** method to display the registration view page to the users */
     private void display(){
         printHeader("Registration (Insert any empty field to cancel)");
         String user = readString("Enter name:");

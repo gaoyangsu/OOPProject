@@ -6,11 +6,22 @@ import static Controller.MiscMethods.*;
 
 import java.io.IOException;
 import java.util.Scanner;
+
+/**
+    Boundary/View Class representing registration of accounts for the Admin
+    @version 1.0
+    @since 2022-11-01
+ */
 public class DisplayAdminRegiserBoundary extends Boundary{
+    /**
+     * overriden start method from Boundary abstract class
+     */
     @Override
     protected void start() {
         display();
     }
+
+    /** method to display to the user to register for an account for Admin */
     private void display(){
         printHeader("Registration (Insert any empty field to cancel)");
         String user = readString("Enter name:");

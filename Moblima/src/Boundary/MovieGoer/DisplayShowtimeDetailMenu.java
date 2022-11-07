@@ -13,20 +13,39 @@ import static Controller.AdminController.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+/**
+    Boundary/View Class representing a the Moviegoer to make a booking corresponding to a particular showtime
+
+    @version 1.0
+    @since 2022-10-23
+ */
 public class DisplayShowtimeDetailMenu extends Boundary {
+	/** exact showtime to be passed in */
 	private ShowSchedule showtime;
+	/** seats to be chosen for the booking */
 	private ArrayList<Seat> chosenSeats;
+	/**UID to check if customer is member or guest */
 	private String userId;
 	
+	/**
+	 * Constructor to pass in showtime and userID
+	 * @param showtime
+	 * @param userId
+	 */
 	public DisplayShowtimeDetailMenu(ShowSchedule showtime,String userId) {
 		this.showtime=showtime;
 		this.userId=userId;
 		this.chosenSeats=new ArrayList<Seat>();
 	}
 	
+	 /**
+     * overriden start method from Boundary abstract class
+     */
 	protected void start() {
         display();
     }
+
+	/** method to display the booking process to the user */
 	private void display() {
 		int numStudent=0;
 		int numSeniors=0;
@@ -221,6 +240,7 @@ public class DisplayShowtimeDetailMenu extends Boundary {
 		
 	}
 	
+	/** method to print out the updated pricing corresponding to the admin's SystemSettings */
 	public static void showPricing() {
 		SystemSettings priceList=retrieveSystemSettings();
 		double goldClassPrice=2*priceList.getPremiumPrice();

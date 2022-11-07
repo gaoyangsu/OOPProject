@@ -21,15 +21,38 @@ import static Controller.CustomerController.*;
 import java.io.IOException;
 import java.util.*;
 
+/**
+    Boundary/View Class to display booking confirmation after the movieGoer chooses Seats
+    @version 1.0
+    @since 2022-10-31
+ */
 public class DisplayBookingConfirmation extends Boundary{
+	/** userID if the Customer Logs in */
 	private String userId;
+	/** the showSchedule that this booking is for */
     private ShowSchedule schedule;
+	/** the ArrayList of seats being booked */
     private ArrayList<Seat> bookedSeats;
     
+	/** num of student tickets */
     private int numStudent;
+
+	/** num of senior tickets */
     private int numSenior;
+
+	/** num of adult tickets */
     private int numAdult;
-    
+	
+
+	/**
+	 * Constructor of the displayBookingConfirmation, to pass the params
+	 * @param schedule
+	 * @param bookedSeats
+	 * @param numStudent
+	 * @param numSenior
+	 * @param userId
+	 * into the Boundary classes 
+	 */
     public DisplayBookingConfirmation(ShowSchedule schedule,ArrayList<Seat> bookedSeats,int numStudent,int numSenior,String userId){
         this.schedule=schedule;
         this.bookedSeats=bookedSeats;
@@ -39,16 +62,25 @@ public class DisplayBookingConfirmation extends Boundary{
         this.userId=userId;
     };
 
+	 /**
+     * overriden start method from Boundary abstract class
+     */
     protected void start() {
         display();
     }
 
+	/** display the booking confirmation on console */
     private void display() {
         SupportFunctions.clearScreen();
         printHeader("Booking Confirmation");
         BookingConfirmation();
     }
 
+	/** Price calculator of the confirmed booking, as well as displaying the relevant details of showSchedule
+	 *  such as AgeRestriction, location , moviename
+	 *  for movieGoers to confirm
+	 *  If moviegoer do not want to book, can abort the booking
+	 */
     private void BookingConfirmation(){
     	SystemSettings priceList=retrieveSystemSettings();
     	ArrayList<Holiday> holidayList=retrieveHolidays();

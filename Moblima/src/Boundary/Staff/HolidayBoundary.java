@@ -13,13 +13,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.io.*;
+
+
+/**
+    Boundary/View Class representing an Admin to add/remove a Holiday 
+    @version 1.0
+    @since 2022-10-30
+ */
 public class HolidayBoundary extends Boundary {
     
     Scanner sc= new Scanner(System.in);
+    
+    /**
+     * overriden start method from Boundary abstract class
+     */
     @Override
     protected void start() {
         display();
     }
+
+    /** method to display menu to add/remove/display holidays */
     private void display(){
         SupportFunctions.clearScreen();
         printHeader("Modify Holidays");
@@ -46,6 +59,8 @@ public class HolidayBoundary extends Boundary {
 
             }
         }
+
+    /** method to display a holiday */ 
     private void displayHolidays(){
 
         Scanner sc= new Scanner(System.in);
@@ -70,6 +85,8 @@ public class HolidayBoundary extends Boundary {
         readString("\npress enter to return");
         display();
     }
+
+    /**method to add a holiday into an arraylist of holidays, to be saved to holiday.dat */
     public  void addHolidayToIndex(){
         Scanner sc = new Scanner (System.in);
         //SupportFunctions.clearScreen();
@@ -96,6 +113,8 @@ public class HolidayBoundary extends Boundary {
         
 
     }
+
+    /** method to delete a particular holiday index */
     public void deleteHolidayInIndex(){
         SupportFunctions.clearScreen();
         System.out.println("Select Index of holiday to remove (enter 0 to return)");

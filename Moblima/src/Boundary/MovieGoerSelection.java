@@ -4,9 +4,18 @@ import static Controller.MiscMethods.printHeader;
 import static Controller.MiscMethods.printMenu;
 import static Controller.MiscMethods.readChoice;
 
-
+/**
+    Boundary/View Class representing a Moviegoer page to either book tickets as guest,
+	 or log in as a member
+   
+    @version 1.0
+    @since 2022-11-01
+ */
 public class MovieGoerSelection extends Boundary{
 	
+	/**
+     * overriden start method from Boundary abstract class
+     */
 	 @Override
 	    protected void start() {
 	        

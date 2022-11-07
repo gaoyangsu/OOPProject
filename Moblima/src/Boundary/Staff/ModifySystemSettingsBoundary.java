@@ -12,12 +12,29 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.io.*;
+
+/**
+    Boundary/View Class For the Admin to tweak the system settings,
+    such as price, holidays and top five movie listings
+    @version 1.0
+    @since 2022-10-30
+ */
 public class ModifySystemSettingsBoundary extends Boundary {
 
+     /**
+     * overriden start method from Boundary abstract class
+     */
     @Override
     protected void start() {
         display();
     }
+
+    /** This method displays a list of menu
+     * to tweak the selected prices,
+     * holidays,
+     * and the order for the top 5 movie listings
+     * (Either by rating, sales number or by both)
+     */
     private void display(){
         
         SupportFunctions.clearScreen();

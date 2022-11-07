@@ -14,12 +14,27 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
+
+/**
+    Boundary/View Class enables the Admin to editing a list of movies,
+    by appending, modifying and remove the movies from the list
+    @version 1.0
+    @since 2022-10-25
+ */
 public class MovieListingEditBoundary extends Boundary {
+
+     /**
+     * overriden start method from Boundary abstract class
+     */
     @Override
     protected void start() {
         display();
     }
 
+    /**
+     * This method displays a list of movies currently in the movie.dat
+     * and gives the user the option to add/modify/remove a movie
+     */
     void display(){
         SupportFunctions.clearScreen();
         Date today= new Date();
@@ -73,6 +88,8 @@ public class MovieListingEditBoundary extends Boundary {
 
     }
 
+    /** This method enables to admin to append a new movie and show into the movie listing
+    */
     public void addNewMovie() {
         SupportFunctions.clearScreen();
         int ID;
@@ -139,6 +156,12 @@ public class MovieListingEditBoundary extends Boundary {
         }
     }
 
+    
+    /** 
+     * This method enables the admin to modify individual movies, based on
+     * the selction from the current list of movies from the display() function
+     * @param movie
+     */
     public void modifyIndividualMovie(Movie movie){
         SupportFunctions.clearScreen();
         printHeader("Modify Movie" + movie.getMovieName());

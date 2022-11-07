@@ -1,10 +1,20 @@
 package Entity;
-
+/**
+    An Class Containing the various enum Classes catering to the settings of the theatre
+    @version 1.0
+    @since 2022-10-25
+ */
 public class TheatreEnums {
+    /**
+        This enum class shows the cineplex brand to be chosen
+        @param GV golden village
+        @param CATHAY cathay cineplex
+        @param FILMGARDE Filmgarde
+     */
     public enum Cineplex{
         GV("GV"),
         CATHAY("CATHAY"),
-        FILMGARDE("FILMGARDE");
+        FILMGARDE("FILMGARDE"); 
 
         private String cineplex;
         Cineplex(String cineplex ) {this.cineplex=cineplex;}
@@ -14,6 +24,12 @@ public class TheatreEnums {
         }
     }
 
+    /**
+        This enum class shows the locations of the theatres to be chosen
+        @param JURONG_EAST Jurong East
+        @param BUGIS Bugis
+        @param WOODLANDS Woodlands
+     */
     public enum CinemaLocation{
         JURONG_EAST("Jurong East"),
         BUGIS("Bugis"),
@@ -25,6 +41,9 @@ public class TheatreEnums {
         public String toString(){return cinemaLocation;}
     }
 
+    /**
+        This enum class shows the classes of the theatres to be chosen
+     */
     public enum TheatreClass{
         PLATINUM_SUITES("Platinum Suites"),
         ELITE_CLUB_SEATS("Elite Club seats"),

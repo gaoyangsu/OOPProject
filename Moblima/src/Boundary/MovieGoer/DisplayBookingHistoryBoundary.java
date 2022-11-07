@@ -17,19 +17,40 @@ import static Controller.CRUDCustomerBooking.*;
 import static Controller.CustomerController.*;
 import static Controller.AdminController.*;
 
+
+/**
+    Boundary/View Class to display the past booking history of the moviegoer
+	if logged in as member, automatically provide details of past bookings
+	else as a guest, enter email used to booked the ticket to check past bookings
+    @version 1.0
+    @since 2022-11-01
+ */
 public class DisplayBookingHistoryBoundary extends Boundary {
+	/** UID of customer, to check if logged in ornot */
 	private String userId;
 	
+	/**
+	 * Constructor taking in
+	 * @param userId
+	 * to check if logged in as member or guest only
+	 */
 	public DisplayBookingHistoryBoundary(String userId) {
 		this.userId=userId;
 	}
 	
+	 /**
+     * overriden start method from Boundary abstract class
+     */
     @Override
     protected void start() {
         //SupportFunctions.clearScreen();
         display();
     }
-    
+     /**
+     * display menu Find past bookinglisting
+	 * based on the email of member/guest
+	 * will call showBookings if credentials found
+     */
     private void display() {
     	ArrayList<Booking> bookings=retrieveBookingList();
         int indicator=-1;
@@ -79,7 +100,12 @@ public class DisplayBookingHistoryBoundary extends Boundary {
         }
     }
     
-    private void showBookings(ArrayList<Booking> foundBookings) {
+    
+	/** 
+	 * this method is to show the list the bookings if past bookings found for the specified email
+	 * @param foundBookings
+	 */
+	private void showBookings(ArrayList<Booking> foundBookings) {
     	int index=0;
     	int indicator=-1;
     	Date target=foundBookings.get(0).getShowTime();
@@ -138,7 +164,14 @@ public class DisplayBookingHistoryBoundary extends Boundary {
         }
     }
     
-    public static String getCharForNumber(int i){
+    
+	/** 
+	 * A converter from char, the row alphabets of the seating layout of the theatre
+	 * to a number, readable by the 2-D array
+	 * @param i
+	 * @return String
+	 */
+	public static String getCharForNumber(int i){
 
         // return null for bad input
         if(i < 0){
