@@ -11,16 +11,29 @@ import Boundary.Staff.DisplayAdminRegiserBoundary;
 import Entity.Admin;
 import Entity.Movie;
 
+/**
+    Boundary/View Class representing an Admin's main portal after log in
+    @version 1.0
+    @since 2022-10-30
+ */
 public class StaffMain extends Boundary {
+    /** boolean to confirm the Admin signed in */
     private boolean signedIn;
+
+    /**
+     * overriden start method from Boundary abstract class
+     */
     @Override
     protected void start(){
         if(signedIn)displayAdminView();
         else signin();
     }
+
+    /**
+     * display menu for Admins to make all necessary system, movie, scheduling, theatre changes
+     */
     private void displayAdminView() {
         SupportFunctions.clearScreen();
-        //NEED TO DO LOG IN PAGE.. this one is just for testing
         printHeader("Staff");
         printMenu("Welcome, please make a selection:",
                 "1. Modify Movie Listing",
@@ -55,6 +68,8 @@ public class StaffMain extends Boundary {
                 break;
         }
     }
+
+    /** Sign in method for Admin */
     private void signin(){
         SupportFunctions.clearScreen();
         printHeader("Staff");

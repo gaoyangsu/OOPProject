@@ -12,13 +12,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+    Boundary/View Class representing a the Moviegoer main after logging in as member
+    or choose to book ticket as a guest
+    @version 1.0
+    @since 2022-10-23
+ */
 public class ModifyTheatreBoundary extends Boundary {
 
+    /**
+     * overriden start method from Boundary abstract class
+     */
     @Override
     protected void start() {
         display();
     }
 
+    /** this method displays the cineplexs to choose from,
+     * then after the user chooses a specific cineplex,
+     * displayCinemaList would be called based on the chosen cineplex
+     */
     public void display(){
         String selection = "";
         
@@ -38,6 +51,12 @@ public class ModifyTheatreBoundary extends Boundary {
 
     }
 
+    
+    /** 
+     * This method displays a list of theatres pertaining to a specific Cineplex
+     * and shows a menu to either add or remove theatres 
+     * @param cineplex
+     */
     public void displayCinemaList(TheatreEnums.Cineplex cineplex){
         Scanner sc= new Scanner(System.in);
         ArrayList<Theatre> theatres = retrieveTheatreList(cineplex);
@@ -67,6 +86,11 @@ public class ModifyTheatreBoundary extends Boundary {
         }
     }
 
+    
+    /** 
+     * This method is called by displayCinemaList() to add a theatre into the list
+     * @param cineplex
+     */
     public void addTheatres(TheatreEnums.Cineplex cineplex){
 
         boolean is3D;
@@ -111,6 +135,11 @@ public class ModifyTheatreBoundary extends Boundary {
         }
     }
 
+    
+    /** 
+     * This method is called by removeTheatres() to remove a theatre into the list
+     * @param cineplex
+     */
     public void removeTheatres(TheatreEnums.Cineplex cineplex) {
 
         System.out.println("Enter the 3 Character code name of the Theatre to be removed: ");

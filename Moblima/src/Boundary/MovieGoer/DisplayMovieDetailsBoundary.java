@@ -16,24 +16,48 @@ import java.util.Scanner;
 
 import static Controller.MiscMethods.*;
 
+/**
+    Boundary/View Class to display the details of each movie 
+    after selecting one movie from the listing of the movies
+    @version 1.0
+    @since 2022-10-23
+ */
 public class DisplayMovieDetailsBoundary extends Boundary{
+    /** userID */
 	private String userId;
+    /** the movie being passed into the constructor */
     private Movie movie;
+
+    /**
+     * Constructor, which passes in the movie object
+     * and userID, if logged in as a member
+     * @param movie
+     * @param userId
+     */
     
     public DisplayMovieDetailsBoundary(Movie movie,String userId){
         this.movie = movie;
         this.userId=userId;
     }
 
+    /**
+     * overriden start method from Boundary abstract class
+     */
     protected void start() {
         display();
     }
 
+    /** to display the movieDetails by calling the movieDetailView(movie) function */
     private void display() {
         movieDetailView(movie);
     }
 
 
+    
+    /** 
+     * To view a movieDetail based on the movie param chosen
+     * @param movie
+     */
     private void movieDetailView(Movie movie){
 
         Scanner sc= new Scanner(System.in);

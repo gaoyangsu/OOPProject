@@ -18,19 +18,35 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
+/**
+    Boundary/View Class for Admin personnel to add, modify, delete a showSchedule
+    @version 1.0
+    @since 2022-10-23
+ */
 public class AddScreeningSchedule extends Boundary {
-
+    /** movie class to be passed in */
     Movie movie;
+
+    /** simpleDateFormat for user to input  */
     public static final SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
+    /**
+     * Constructor to pass in the movie for the admin to refer to which movie to add the showscheduling list to 
+     * @param movie
+     */
     public AddScreeningSchedule(Movie movie){
         this.movie= movie;
     }
+
+    /**
+     * overriden start method from Boundary abstract class
+     */
     @Override
     protected void start() {
         display();
     }
 
+    /** display menu with 3 choices, either to add, edit, remove  */
     private void display(){
         SupportFunctions.clearScreen();
         ArrayList<ShowSchedule> scheduleForMovie =retrieveMovieShowSchedule(movie);
@@ -63,6 +79,11 @@ public class AddScreeningSchedule extends Boundary {
         }
     }
 
+    
+    /** 
+     * method to add a scheduling for a particular movie
+     * @param movie
+     */
     public void addScheduling(Movie movie){
         SupportFunctions.clearScreen();
         Date toAppendDate=null;
@@ -102,6 +123,11 @@ public class AddScreeningSchedule extends Boundary {
 
     }
 
+    
+    /** 
+     * method to modify a particular scheduling
+     * @param movie
+     */
     public void modifyScheduling(Movie movie){
 
         Scanner sc = new Scanner(System.in);
@@ -187,6 +213,11 @@ public class AddScreeningSchedule extends Boundary {
         }
     }
 
+    
+    /** 
+     * method to remove a Scheduling
+     * @param movie
+     */
     public void removeScheduling(Movie movie){
 
 //        printMenu("Enter the cineplex: ",
@@ -229,6 +260,12 @@ public class AddScreeningSchedule extends Boundary {
 
     }
 
+    
+    /** 
+     * method to get the theatre object through the code
+     * @param code
+     * @return Theatre
+     */
     public Theatre getTheatreThroughCode(String code){
         for (TheatreEnums.Cineplex cineplex :TheatreEnums.Cineplex.values()){
             if(retrieveTheatreList(cineplex)==null) continue;

@@ -15,18 +15,37 @@ import java.util.Scanner;
 
 import static Controller.MiscMethods.*;
 
+/**
+    Boundary/View Class to list all the movies/ top 5 movies to the users,
+    then afterwards users can proceed to check on the showschedules pertaining to the movie chosen
+    @version 1.0
+    @since 2022-10-23
+ */
 public class DisplayMovieListBoundary extends Boundary {
+    /**  userID to be passed in if logged in as member */
 	private String userId;
-	
+	/**
+     * Constructor to pass in userID
+     * @param userId
+     */
 	public DisplayMovieListBoundary(String userId) {
 		this.userId=userId;
 	}
 	
     //private boolean isTopFive =false;
+    /**
+     * overriden start method from Boundary abstract class
+     */
     protected void start() {
         display();
     }
 
+    /** method to display the menu
+     * 1. Search movie by name
+     * 2. List all movies
+     * 3. List top 5 by either rating, salesnumber or both
+     * (the display of top 5 can be tweaked at the admin side)
+     */
     private void display() {
         
         SupportFunctions.clearScreen();
@@ -55,6 +74,7 @@ public class DisplayMovieListBoundary extends Boundary {
     }
 
 
+    /** method to show the listing of movies according to display() function's choice  */
     private void movieListingView() {
 
         Date today = new Date();

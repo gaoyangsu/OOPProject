@@ -15,20 +15,38 @@ import static Controller.MiscMethods.*;
 import static Controller.MiscMethods.printHeader;
 import static Controller.CRUDMovies.*;
 
+/**
+    Boundary/View Class to display the review pertaining to a specific movie
+    @version 1.0
+    @since 2022-10-23
+ */
 public class DisplayReviewBoundary extends Boundary {
+    /** UID to be passed in to check if logged in as member or guest*/
 	private String userId;
+    /** Movie class to be passed in to show the Reviews pertaining to the Movie */
     private Movie movie;
 
+    /**
+     * Constructor class to pass in the movie and userID
+     * @param movie
+     * @param userId
+     */
     public DisplayReviewBoundary(Movie movie,String userId){
         this.movie=movie;
         this.userId=userId;
     };
 
+    /**
+     * overriden start method from Boundary abstract class
+     */
     @Override
     protected void start() {
         display();
     }
 
+    /**
+     * method to display menu for to choose to show review or give review
+     */
     private void display(){
         SupportFunctions.clearScreen();
         printHeader("Reviews of " + movie.getMovieName());
@@ -55,6 +73,9 @@ public class DisplayReviewBoundary extends Boundary {
         end();
     }
 
+    /**
+     * method to give a review
+     */
     private void giveAReview(){
         
         SupportFunctions.clearScreen();
@@ -86,6 +107,9 @@ public class DisplayReviewBoundary extends Boundary {
         }
     }
 
+     /**
+     * method to show a review
+     */
     private void showReviews(){
         
         SupportFunctions.clearScreen();
