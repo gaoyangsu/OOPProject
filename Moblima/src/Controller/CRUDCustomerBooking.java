@@ -30,14 +30,16 @@ public class CRUDCustomerBooking implements Initialiser{
      * @return boolean true to denote all the .dat files are properly read
      * @return false to denote file integrity issues
      */
-    public static boolean initialise() {
+    public boolean initialise() {
         try {
             readBookingList();
+            return true;
         } catch (IOException ex) {
             return false;
         } catch (ClassNotFoundException ex) {
             return true;
         }
+    }
 
 
 	
@@ -74,18 +76,5 @@ public class CRUDCustomerBooking implements Initialiser{
      */
     public static void updateBookingList() throws IOException{
         serialisedWrite(BOOKING_FILE,listOfBookings);
-    }
-    @Override
-	public boolean initialise() {
-        try {
-            readBookingList();
-        } catch (IOException ex) {
-            return false;
-        } catch (ClassNotFoundException ex) {
-            return true;
-        }
-
-        return true;
-    }
-    
+    }   
 }
