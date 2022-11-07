@@ -5,6 +5,7 @@ import Controller.CRUDMovies;
 import Controller.CRUDShowSchedule;
 import Controller.CRUDTheatre;
 import Controller.CustomerController;
+import Controller.Initialiser;
 
 import java.util.*;
 
@@ -36,19 +37,19 @@ public class MoblimaMain extends Boundary {
      */
     @Override
     protected void start() {
-        CRUDCustomerBooking customerBooking = new CRUDCustomerBooking();
-        CRUDMovies movies = new CRUDMovies();
-        CRUDShowSchedule showSchedule = new CRUDShowSchedule();
-        CRUDTheatre theatre = new CRUDTheatre();
-        AdminController admin = new AdminController();
-        CustomerController moviegoer = new CustomerController();
+        Initialiser A = new CRUDCustomerBooking();
+        Initialiser B = new CRUDMovies();
+        Initialiser C = new CRUDShowSchedule();
+        Initialiser D = new CRUDTheatre();
+        Initialiser E = new AdminController();
+        Initialiser F = new CustomerController();
         boolean initialized= (
-        customerBooking.initialise() &&
-        movies.initialise() &&
-        showSchedule.initialise() &&
-        theatre.initialise() &&
-        admin.initialise() &&
-        moviegoer.initialise()
+        A.initialise() &&
+        B.initialise() &&
+        C.initialise() &&
+        D.initialise() &&
+        E.initialise() &&
+        F.initialise()
         );
         if (!initialized) {
             System.out.println("Error: failed to read data, please check file integrity.");
